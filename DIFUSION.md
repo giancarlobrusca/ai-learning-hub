@@ -48,6 +48,39 @@ Google no participa de IndexNow: para Google la vía sigue siendo Search Console
 
 ---
 
+## Contra qué estás compitiendo
+
+Un vistazo a lo que rankea hoy para estas consultas, porque cambia bastante la estrategia:
+
+| Quién aparece | Qué es | Qué implica |
+|---|---|---|
+| Microsoft Learn, edX, DataCamp | Plataformas con autoridad enorme | No se les gana de frente; se les gana en la consulta específica que ellos no cubren |
+| Bootcamps y escuelas (KSchool, EU School…) | Contenido comercial que vende un curso | Su "guía completa" existe para captar leads, no para enseñar. Es delgada y genérica |
+| Directorios de herramientas (IAUtiles y similares) | "Cómo usar ChatGPT" | **Otra intención**: usar herramientas, no entender cómo funcionan los modelos |
+| Dominios de coincidencia exacta (`aprenderinteligenciaartificial.com`) | Contenido para principiantes, foco España | Compiten en la cabeza de serie, pero con poca profundidad |
+
+Tres conclusiones concretas:
+
+**1. La intención está partida en dos y conviene no pelear la equivocada.** Buena parte de quien busca
+"aprender IA" quiere aprender a *usar* ChatGPT. Este sitio es firmemente lo otro: entender cómo
+funcionan los modelos. Perseguir la primera intención sería traicionar el contenido y además perder,
+porque hay cientos de sitios optimizados para eso. La pelea ganable es la técnica, que está mucho
+menos cubierta en castellano.
+
+**2. Casi toda la competencia es comercial.** Bootcamps, plataformas y escuelas cuyo contenido existe
+para vender algo. Eso deja libre un espacio real: una lista curada, técnica y sin nada que vender.
+Por eso la página `/sobre/` dice explícitamente que no hay publicidad, afiliados ni rastreo — no es
+un detalle de transparencia, es el argumento diferencial y conviene repetirlo al compartir el sitio.
+
+**3. Buena parte del top es de España.** Dominios `.es`, ejemplos y vocabulario peninsular. El voseo,
+las referencias a Argentina, México, Colombia y Chile, y los precios en dólares no son solo tono:
+son la diferenciación para las SERPs de LATAM, que es donde el hueco es más grande.
+
+**Dónde atacar primero, entonces:** `/colecciones/cursos-de-ia-gratis/` compite con páginas
+dedicadas que ya existen (o sea: la consulta está validada, hay demanda real) pero que son listas
+sin criterio. Y `/temas/espanol/` prácticamente no tiene competencia honesta. Esas dos son las
+puertas de entrada más ganables, y desde ahí el enlazado interno lleva al resto.
+
 ## Nivel 1 — Enlaces que dependen solo de vos
 
 ### El repositorio de GitHub
