@@ -77,6 +77,8 @@ ai-learning-hub/
 - Búsqueda y filtros por texto, tipo, nivel, imprescindibles y recursos en español, con la consulta
   reflejada en la URL (`/?q=karpathy`).
 - Tema claro/oscuro, responsive, atajos de teclado (`/` para buscar, `Esc` para limpiar).
+- Carga diferida de los datos: una página pesa ~16 KB comprimidos. Los 108 KB de recursos solo se
+  descargan si alguien usa el buscador o los filtros.
 
 ## Cómo agregar un recurso
 
@@ -134,6 +136,7 @@ Lo que ya está resuelto en el generador, para no perderlo de vista al editar:
 - `sitemap.xml`, `robots.txt` y `llms.txt` regenerados en cada build.
 - Enlaces internos contextuales: `build/render.js` enlaza términos del texto al tema que los
   explica (primera aparición, nunca a la propia página, tope de 3 por bloque).
+- Primera carga de ~16 KB comprimidos por página, sin JavaScript bloqueante ni recursos externos.
 
 **Si cambia el dominio**, se toca únicamente `SITE_URL` en `build/config.js` y se vuelve a
 construir: canonical, sitemap, Open Graph y JSON-LD salen todos de ahí.

@@ -3,10 +3,22 @@
 
    El contenido de las páginas se genera en el build (ver build.js): lo que hay acá
    es solo interacción. Nada de lo que se ve por defecto depende de este archivo.
+
+   Los 108 KB de datos de recursos NO se cargan con la página: solo alimentan el
+   buscador, y la mayoría de las visitas nunca lo usan. Se piden la primera vez que
+   alguien toca la búsqueda o los filtros, o de entrada si la URL trae ?q=.
+   En conexiones móviles eso es la diferencia entre 54 KB y 15 KB por página.
    =========================================================== */
 
-const R = window.R || [];
-const SECTIONS = window.SECTIONS || [];
+const ARCHIVOS_DATOS = [
+  "/data/00-secciones.js",
+  "/data/01-fundamentos.js",
+  "/data/02-arquitecturas.js",
+  "/data/03-entrenamiento-aplicado.js",
+  "/data/04-multimodal-eval-safety.js",
+  "/data/05-medios-comunidad.js",
+  "/data/06-futuro.js",
+];
 
 const TYPES = {
   paper:       { label: "Paper",       icon: "📄" },
@@ -34,7 +46,46 @@ const LEVELS = {
 const TYPE_ORDER = ["curso", "video", "canal", "podcast", "libro", "paper", "blog", "newsletter",
                     "repo", "herramienta", "docs", "benchmark", "cuenta", "comunidad"];
 
-const SECTION_MAP = Object.fromEntries(SECTIONS.filter(s => s.slug).map(s => [s.slug, s]));
+/* --------------------- Datos (carga diferida) --------------------- */
+
+let R = [];
+let SECTIONS = [];
+let SECTION_MAP = {};
+let promesaDatos = null;
+
+const cargarScript = src => new Promise((resolve, reject) => {
+  const s = document.createElement("script");
+  s.src = src;
+  s.onload = resolve;
+  s.onerror = () => reject(new Error("No se pudo cargar " + src));
+  document.head.appendChild(s);
+});
+
+/* Los archivos de data/ no dependen entre sí —cada uno hace push sobre window.R y
+   00-secciones define window.SECTIONS—, así que se pueden pedir en paralelo. */
+function cargarDatos() {
+  if (promesaDatos) return promesaDatos;
+
+  const meta = document.getElementById("results-meta");
+  if (meta) meta.textContent = "Cargando recursos…";
+
+  promesaDatos = Promise.all(ARCHIVOS_DATOS.map(cargarScript))
+    .then(() => {
+      R = window.R || [];
+      SECTIONS = window.SECTIONS || [];
+      SECTION_MAP = Object.fromEntries(SECTIONS.filter(s => s.slug).map(s => [s.slug, s]));
+      R.forEach(r => {
+        r._hay = norm([r.title, r.by, r.note, r.type, r.sec, SECTION_MAP[r.sec]?.title].join(" "));
+      });
+    })
+    .catch(err => {
+      if (meta) meta.textContent = "No se pudieron cargar los recursos. Probá recargar la página.";
+      promesaDatos = null; // permite reintentar
+      throw err;
+    });
+
+  return promesaDatos;
+}
 
 /* --------------------- Estado --------------------- */
 
@@ -47,11 +98,6 @@ const norm = s => (s || "")
   .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 const esc = s => (s || "").replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
-
-R.forEach((r, i) => {
-  r._id = i;
-  r._hay = norm([r.title, r.by, r.note, r.type, r.sec, SECTION_MAP[r.sec]?.title].join(" "));
-});
 
 function matches(r) {
   if (state.onlyTop && !r.top) return false;
@@ -88,7 +134,7 @@ function cardHTML(r) {
         ${r.year ? `<span class="tag year">${r.year}</span>` : ""}
         ${r.free ? '<span class="tag free">gratis</span>' : ""}
         ${r.es ? '<span class="tag es">español</span>' : ""}
-        <span class="tag">${esc(secTitle)}</span>
+        ${secTitle ? `<span class="tag">${esc(secTitle)}</span>` : ""}
       </div>
     </a>`;
 }
@@ -96,25 +142,10 @@ function cardHTML(r) {
 const sortItems = list =>
   [...list].sort((a, b) => (b.top ? 1 : 0) - (a.top ? 1 : 0) || (a.title > b.title ? 1 : -1));
 
-function renderResults() {
+function pintarResultados() {
   const wrap = document.getElementById("results");
   const meta = document.getElementById("results-meta");
-  const controls = document.getElementById("controls");
-  if (!wrap) return;
-
-  if (!isFiltering()) {
-    document.body.classList.remove("filtering");
-    if (controls) controls.hidden = true;
-    wrap.innerHTML = "";
-    return;
-  }
-
   const hits = R.filter(matches);
-  const wasFiltering = document.body.classList.contains("filtering");
-  document.body.classList.add("filtering");
-  if (controls) controls.hidden = false;
-  // Al empezar a filtrar volvemos arriba: si no, los resultados quedan fuera de pantalla.
-  if (!wasFiltering) window.scrollTo({ top: 0, behavior: "instant" });
 
   meta.textContent = hits.length === 0
     ? "Sin resultados"
@@ -135,6 +166,27 @@ function renderResults() {
   `).join("");
 }
 
+function renderResults() {
+  const wrap = document.getElementById("results");
+  const controls = document.getElementById("controls");
+  if (!wrap) return;
+
+  if (!isFiltering()) {
+    document.body.classList.remove("filtering");
+    if (controls) controls.hidden = true;
+    wrap.innerHTML = "";
+    return;
+  }
+
+  const wasFiltering = document.body.classList.contains("filtering");
+  document.body.classList.add("filtering");
+  if (controls) controls.hidden = false;
+  // Al empezar a filtrar volvemos arriba: si no, los resultados quedan fuera de pantalla.
+  if (!wasFiltering) window.scrollTo({ top: 0, behavior: "instant" });
+
+  cargarDatos().then(pintarResultados).catch(() => { /* el mensaje ya está en pantalla */ });
+}
+
 /* --------------------- Filtros --------------------- */
 
 function renderFilters() {
@@ -142,8 +194,8 @@ function renderFilters() {
   const lvlRow = document.getElementById("f-levels");
   if (!typeRow || !lvlRow) return;
 
-  const present = new Set(R.map(r => r.type));
-  typeRow.innerHTML = TYPE_ORDER.filter(t => present.has(t)).map(t =>
+  // Se pintan desde la tabla estática: no hace falta esperar los datos.
+  typeRow.innerHTML = TYPE_ORDER.map(t =>
     `<button type="button" class="chip" data-f="type" data-v="${t}" aria-pressed="false">${TYPES[t].icon} ${TYPES[t].label}</button>`
   ).join("");
 
@@ -211,6 +263,10 @@ function init() {
 
   const search = document.getElementById("search");
   if (search) {
+    // Adelantamos la descarga en cuanto se nota intención de buscar, así el
+    // primer resultado no espera a la red.
+    search.addEventListener("focus", cargarDatos, { once: true });
+
     // ?q=... permite enlazar una búsqueda concreta y es lo que declara el SearchAction.
     const initial = new URLSearchParams(window.location.search).get("q");
     if (initial) { search.value = initial; state.q = initial; }
