@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Learning Hub — Todo para aprender sobre modelos de IA</title>
+<meta name="description" content="Guía curada de los mejores recursos para aprender inteligencia artificial: fundamentos, arquitecturas, entrenamiento, agentes, seguridad y hacia dónde va el campo.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">AI</div>
+      <div class="brand-text">
+        <strong>AI Learning Hub</strong>
+        <span>Todo lo que vale la pena, ordenado</span>
+      </div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú">☰</button>
+      <div class="search-wrap">
+        <input id="search" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Buscar: transformers, LoRA, karpathy, RLHF, difusión…">
+        <span class="kbd">/</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn" id="clear-btn">Limpiar</button>
+        <button class="btn" id="theme-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ---------- HERO ---------- -->
+      <header class="hero">
+        <h1>Todo para aprender<br><em>cómo funcionan los modelos de IA</em></h1>
+        <p>
+          Desde la matemática que hay debajo hasta cómo se entrena un modelo frontera, cómo se lo alinea,
+          cómo se lo sirve y qué se discute hoy sobre lo que viene. Cada recurso está acá porque alguien
+          lo usó para aprender de verdad, no porque aparezca en una lista de listas.
+        </p>
+        <div class="stats" id="stats"></div>
+      </header>
+
+      <!-- ---------- CONTROLES ---------- -->
+      <div class="controls">
+        <div class="filters">
+          <div class="filter-label">Tipo de recurso</div>
+          <div id="f-types" class="filters" style="border:0;margin:0;padding:0"></div>
+          <div class="filter-label" style="margin-top:14px">Nivel y atajos</div>
+          <div id="f-levels" class="filters" style="border:0;margin:0;padding:0"></div>
+        </div>
+        <div class="results-meta" id="results-meta"></div>
+      </div>
+
+      <!-- ---------- RESULTADOS DE BÚSQUEDA ---------- -->
+      <section id="results-section">
+        <div id="results"></div>
+      </section>
+
+      <!-- ---------- RUTAS ---------- -->
+      <section class="section" id="roadmaps">
+        <h2><span class="sec-ico">🧭</span> Rutas de aprendizaje</h2>
+        <p class="sec-desc">
+          El error más común es empezar por todos lados a la vez. Elegí una ruta según de dónde venís,
+          seguila en orden y recién después dispersate. Cada paso enlaza a la sección correspondiente.
+        </p>
+
+        <div class="roadmap">
+
+          <div class="rm-card">
+            <h4>🌱 Nunca entrené un modelo</h4>
+            <div class="rm-for">Sabés programar poco o nada. Meta: entender qué es una red neuronal y entrenar una.</div>
+            <ol>
+              <li><strong>Intuición visual:</strong> la serie de redes neuronales de 3Blue1Brown, completa.</li>
+              <li><strong>Python básico</strong> si hace falta, y NumPy con foco en <em>shapes</em>.</li>
+              <li><strong>Machine Learning Specialization</strong> de Andrew Ng, o <strong>fast.ai</strong> si preferís aprender haciendo.</li>
+              <li><strong>micrograd</strong> de Karpathy: construí un motor de autodiff en 100 líneas.</li>
+              <li><strong>Un proyecto propio</strong> con datos que te importen. Sin proyecto no se consolida nada.</li>
+            </ol>
+          </div>
+
+          <div class="rm-card">
+            <h4>🔨 Quiero construir con LLMs</h4>
+            <div class="rm-for">Sos desarrollador. Meta: productos con modelos, no entrenarlos desde cero.</div>
+            <ol>
+              <li><strong>Deep Dive into LLMs</strong> de Karpathy (3h30). Empezá por acá, siempre.</li>
+              <li><strong>Prompting y contexto:</strong> las guías de Anthropic y OpenAI, más "Building Effective Agents".</li>
+              <li><strong>Evaluaciones antes que nada:</strong> el post de Hamel Husain sobre evals. Esto separa juguetes de productos.</li>
+              <li><strong>RAG y agentes:</strong> el curso de agentes de HF, DSPy y el Model Context Protocol.</li>
+              <li><strong>Inferencia:</strong> vLLM u Ollama, cuantización, y las cuentas de costo real por token.</li>
+              <li><strong>Fine-tuning al final</strong>, solo si las evals demuestran que hace falta.</li>
+            </ol>
+          </div>
+
+          <div class="rm-card">
+            <h4>🧪 Quiero entrenar modelos</h4>
+            <div class="rm-for">Base sólida de programación y matemática. Meta: entender y modificar el pipeline completo.</div>
+            <ol>
+              <li><strong>Neural Networks: Zero to Hero</strong> completo, escribiendo el código vos.</li>
+              <li><strong>Understanding Deep Learning</strong> (Prince) como libro de referencia paralelo.</li>
+              <li><strong>Attention Is All You Need</strong> + The Annotated Transformer + The Illustrated Transformer.</li>
+              <li><strong>Stanford CS336</strong>: tokenizador, arquitectura, kernels, entrenamiento distribuido, scaling laws.</li>
+              <li><strong>nanoGPT → nanochat</strong>: reproducí GPT-2 y después el pipeline completo con post-training.</li>
+              <li><strong>Ultra-Scale Playbook + Smol Training Playbook</strong> para la realidad de los clusters.</li>
+              <li><strong>Post-training:</strong> InstructGPT, DPO, GRPO, y open-r1 para leer código real de RLVR.</li>
+            </ol>
+          </div>
+
+          <div class="rm-card">
+            <h4>🔬 Quiero investigar</h4>
+            <div class="rm-for">Meta: contribuir a interpretabilidad, alineamiento o arquitecturas.</div>
+            <ol>
+              <li><strong>Base matemática sólida:</strong> Mathematics for Machine Learning + Murphy como referencia.</li>
+              <li><strong>ARENA</strong> completo: es el currículum más directo hacia investigación técnica en seguridad.</li>
+              <li><strong>Los papers de circuitos de Anthropic</strong>, en orden cronológico, con TransformerLens abierto al lado.</li>
+              <li><strong>Reproducí un paper</strong> chico de punta a punta. Es el filtro real entre leer e investigar.</li>
+              <li><strong>Escribí en público</strong> lo que encontrás: blog, LessWrong, Alignment Forum. Así se entra al campo hoy.</li>
+              <li><strong>Elegí un problema abierto concreto</strong> — los "200 Concrete Open Problems" de Neel Nanda son un buen catálogo.</li>
+            </ol>
+          </div>
+
+        </div>
+
+        <div class="callout warn">
+          <div class="callout-title">Una advertencia sobre el consumo pasivo</div>
+          <p>
+            Mirar videos y leer papers da una sensación de progreso que no siempre se corresponde con aprendizaje.
+            La regla práctica: por cada hora de consumo, una hora escribiendo código que rompe, se debuguea y funciona.
+            Si nunca te peleaste con un <em>shape mismatch</em>, todavía no aprendiste el tema.
+          </p>
+        </div>
+      </section>
+
+      <!-- ---------- SECCIONES DINÁMICAS ---------- -->
+
+      <section class="section" id="matematicas">
+        <h2><span class="sec-ico">📐</span> Matemática</h2>
+        <p class="sec-desc">Álgebra lineal, cálculo, probabilidad y optimización: lo mínimo indispensable para no leer papers como si fueran magia. No necesitás una licenciatura, pero sí estas cuatro cosas.</p>
+        <div data-sec="matematicas"></div>
+      </section>
+
+      <section class="section" id="programacion">
+        <h2><span class="sec-ico">⌨️</span> Programación y tooling</h2>
+        <p class="sec-desc">Python, PyTorch, JAX y las herramientas con las que vas a pasar el 90% del tiempo. Aprender a debuggear tensores vale más que memorizar arquitecturas.</p>
+        <div data-sec="programacion"></div>
+      </section>
+
+      <section class="section" id="ml-clasico">
+        <h2><span class="sec-ico">📈</span> Machine learning clásico</h2>
+        <p class="sec-desc">Regresión, árboles, validación cruzada, bias-variance. Sigue siendo la mejor herramienta para la mayoría de los problemas tabulares reales, y los conceptos de generalización se aprenden mejor acá que con transformers.</p>
+        <div data-sec="ml-clasico"></div>
+      </section>
+
+      <section class="section" id="deep-learning">
+        <h2><span class="sec-ico">🧠</span> Deep learning</h2>
+        <p class="sec-desc">Redes profundas, backpropagation, optimización, regularización y los fenómenos que todavía no entendemos del todo (doble descenso, grokking, la hipótesis de la lotería).</p>
+        <div data-sec="deep-learning"></div>
+      </section>
+
+      <section class="section" id="arquitecturas">
+        <h2><span class="sec-ico">🏗️</span> Arquitecturas</h2>
+        <p class="sec-desc">
+          El transformer es el sustrato dominante, pero no es el final de la historia. Acá está el mapa completo:
+          las piezas que casi todos los modelos comparten (RoPE, RMSNorm, SwiGLU, GQA), las apuestas de eficiencia
+          (MoE, mixture-of-depths) y las alternativas serias (espacios de estados, híbridos, sin tokenizador).
+        </p>
+        <div data-sec="arquitecturas"></div>
+      </section>
+
+      <section class="section" id="transformers-llm">
+        <h2><span class="sec-ico">🔤</span> Transformers y LLMs</h2>
+        <p class="sec-desc">De "Attention Is All You Need" a los reportes técnicos de los modelos frontera actuales. Los reportes de Llama 3 y DeepSeek-V3 enseñan más sobre cómo se construye un modelo que la mayoría de los cursos.</p>
+        <div data-sec="transformers-llm"></div>
+      </section>
+
+      <section class="section" id="entrenar-desde-cero">
+        <h2><span class="sec-ico">⚙️</span> Entrenar desde cero</h2>
+        <p class="sec-desc">
+          El pipeline completo de pre-entrenamiento. Nunca vas a entrenar un modelo frontera vos solo,
+          pero entrenar uno chico de punta a punta cambia irreversiblemente cómo entendés a los grandes.
+        </p>
+        <div data-sec="entrenar-desde-cero"></div>
+      </section>
+
+      <section class="section" id="datos-scaling">
+        <h2><span class="sec-ico">🗃️</span> Datos, tokenización y scaling laws</h2>
+        <p class="sec-desc">
+          La parte menos glamorosa y más determinante. La calidad del corpus explica más varianza entre modelos
+          que la arquitectura, y las leyes de escalado son lo que permite predecir el resultado antes de gastar el presupuesto.
+        </p>
+        <div data-sec="datos-scaling"></div>
+      </section>
+
+      <section class="section" id="post-training">
+        <h2><span class="sec-ico">🎯</span> Post-training, RLHF y razonamiento</h2>
+        <p class="sec-desc">
+          Un modelo pre-entrenado no es un asistente: es un autocompletador de internet. Todo lo que hace útil
+          a un modelo pasa acá. Desde 2025 esta es además la fase donde se concentra la mayor parte de las ganancias.
+        </p>
+        <div data-sec="post-training"></div>
+      </section>
+
+      <section class="section" id="fine-tuning">
+        <h2><span class="sec-ico">🔧</span> Fine-tuning práctico</h2>
+        <p class="sec-desc">
+          LoRA, QLoRA y las herramientas para adaptar un modelo con una sola GPU. Advertencia frecuente entre
+          quienes lo hacen a diario: la mayoría de los problemas que se intentan resolver con fine-tuning se
+          resuelven mejor con mejores prompts, recuperación o evaluaciones.
+        </p>
+        <div data-sec="fine-tuning"></div>
+      </section>
+
+      <section class="section" id="inferencia">
+        <h2><span class="sec-ico">⚡</span> Inferencia y optimización</h2>
+        <p class="sec-desc">
+          Entrenar se hace una vez; servir se hace millones de veces. Acá se define el costo real de un producto:
+          KV cache, batching continuo, cuantización, decodificación especulativa y el ancho de banda de memoria como cuello de botella.
+        </p>
+        <div data-sec="inferencia"></div>
+      </section>
+
+      <section class="section" id="infra">
+        <h2><span class="sec-ico">🖥️</span> Infraestructura y GPUs</h2>
+        <p class="sec-desc">CUDA, Triton, clusters, tracking de experimentos y la economía del cómputo. Saber leer un roofline te ahorra semanas de optimizar lo que no era el problema.</p>
+        <div data-sec="infra"></div>
+      </section>
+
+      <section class="section" id="rag-agentes">
+        <h2><span class="sec-ico">🤖</span> RAG, agentes y contexto</h2>
+        <p class="sec-desc">
+          Recuperación, uso de herramientas, memoria y orquestación. El término "prompt engineering" quedó chico:
+          lo que importa hoy es la <em>ingeniería de contexto</em>, es decir, decidir qué información entra a la
+          ventana en cada paso y qué se descarta.
+        </p>
+        <div data-sec="rag-agentes"></div>
+      </section>
+
+      <section class="section" id="multimodal">
+        <h2><span class="sec-ico">🎨</span> Multimodal y generativos</h2>
+        <p class="sec-desc">Visión, difusión, audio, video y modelos del mundo. Dejó de ser un anexo del texto: los modelos frontera hoy nacen multimodales.</p>
+        <div data-sec="multimodal"></div>
+      </section>
+
+      <section class="section" id="evaluacion">
+        <h2><span class="sec-ico">📊</span> Evaluación y benchmarks</h2>
+        <p class="sec-desc">
+          Sin evaluaciones no hay ingeniería, hay intuición disfrazada. Y todo benchmark público tiende a
+          contaminarse o saturarse: por eso lo importante no es el número, sino entender qué mide y qué no.
+        </p>
+        <div data-sec="evaluacion"></div>
+      </section>
+
+      <section class="section" id="interpretabilidad">
+        <h2><span class="sec-ico">🔬</span> Interpretabilidad</h2>
+        <p class="sec-desc">
+          Abrir el modelo y mirar adentro. Es una de las pocas áreas donde alguien con una GPU y buenas ideas
+          todavía puede producir resultados relevantes, porque el cuello de botella es conceptual y no de cómputo.
+        </p>
+        <div data-sec="interpretabilidad"></div>
+      </section>
+
+      <section class="section" id="seguridad">
+        <h2><span class="sec-ico">🛡️</span> Alineamiento y seguridad</h2>
+        <p class="sec-desc">
+          Desde problemas técnicos concretos (reward hacking, jailbreaks, supervisión escalable) hasta gobernanza
+          y regulación. Incluye deliberadamente autores que están en desacuerdo entre sí.
+        </p>
+        <div data-sec="seguridad"></div>
+      </section>
+
+      <section class="section" id="medios">
+        <h2><span class="sec-ico">📡</span> Blogs, canales y podcasts</h2>
+        <p class="sec-desc">
+          El campo se mueve más rápido que los libros. Estas son las fuentes que vale la pena seguir de forma
+          sostenida. Con dos newsletters y tres blogs alcanza: seguir todo es una forma elegante de no aprender nada.
+        </p>
+        <div data-sec="medios"></div>
+      </section>
+
+      <section class="section" id="cuentas">
+        <h2><span class="sec-ico">👥</span> Cuentas y comunidades</h2>
+        <p class="sec-desc">Buena parte de la discusión real ocurre en X, Discord y Reddit semanas antes de llegar a un paper. Estas son las fuentes con mejor relación señal/ruido.</p>
+        <div data-sec="cuentas"></div>
+      </section>
+
+      <section class="section" id="espanol">
+        <h2><span class="sec-ico">🌎</span> Recursos en español</h2>
+        <p class="sec-desc">
+          Material de calidad en castellano. Es honestamente menos y suele ir algo atrasado respecto del inglés:
+          sirve como puente y para intuición, pero en algún momento vas a tener que leer papers en inglés. No hay atajo.
+        </p>
+        <div data-sec="espanol"></div>
+      </section>
+
+      <!-- ---------- LÍNEA DE TIEMPO ---------- -->
+      <section class="section" id="papers-clave">
+        <h2><span class="sec-ico">🗺️</span> Línea de tiempo</h2>
+        <p class="sec-desc">
+          Cómo llegamos hasta acá, en trece momentos. Leer estos papers en orden es la mejor forma de entender
+          por qué el campo tomó las decisiones que tomó.
+        </p>
+
+        <div class="prose">
+          <div class="timeline">
+
+            <div class="tl-item">
+              <div class="tl-year">2012</div>
+              <h4>AlexNet — el deep learning se vuelve inevitable</h4>
+              <p>Una CNN entrenada en GPUs pulveriza ImageNet. Empieza la era en la que el cómputo, y no el diseño manual de features, define el estado del arte.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2014-2015</div>
+              <h4>Seq2seq, atención y ResNets</h4>
+              <p>Bahdanau introduce la atención para traducción; las conexiones residuales permiten entrenar redes muy profundas. Las dos piezas que faltaban para lo que vendría.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2017</div>
+              <h4>Attention Is All You Need</h4>
+              <p>Se tira la recurrencia por la ventana y queda solo la atención. Paralelizable, escalable, y todavía hoy la base de casi todo.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2018-2019</div>
+              <h4>BERT y GPT-2 — el pre-entrenamiento se impone</h4>
+              <p>Se bifurcan las dos ramas: encoder bidireccional para comprensión, decoder autorregresivo para generación. Gana la segunda.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2020</div>
+              <h4>Scaling laws + GPT-3</h4>
+              <p>El progreso se vuelve predecible: una ley de potencia en cómputo, datos y parámetros. Y aparece el aprendizaje en contexto, que nadie había pedido explícitamente.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2020-2021</div>
+              <h4>Difusión y CLIP</h4>
+              <p>La generación de imágenes cambia de paradigma. Alinear texto e imagen en un mismo espacio abre la puerta a todo lo multimodal.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2022 (marzo)</div>
+              <h4>Chinchilla e InstructGPT</h4>
+              <p>Dos correcciones el mismo mes: los modelos estaban subentrenados en datos, y el problema real no era la capacidad sino seguir instrucciones.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2022 (noviembre)</div>
+              <h4>ChatGPT</h4>
+              <p>Ninguna novedad técnica mayor: una interfaz. Y sin embargo es el momento en que el campo deja de ser un asunto académico.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2023</div>
+              <h4>LLaMA, LoRA y el ecosistema abierto</h4>
+              <p>Pesos abiertos + adaptación barata = miles de personas entrenando modelos en su casa. FlashAttention hace que todo eso además sea rápido.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2024</div>
+              <h4>Contexto largo, MoE y agentes</h4>
+              <p>Ventanas de un millón de tokens, mezcla de expertos como estándar de facto, y los primeros agentes que hacen trabajo real de varios pasos.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2024 (septiembre)</div>
+              <h4>o1 y el cómputo en tiempo de inferencia</h4>
+              <p>Aparece el segundo eje de escalado: pensar más tiempo antes de responder. El entrenamiento deja de ser la única palanca.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2025 (enero)</div>
+              <h4>DeepSeek-R1</h4>
+              <p>El razonamiento emerge de RL con recompensas verificables, se publica en abierto y a un costo mucho menor del que se creía necesario. El campo entero se reorganiza alrededor de esto.</p>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-year">2025-2026</div>
+              <h4>Agentes, memoria y arquitecturas híbridas</h4>
+              <p>El foco se corre de "responder bien" a "completar tareas largas de forma autónoma". Vuelven a discutirse en serio el aprendizaje continuo, los modelos del mundo y las alternativas a la atención pura.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- FUTURO ---------- -->
+      <section class="section" id="futuro">
+        <h2><span class="sec-ico">🔮</span> Qué se viene</h2>
+        <p class="sec-desc">
+          Esta sección envejece más rápido que el resto, así que está escrita separando tres cosas que suelen
+          mezclarse: lo que es apuesta segura, lo que está cambiando ahora mismo, y lo que está genuinamente en disputa.
+        </p>
+
+        <div class="prose">
+
+          <h3>1. Apuestas seguras: lo que estudiar hoy sigue valiendo en diez años</h3>
+          <p>
+            Si tu tiempo de estudio es limitado, invertilo acá. Nada de esto depende de qué modelo esté de moda.
+          </p>
+          <ul>
+            <li><strong>La matemática de base.</strong> Álgebra lineal, cálculo, probabilidad y optimización no cambiaron y no van a cambiar. Toda arquitectura futura se va a describir con este vocabulario.</li>
+            <li><strong>El descenso por gradiente y la diferenciación automática.</strong> Podemos cambiar de arquitectura, de optimizador o de precisión numérica; el esquema de "definir una pérdida y bajar por el gradiente" lleva seis décadas resistiendo.</li>
+            <li><strong>La lección amarga.</strong> Los métodos generales que aprovechan más cómputo terminan superando a los que codifican conocimiento humano. Se cumplió tantas veces que conviene tratarla como un prior fuerte al evaluar cualquier propuesta nueva.</li>
+            <li><strong>Que el progreso escala con recursos de forma predecible.</strong> Las constantes cambian y los ejes se mueven (parámetros → datos → cómputo de inferencia), pero la existencia de curvas de escalado predecibles es el hallazgo empírico más robusto del campo.</li>
+            <li><strong>La destilación.</strong> Modelos grandes que entrenan modelos chicos: es la técnica con mejor retorno económico de la industria y no hay razón para que deje de serlo.</li>
+            <li><strong>La evaluación como disciplina.</strong> A medida que los sistemas se vuelven más autónomos, medir bien se vuelve <em>más</em> difícil y más valioso. Es la habilidad más subestimada del campo.</li>
+            <li><strong>Los conceptos, no las implementaciones.</strong> Representaciones distribuidas, atención como mecanismo de enrutamiento de información, cuellos de botella de memoria, sobreajuste. Sobreviven a cualquier cambio de arquitectura.</li>
+          </ul>
+
+          <div class="callout good">
+            <div class="callout-title">Regla práctica</div>
+            <p>
+              Si un recurso te enseña <em>por qué</em> algo funciona, casi seguro sigue siendo válido dentro de cinco años.
+              Si te enseña <em>qué botón apretar</em> en una librería, probablemente esté obsoleto en seis meses. Priorizá el primero
+              y aprendé el segundo cuando lo necesites.
+            </p>
+          </div>
+
+          <h3>2. Lo que está cambiando ahora mismo (2025-2026)</h3>
+          <p>
+            Estas transiciones ya ocurrieron o están ocurriendo. No son predicciones: son el estado actual del campo,
+            y explican por qué material de 2023 puede sonar viejo.
+          </p>
+
+          <h4>El escalado se corrió del pre-entrenamiento</h4>
+          <p>
+            Durante años, "mejorar el modelo" significaba entrenar uno más grande con más datos. Hoy la mayor parte de las
+            ganancias viene del post-entrenamiento y del cómputo en tiempo de inferencia: RL con recompensas verificables,
+            cadenas de razonamiento largas, búsqueda y verificación. DeepSeek-R1 lo volvió público y reproducible, y
+            desde entonces el gasto se corrió hacia esa etapa.
+          </p>
+
+          <h4>De modelos a agentes</h4>
+          <p>
+            La unidad de análisis dejó de ser "el modelo" y pasó a ser el sistema completo: modelo + herramientas + memoria +
+            bucle de control. Buena parte del progreso visible del último año viene del andamiaje alrededor del modelo, no de
+            los pesos. La métrica que mejor captura esto es el horizonte temporal de tareas que un sistema completa de forma
+            autónoma, que viene duplicándose aproximadamente cada siete meses.
+          </p>
+
+          <h4>Arquitecturas híbridas y eficiencia</h4>
+          <p>
+            La mezcla de expertos es hoy el estándar de facto en modelos frontera: activar una fracción de los parámetros por
+            token. En paralelo, los modelos de espacio de estados dejaron de ser una curiosidad y aparecen como capas
+            intercaladas con atención en modelos de producción. La atención cuadrática pura ya no es la única opción seria.
+          </p>
+
+          <h4>Los datos humanos de calidad se están agotando</h4>
+          <p>
+            Las proyecciones sobre el stock de texto público de alta calidad convergen en que el margen es estrecho. La
+            respuesta de la industria son datos sintéticos, currículums cuidados, entornos verificables y RL. Esto conecta
+            directamente con la tesis de la "era de la experiencia": si no quedan datos humanos que consumir, el aprendizaje
+            tiene que venir de la interacción.
+          </p>
+
+          <h4>Modelos chicos sorprendentemente capaces</h4>
+          <p>
+            Destilación más datos curados hicieron que modelos de 3B a 30B parámetros hagan hoy lo que en 2023 requería
+            cientos de miles de millones. Consecuencia práctica: cada vez más casos de uso se resuelven local, barato y
+            sin enviar datos a ningún lado.
+          </p>
+
+          <h4>La interpretabilidad empezó a ser útil</h4>
+          <p>
+            Pasó de resultados en modelos de juguete a encontrar características manipulables en modelos de producción y
+            a trazar grafos de atribución que muestran planificación anticipada y racionalización a posteriori.
+            Todavía está lejos de ser una herramienta de auditoría confiable, pero dejó de ser puramente académica.
+          </p>
+
+          <h3>3. Lo que está genuinamente en disputa</h3>
+          <p>
+            Acá hay gente muy inteligente en desacuerdo profundo. Desconfiá de quien te presente cualquiera de estos
+            puntos como resuelto, en cualquier dirección.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>La pregunta</th><th>Una posición</th><th>La otra</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>¿Alcanza con escalar?</td>
+                  <td>Las curvas siguen sin quebrarse; falta ingeniería, no ideas nuevas.</td>
+                  <td>Los LLMs interpolan sobre lo visto; falta un mecanismo de generalización que no tenemos (Chollet, LeCun).</td>
+                </tr>
+                <tr>
+                  <td>¿Los modelos "razonan"?</td>
+                  <td>Las cadenas largas resuelven problemas genuinamente nuevos y verificables.</td>
+                  <td>Es búsqueda sobre patrones memorizados que colapsa al subir la complejidad estructural.</td>
+                </tr>
+                <tr>
+                  <td>¿El RL crea capacidades o las revela?</td>
+                  <td>El RL con recompensas verificables enseña habilidades nuevas de razonamiento.</td>
+                  <td>Solo amplifica lo que el modelo base ya podía hacer con muestreo suficiente.</td>
+                </tr>
+                <tr>
+                  <td>¿Sobrevive el transformer?</td>
+                  <td>La inercia de hardware y software es enorme; se seguirá modificando por dentro.</td>
+                  <td>Los híbridos, los modelos sin tokenizador y los modelos del mundo lo van a desplazar en 3-5 años.</td>
+                </tr>
+                <tr>
+                  <td>¿Cuándo llega el aprendizaje continuo?</td>
+                  <td>Memoria en tiempo de test y arquitecturas tipo Titans ya apuntan en esa dirección.</td>
+                  <td>El olvido catastrófico sigue sin resolverse y puede requerir un cambio de paradigma.</td>
+                </tr>
+                <tr>
+                  <td>¿Cuándo llega la IA general?</td>
+                  <td>Esta década, por extrapolación de las curvas de capacidad y autonomía.</td>
+                  <td>La definición misma es confusa y la difusión real la limitan las instituciones, no la capacidad.</td>
+                </tr>
+                <tr>
+                  <td>¿La inversión actual es sostenible?</td>
+                  <td>El capex se justifica: la demanda de inferencia crece más rápido que la oferta.</td>
+                  <td>Hay una brecha grande entre gasto en cómputo e ingresos; una corrección afectaría el ritmo del campo.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>4. Qué mirar para actualizar tus creencias</h3>
+          <p>
+            En vez de seguir opiniones, seguí indicadores. Estas son las señales que efectivamente distinguen entre los
+            escenarios de la tabla anterior:
+          </p>
+          <ol>
+            <li><strong>Benchmarks resistentes a la memorización</strong> (ARC-AGI-2 y sucesores, FrontierMath, Humanity's Last Exam). Si estos ceden rápido, la posición escaladora se fortalece mucho.</li>
+            <li><strong>Horizonte temporal de tareas autónomas</strong> (METR). Si la duplicación cada ~7 meses se sostiene, los agentes económicamente relevantes llegan antes de lo que sugiere la intuición.</li>
+            <li><strong>Costo por unidad de capacidad.</strong> El precio de alcanzar un nivel dado de desempeño viene cayendo de forma brutal; es lo que determina qué se vuelve viable en la práctica.</li>
+            <li><strong>Publicaciones de aprendizaje continuo y modelos del mundo.</strong> Un resultado sólido acá sería el cambio cualitativo más grande desde los modelos de razonamiento.</li>
+            <li><strong>Adopción real medida, no anunciada.</strong> Estudios de productividad y datos de uso, no comunicados de prensa.</li>
+            <li><strong>Datos de Epoch AI.</strong> Es la fuente que convierte esta discusión en algo empírico en lugar de retórico.</li>
+          </ol>
+
+          <div class="callout">
+            <div class="callout-title">Cómo leer a los que predicen</div>
+            <p>
+              Casi todos los pronósticos públicos vienen de gente con incentivos: laboratorios que necesitan capital,
+              críticos que construyeron su identidad sobre el escepticismo, inversores con posiciones tomadas.
+              Eso no los invalida, pero conviene leer siempre en pares opuestos —"Situational Awareness" junto a
+              "AI as Normal Technology", Sutton junto a los escaladores— y quedarse con los mecanismos causales
+              que cada uno propone, no con las fechas.
+            </p>
+          </div>
+
+          <h3>5. Recursos sobre el futuro</h3>
+        </div>
+
+        <div data-sec="futuro"></div>
+      </section>
+
+      <footer>
+        <p>
+          <strong>AI Learning Hub</strong> · Colección curada de recursos para aprender sobre modelos de inteligencia artificial.
+          Todos los enlaces apuntan a las fuentes originales; el mérito es de sus autores.
+        </p>
+        <p>
+          El campo se mueve rápido: algunos enlaces envejecen y otros recursos nuevos merecen entrar.
+          Editá los archivos de <code>data/</code> para mantenerlo vivo — el formato está documentado en el <code>README.md</code>.
+        </p>
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<script src="data/01-fundamentos.js"></script>
+<script src="data/02-arquitecturas.js"></script>
+<script src="data/03-entrenamiento-aplicado.js"></script>
+<script src="data/04-multimodal-eval-safety.js"></script>
+<script src="data/05-medios-comunidad.js"></script>
+<script src="data/06-futuro.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
