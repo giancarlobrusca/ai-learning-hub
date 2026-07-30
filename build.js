@@ -10,7 +10,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 
-const { SITE, AUTHOR, LAST_REVIEWED } = require("./build/config");
+const { SITE, AUTHOR, LAST_REVIEWED, INDEXNOW_KEY } = require("./build/config");
 const { COPY, RUTAS } = require("./build/copy");
 const { COLECCIONES } = require("./build/colecciones");
 const { HOME, GUIA, SOBRE, TIMELINE, FUTURO_HTML, CALLOUT_PASIVO } = require("./build/content");
@@ -690,6 +690,11 @@ ${TEMAS.map(s => linea(s.title, `/temas/${s.slug}/`, `${s.desc} (${counts[s.slug
   write("llms.txt", cuerpo);
 }
 
+/* El archivo de verificación de IndexNow: contiene la clave y nada más. */
+function buildIndexNowKey() {
+  write(`${INDEXNOW_KEY}.txt`, INDEXNOW_KEY);
+}
+
 function buildManifest() {
   write("site.webmanifest", JSON.stringify({
     name: "AI Learning Hub — Recursos para aprender IA",
@@ -747,6 +752,7 @@ function main() {
   buildRobots();
   buildManifest();
   buildLlmsTxt();
+  buildIndexNowKey();
 
   console.log(`✓ ${written.length} páginas generadas`);
   console.log(`  ${R.length} recursos · ${TEMAS.length} temas · ${RUTAS.length} rutas`);

@@ -20,6 +20,18 @@ También conviene dar de alta [Bing Webmaster Tools](https://www.bing.com/webmas
 minutos y Bing alimenta las respuestas de ChatGPT, que es tráfico creciente para consultas de este
 tipo.
 
+### IndexNow (ya configurado)
+
+El sitio publica una clave de IndexNow en la raíz, así que Bing, Yandex y Seznam aceptan avisos
+directos de cambios sin necesidad de cuenta. Las 37 URLs ya se enviaron una vez. Después de agregar
+o modificar páginas, volvé a avisar:
+
+```bash
+npm run indexnow
+```
+
+Google no participa de IndexNow: para Google la vía sigue siendo Search Console.
+
 ---
 
 ## Nivel 1 — Enlaces que dependen solo de vos

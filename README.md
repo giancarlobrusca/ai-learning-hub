@@ -23,6 +23,7 @@ npm run build      # genera el sitio (o: node build.js)
 npm run check      # genera y verifica SEO/enlaces (o: node build/check.js)
 npm run dev        # genera y sirve en http://localhost:8000
 npm run og         # regenera las imágenes de Open Graph (necesita Chrome)
+npm run indexnow   # avisa a Bing/Yandex de los cambios (correr DESPUÉS de desplegar)
 ```
 
 **Importante:** los archivos generados (`index.html`, `temas/`, `rutas/`, `guia/`, `colecciones/`,
@@ -41,6 +42,7 @@ ai-learning-hub/
 │   ├── colecciones.js          # cortes transversales: cursos gratis, libros, papers, canales
 │   ├── render.js               # plantillas HTML: <head>, JSON-LD, tarjetas, layout
 │   ├── og.js                   # genera las imágenes de Open Graph con Chrome headless
+│   ├── indexnow.js             # envía las URLs a Bing/Yandex/Seznam tras cada despliegue
 │   └── check.js                # verificador: enlaces rotos, títulos duplicados, JSON-LD, sitemap
 ├── data/
 │   ├── 00-secciones.js         # metadatos de las 22 secciones (compartido con el navegador)
@@ -134,6 +136,8 @@ Lo que ya está resuelto en el generador, para no perderlo de vista al editar:
 - Página de autoría y método (`/sobre/`) con `AboutPage` + `Person`, que es lo que Google evalúa
   como E-E-A-T en contenido educativo.
 - `sitemap.xml`, `robots.txt` y `llms.txt` regenerados en cada build.
+- IndexNow configurado: `npm run indexnow` avisa a Bing, Yandex y Seznam sin necesidad de cuenta
+  (Google no participa de ese protocolo; para Google es Search Console).
 - Enlaces internos contextuales: `build/render.js` enlaza términos del texto al tema que los
   explica (primera aparición, nunca a la propia página, tope de 3 por bloque).
 - Primera carga de ~16 KB comprimidos por página, sin JavaScript bloqueante ni recursos externos.

@@ -27,8 +27,14 @@ const AUTHOR = {
   location: "Buenos Aires, Argentina",
 };
 
+/* Clave de IndexNow: permite avisarle a Bing, Yandex y Seznam de cada cambio sin
+   necesidad de una cuenta. Se publica como 3fbbd2e6bb2084ef61c7edaec4cc775d.txt en la raíz;
+   los buscadores la leen de ahí para comprobar que el envío es legítimo.
+   Si se regenera hay que volver a construir y desplegar antes de enviar nada. */
+const INDEXNOW_KEY = "3fbbd2e6bb2084ef61c7edaec4cc775d";
+
 /* Fecha de última revisión del contenido. Se usa en JSON-LD y en el sitemap.
    Actualizala cuando hagas una pasada real sobre los recursos. */
 const LAST_REVIEWED = "2026-07-30";
 
-module.exports = { SITE, AUTHOR, LAST_REVIEWED };
+module.exports = { SITE, AUTHOR, LAST_REVIEWED, INDEXNOW_KEY };
