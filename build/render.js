@@ -24,6 +24,81 @@ const lowerTitle = s => {
 
 const json = obj => JSON.stringify(obj, null, 0).replace(/</g, "\\u003c");
 
+/* ------------------------------------------------------- Autoenlazado --- */
+
+/* Enlaza términos del texto al tema que los explica. Antes los temas solo se
+   conectaban por el bloque "Seguí por acá" del pie, lo que desaprovecha el lugar
+   donde el enlace tiene más sentido para quien lee: la frase donde aparece.
+
+   Reglas: primera aparición nada más, nunca a la propia página, nunca dentro de
+   un enlace o de un encabezado, y tope por bloque para que no quede un texto
+   sembrado de azul. */
+const TERMINOS = [
+  [/\b(fine-tuning|LoRA|QLoRA)\b/i, "fine-tuning"],
+  [/\b(RAG|recuperación aumentada|agentes)\b/i, "rag-agentes"],
+  [/\b(transformers?|modelos de lenguaje|LLMs?)\b/i, "transformers-llm"],
+  [/\b(post-entrenamiento|post-training|RLHF)\b/i, "post-training"],
+  [/\b(scaling laws|leyes de escalado|tokenizadores?)\b/i, "datos-scaling"],
+  [/\binterpretabilidad\b/i, "interpretabilidad"],
+  [/\b(alineamiento|alineación|red-teaming)\b/i, "seguridad"],
+  [/\b(evaluaciones|benchmarks?)\b/i, "evaluacion"],
+  [/\b(difusión|multimodales?)\b/i, "multimodal"],
+  [/\b(cuantización|KV cache|inferencia)\b/i, "inferencia"],
+  [/\b(CUDA|GPUs?)\b/i, "infra"],
+  [/\b(backpropagation|descenso por gradiente)\b/i, "deep-learning"],
+  [/\b(álgebra lineal|matemática de base)\b/i, "matematicas"],
+  [/\b(PyTorch|NumPy)\b/i, "programacion"],
+  [/\bmachine learning clásico\b/i, "ml-clasico"],
+  [/\b(mezcla de expertos|MoE)\b/i, "arquitecturas"],
+  [/\bpre-entrenamiento\b/i, "entrenar-desde-cero"],
+  [/\b(en castellano|en español)\b/i, "espanol"],
+  [/\b(paralelismo|entrenamiento distribuido|clusters?)\b/i, "infra"],
+  [/\b(prompting|ingeniería de contexto|uso de herramientas)\b/i, "rag-agentes"],
+  [/\b(circuitos|autoencoders dispersos|superposición)\b/i, "interpretabilidad"],
+  [/\b(reward hacking|jailbreaks|supervisión escalable|gobernanza)\b/i, "seguridad"],
+  [/\b(razonamiento|cadenas de razonamiento|SFT|DPO|GRPO)\b/i, "post-training"],
+  [/\b(visión|audio|modelos del mundo|modelos generativos)\b/i, "multimodal"],
+  [/\b(corpus|datos sintéticos)\b/i, "datos-scaling"],
+  [/\b(sobreajuste|validación cruzada|bias-variance)\b/i, "ml-clasico"],
+  [/\b(atención|RoPE|RMSNorm)\b/i, "arquitecturas"],
+  [/\b(probabilidad|cálculo vectorial|optimización matemática)\b/i, "matematicas"],
+  [/\b(modelos frontera|autocompletador)\b/i, "transformers-llm"],
+  [/\b(redes neuronales|redes profundas)\b/i, "deep-learning"],
+  [/\b(papers que definieron|línea de tiempo)\b/i, "papers-clave"],
+  [/\b(newsletters?|podcasts?)\b/i, "medios"],
+];
+
+const MAX_AUTOLINKS = 3;
+
+function autolink(html, { selfSlug = "", max = MAX_AUTOLINKS } = {}) {
+  if (!html) return html;
+
+  /* Partimos en tramos enlazables y no enlazables: dentro de <a>, de encabezados
+     y de las propias etiquetas no se toca nada. */
+  const partes = html.split(/(<a\b[\s\S]*?<\/a>|<h[1-6]\b[\s\S]*?<\/h[1-6]>|<[^>]+>)/i);
+  let usados = 0;
+  /* Los temas que el texto ya enlaza a mano no se vuelven a enlazar. */
+  const yaEnlazado = new Set([selfSlug, ...[...html.matchAll(/\/temas\/([a-z-]+)\//g)].map(m => m[1])]);
+
+  for (let i = 0; i < partes.length; i++) {
+    const tramo = partes[i];
+    if (!tramo || tramo.startsWith("<")) continue;
+
+    for (const [re, slug] of TERMINOS) {
+      if (usados >= max) break;
+      if (yaEnlazado.has(slug)) continue;
+      const m = tramo.match(re);
+      if (!m) continue;
+      partes[i] = partes[i].replace(re, `<a href="/temas/${slug}/">${m[0]}</a>`);
+      yaEnlazado.add(slug);
+      usados++;
+      break; // un enlace por tramo: queda mejor repartido
+    }
+    if (usados >= max) break;
+  }
+  return partes.join("");
+}
+
 /* ---------------------------------------------------------------- <head> --- */
 
 /* page = { path, title, description, ogType, schema, noindex } */
@@ -273,6 +348,7 @@ function navHTML(sections, counts, currentPath) {
       ${link("/rutas/", '<span class="n-ico" aria-hidden="true">🧭</span><span>Rutas de aprendizaje</span>', currentPath === "/rutas/")}
       ${link("/guia/como-aprender-ia-desde-cero/", '<span class="n-ico" aria-hidden="true">📖</span><span>Cómo aprender IA</span>', currentPath === "/guia/como-aprender-ia-desde-cero/")}
       ${link("/colecciones/", '<span class="n-ico" aria-hidden="true">🗂️</span><span>Colecciones</span>', currentPath.startsWith("/colecciones/"))}
+      ${link("/temas/", '<span class="n-ico" aria-hidden="true">📚</span><span>Todos los temas</span>', currentPath === "/temas/")}
       ${items}
       <div class="nav-group-title">El sitio</div>
       ${link("/sobre/", '<span class="n-ico" aria-hidden="true">✍️</span><span>Quién lo hace</span>', currentPath === "/sobre/")}`;
@@ -413,7 +489,7 @@ const SEARCH_SLOT = `
       </section>`;
 
 module.exports = {
-  esc, plain, abs, lowerTitle, head, layout,
+  esc, plain, abs, lowerTitle, autolink, head, layout,
   cardsHTML, cardHTML, sortItems, navHTML, breadcrumbHTML, faqHTML, relatedHTML, footerHTML,
   siteSchema, personSchema, breadcrumbSchema, faqSchema, itemListSchema, pageSchema, howToSchema,
   SEARCH_SLOT, TYPES, LEVELS, TYPE_ORDER,

@@ -177,7 +177,7 @@ function buildHome() {
         </nav>
       </section>
 
-      <h2 class="group-heading" id="temas">Todos los temas</h2>
+      <h2 class="group-heading" id="temas"><a href="/temas/">Todos los temas</a></h2>
       <p class="sec-desc">
         ${R.length} recursos organizados en ${TEMAS.length} temas, de la matemática de base a la
         interpretabilidad y la seguridad. Cada tema tiene su propia página con el listado completo.
@@ -220,14 +220,14 @@ function temaMain(s, c, items) {
         <h1>${T.esc(c.h1)}</h1>
         <div class="prose lede">${c.intro}</div>
       </header>
-      <div class="prose">${FUTURO_HTML}</div>
+      <div class="prose">${T.autolink(FUTURO_HTML, { selfSlug: "futuro", max: 6 })}</div>
       ${items.length ? T.cardsHTML(items, secTitle) : ""}`;
   }
 
   return `
       <header class="hero page-hero">
         <h1>${T.esc(c.h1)}</h1>
-        <div class="prose lede">${c.intro}</div>
+        <div class="prose lede">${T.autolink(c.intro, { selfSlug: s.slug })}</div>
       </header>
       <section class="section" id="recursos">
         <h2>${T.esc(c.lista ? c.lista.replace("{n}", items.length) : `${items.length} recursos de ${T.lowerTitle(secTitle)}`)}</h2>
@@ -245,7 +245,7 @@ function buildTema(s) {
 
   const pagePath = `/temas/${s.slug}/`;
   const items = T.sortItems(R.filter(r => r.sec === s.slug));
-  const trail = [HOME_CRUMB, { name: "Temas", path: "/#temas" }, { name: s.title, path: pagePath }];
+  const trail = [HOME_CRUMB, { name: "Temas", path: "/temas/" }, { name: s.title, path: pagePath }];
 
   const schema = [
     T.pageSchema({
@@ -335,7 +335,7 @@ function buildRuta(r) {
       <header class="hero page-hero">
         <h1><span aria-hidden="true">${r.icon}</span> ${T.esc(r.h1)}</h1>
         <p class="ruta-para">${T.esc(r.para)}</p>
-        <div class="prose lede">${r.intro}</div>
+        <div class="prose lede">${T.autolink(r.intro)}</div>
         <p class="ruta-meta"><strong>Tiempo estimado:</strong> ${T.esc(r.tiempo)} · <strong>${r.pasos.length} pasos</strong></p>
       </header>
       <section class="section" id="pasos">
@@ -389,7 +389,7 @@ function buildGuia() {
           <p class="byline-top">Por <a href="${AUTHOR.url}" rel="author">${T.esc(AUTHOR.name)}</a> ·
             Actualizado el <time datetime="${LAST_REVIEWED}">30 de julio de 2026</time></p>
         </header>
-        <div class="prose guia">${GUIA.body}</div>
+        <div class="prose guia">${T.autolink(GUIA.body, { max: 6 })}</div>
       </article>
       ${T.faqHTML(GUIA.faq)}
       <nav class="related" aria-label="Siguiente paso">
@@ -399,6 +399,78 @@ function buildGuia() {
 
   return pageOf(path.join("guia", GUIA.slug, "index.html"), T.layout(
     { path: pagePath, title: GUIA.title, description: GUIA.description, schema, ogType: "article", ogImage: "/assets/og/guia.png" },
+    { nav: T.navHTML(NAV_SECTIONS, counts, pagePath), breadcrumb: T.breadcrumbHTML(trail), main }
+  ));
+}
+
+/* -------------------------------------------------- Índice de temas --- */
+
+/* /temas/ tiene que existir: es a donde apuntan las migas de pan de cada tema y
+   es la primera URL que prueba un rastreador cuando ve /temas/algo/. */
+function buildTemasIndex() {
+  const pagePath = "/temas/";
+  const title = "Todos los temas para aprender IA: los 22 del sitio";
+  const description = "Los 22 temas en los que están organizados los 336 recursos: fundamentos, arquitecturas, entrenamiento, agentes, evaluación, interpretabilidad y seguridad.";
+  const trail = [HOME_CRUMB, { name: "Temas", path: pagePath }];
+
+  const schema = [
+    T.pageSchema({ type: "CollectionPage", path: pagePath, title, description }),
+    T.breadcrumbSchema(trail),
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Temas para aprender inteligencia artificial",
+      numberOfItems: TEMAS.length,
+      itemListElement: TEMAS.map((s, i) => ({
+        "@type": "ListItem", position: i + 1, name: s.title,
+        url: T.abs(`/temas/${s.slug}/`), description: s.desc,
+      })),
+    },
+  ];
+
+  /* Agrupado igual que la navegación, para que se lea como un mapa del sitio. */
+  let grupos = "";
+  let abierto = false;
+  for (const s of SECTIONS) {
+    if (s.group) {
+      if (s.group === "Empezar aquí") continue;
+      if (abierto) grupos += `</ul>\n      </section>`;
+      grupos += `\n      <section class="section">
+        <h2>${T.esc(s.group)}</h2>
+        <ul class="tema-index">`;
+      abierto = true;
+      continue;
+    }
+    if (s.slug === "roadmaps") continue;
+    grupos += `
+          <li>
+            <a href="/temas/${s.slug}/"><span aria-hidden="true">${s.icon}</span> ${T.esc(s.title)}</a>
+            <span class="tema-count">${counts[s.slug] || 0} recursos</span>
+            <em>${T.esc(s.desc)}</em>
+          </li>`;
+  }
+  if (abierto) grupos += `</ul>\n      </section>`;
+
+  const main = `
+      <header class="hero page-hero">
+        <h1>Todos los temas</h1>
+        <div class="prose lede">
+          <p>
+            Los ${R.length} recursos están organizados en ${TEMAS.length} temas, ordenados de lo más
+            fundamental a lo más específico. Si estás empezando, no los recorras en orden: elegí una
+            de las <a href="/rutas/">rutas de aprendizaje</a>, que arman un camino a través de estos
+            mismos temas.
+          </p>
+          <p>
+            Si preferís buscar por formato —cursos gratuitos, libros, papers, canales— están las
+            <a href="/colecciones/">colecciones</a>.
+          </p>
+        </div>
+      </header>
+${grupos}`;
+
+  return pageOf(path.join("temas", "index.html"), T.layout(
+    { path: pagePath, title, description, schema, ogImage: "/assets/og/temas.png" },
     { nav: T.navHTML(NAV_SECTIONS, counts, pagePath), breadcrumb: T.breadcrumbHTML(trail), main }
   ));
 }
@@ -426,7 +498,7 @@ function buildColeccion(col) {
   const main = `
       <header class="hero page-hero">
         <h1>${T.esc(col.h1)}</h1>
-        <div class="prose lede">${col.intro}</div>
+        <div class="prose lede">${T.autolink(col.intro)}</div>
       </header>
       <section class="section" id="recursos">
         <h2>${items.length} recursos</h2>
@@ -484,7 +556,7 @@ function buildColeccionesIndex() {
       </nav>`;
 
   return pageOf(path.join("colecciones", "index.html"), T.layout(
-    { path: pagePath, title, description, schema },
+    { path: pagePath, title, description, schema, ogImage: "/assets/og/colecciones.png" },
     { nav: T.navHTML(NAV_SECTIONS, counts, pagePath), breadcrumb: T.breadcrumbHTML(trail), main }
   ));
 }
@@ -542,7 +614,8 @@ function build404() {
 
   return pageOf("404.html", T.layout(
     { path: "/404.html", title: "Página no encontrada | AI Learning Hub",
-      description: "La página que buscás no existe.", noindex: true, schema: [] },
+      description: "La página que buscás no existe. Desde acá podés volver a la portada, a las rutas de aprendizaje o a la guía para aprender IA desde cero.",
+      noindex: true, schema: [] },
     { nav: T.navHTML(NAV_SECTIONS, counts, ""), breadcrumb: "", main }
   ));
 }
@@ -652,6 +725,8 @@ function main() {
     urls.push({ path: `/rutas/${r.slug}/`, freq: "monthly", prio: "0.8" });
   }
 
+  buildTemasIndex();
+  urls.push({ path: "/temas/", freq: "monthly", prio: "0.7" });
   for (const s of TEMAS) {
     buildTema(s);
     urls.push({ path: `/temas/${s.slug}/`, freq: "monthly", prio: "0.8" });

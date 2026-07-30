@@ -39,7 +39,63 @@ const HOME = {
       <li><strong>Si buscás algo puntual:</strong> usá el buscador (tecla <kbd>/</kbd>) o filtrá por tipo, nivel, gratuidad o idioma.</li>
       <li><strong>Si querés orientarte primero:</strong> leé la <a href="/guia/como-aprender-ia-desde-cero/">guía sobre cómo aprender IA desde cero</a>, que explica el método antes que el material.</li>
       <li><strong>Si ya sabés y querés profundizar:</strong> filtrá por nivel avanzado, o entrá directo al tema que te interesa desde el menú lateral.</li>
-    </ul>`,
+    </ul>
+
+    <h2>Por dónde empezar según cuánto tiempo tenés</h2>
+    <p>
+      La pregunta que más se repite no es "¿qué recursos hay?" sino "¿cuál agarro <em>hoy</em>?".
+      Depende menos de tu nivel que del tiempo real que tenés disponible:
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Si tenés…</th><th>Hacé esto</th><th>Vas a salir sabiendo</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Una hora</strong></td>
+            <td>El primer capítulo de la serie de redes neuronales de 3Blue1Brown.</td>
+            <td>Qué es realmente una red neuronal, sin fórmulas ni misticismo.</td>
+          </tr>
+          <tr>
+            <td><strong>Un fin de semana</strong></td>
+            <td>«Deep Dive into LLMs» de Karpathy (3h30) y después jugar con un modelo local.</td>
+            <td>Por qué un modelo alucina, qué es pre-entrenamiento y qué es post-entrenamiento.</td>
+          </tr>
+          <tr>
+            <td><strong>Un mes</strong></td>
+            <td>La <a href="/rutas/desde-cero/">ruta desde cero</a> hasta micrograd, escribiendo el código vos.</td>
+            <td>Entrenar una red propia y entender backpropagation desde adentro.</td>
+          </tr>
+          <tr>
+            <td><strong>Seis meses</strong></td>
+            <td>Una <a href="/rutas/">ruta completa</a> con un proyecto propio en paralelo.</td>
+            <td>Leer papers con comodidad y construir cosas que funcionan.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Si solo querés la lista corta sin decidir nada, están los
+      <a href="/colecciones/imprescindibles/">recursos imprescindibles</a>: uno o dos por tema, los
+      que elegiría si tuviera que recomendar pocos.
+    </p>
+
+    <h2>Qué no vas a encontrar acá</h2>
+    <p>
+      Tan importante como qué entra es qué se deja afuera, porque es lo que hace que la lista
+      signifique algo:
+    </p>
+    <ul>
+      <li><strong>Cursos que prometen resultados por tiempo.</strong> "IA en 30 días" describe un plan de marketing, no un plan de estudio.</li>
+      <li><strong>Contenido que envejece en semanas.</strong> Comparativas del modelo de esta semana o tutoriales de la última librería. Es legítimo, pero no es material de estudio.</li>
+      <li><strong>Enlaces de afiliado y publicidad.</strong> No hay ninguno. Tampoco analítica ni cookies: nadie te está midiendo acá.</li>
+      <li><strong>Listas de listas.</strong> Si un recurso es principalmente un índice de otros recursos, no aporta.</li>
+    </ul>
+    <p>
+      El criterio completo, y quién está detrás de todo esto, está en
+      <a href="/sobre/">la página sobre el sitio</a>.
+    </p>`,
 
   faq: [
     { q: "¿Cuáles son los mejores recursos para aprender inteligencia artificial?",
@@ -158,7 +214,64 @@ const GUIA = {
       <li><strong>Saltar la evaluación.</strong> Sin una forma de medir si algo mejoró, no hay ingeniería posible: hay intuición disfrazada de criterio. Vale tanto para tus modelos como para tu propio progreso.</li>
     </ol>
 
-    <h2>7. Cómo saber si estás avanzando</h2>
+    <h2>7. Cómo practicar: proyectos por nivel</h2>
+    <p>
+      Ningún tema se consolida sin un proyecto. No hace falta que sea original ni impresionante:
+      hace falta que sea tuyo y que llegue hasta el final. Estos son los que mejor funcionan en cada
+      etapa, en orden de dificultad:
+    </p>
+    <ol>
+      <li><strong>Clasificar algo que te importe</strong> con datos que junciste vos. Un dataset propio,
+        por chico y sucio que sea, enseña más sobre datos que diez competencias de Kaggle.</li>
+      <li><strong>Reimplementar micrograd</strong> sin mirar el código, después de haberlo visto. Es
+        media tarde y es el momento exacto en que backpropagation deja de ser una palabra.</li>
+      <li><strong>Un buscador sobre tus propios documentos</strong> con recuperación de contexto:
+        indexar, buscar, armar el prompt, medir si responde bien. Es el proyecto que más se parece a
+        lo que se paga en el mercado.</li>
+      <li><strong>Entrenar un modelo de lenguaje chico</strong> con nanoGPT sobre un corpus que elijas.
+        Cuesta decenas de dólares en GPUs alquiladas y cambia para siempre cómo mirás a los grandes.</li>
+      <li><strong>Reproducir un paper corto</strong> de punta a punta. Es el filtro real entre leer
+        investigación y hacer investigación, y vas a descubrir cuánto de un paper no está escrito en
+        el paper.</li>
+    </ol>
+
+    <h2>8. ¿Sirve para conseguir trabajo?</h2>
+    <p>
+      Sí, pero conviene ser preciso sobre en qué. Los puestos de investigación en laboratorios
+      frontera son poquísimos y muy competitivos. Los puestos que <em>sí</em> están creciendo y se
+      cubren con dificultad son otros: ingeniería alrededor de modelos —recuperación de contexto,
+      agentes, evaluaciones— e ingeniería de inferencia, que es donde se define el costo real de un
+      producto y donde falta gente en serio.
+    </p>
+    <p>
+      Para el mercado hispanohablante hay además una particularidad concreta: cada vez más productos
+      necesitan funcionar bien en español, y la mayoría de las evaluaciones públicas están hechas en
+      inglés. Saber construir y medir sistemas en castellano es una especialización real y poco
+      cubierta.
+    </p>
+    <p>
+      Lo que efectivamente se mira en una entrevista, en este campo más que en otros, es el
+      portafolio: proyectos propios, código público, algo que hayas escrito explicando lo que
+      entendiste. Pesa más que el título, y bastante más que los certificados de cursos.
+    </p>
+
+    <h2>9. Cuatro mitos que conviene desarmar</h2>
+    <ul>
+      <li><strong>"Necesito un doctorado."</strong> Para investigación académica ayuda mucho. Para
+        construir productos con modelos, casi nadie lo tiene. Y en interpretabilidad y alineamiento
+        varias personas llegaron a posiciones de investigación por lo que publicaron en abierto.</li>
+      <li><strong>"Llegué tarde."</strong> Buena parte de lo que hoy define el estado del arte
+        —modelos de razonamiento, agentes, interpretabilidad aplicada— tiene menos de tres años.
+        Nadie tiene diez años de experiencia en algo que existe hace dos.</li>
+      <li><strong>"Necesito una GPU cara."</strong> No para aprender. Colab y Kaggle dan GPUs gratis
+        que alcanzan para todo el recorrido, y alquilar por hora sale más barato que comprar si el
+        uso es intermitente.</li>
+      <li><strong>"Primero la teoría completa, después la práctica."</strong> Es el camino más
+        confiable al abandono. La secuencia que funciona es intuición, práctica y recién después
+        formalismo, buscando cada pieza cuando la necesitás.</li>
+    </ul>
+
+    <h2>10. Cómo saber si estás avanzando</h2>
     <p>
       Tres señales concretas, en orden de aparición: podés explicarle a alguien qué hace backpropagation sin
       leer nada; podés tomar un modelo de Hugging Face y adaptarlo a un problema tuyo sin seguir un

@@ -124,6 +124,10 @@ const paginas = [
     sub: "Elegí una, seguila en orden y recién después dispersate.", stat: "<b>4</b> rutas con pasos y tiempos reales" },
   { file: "sobre", kicker: "Sobre el sitio", titulo: "Quién armó esto y con qué criterio",
     sub: SOBRE.lede, stat: "Sin publicidad, sin afiliados, <b>sin rastreo</b>" },
+  { file: "temas", kicker: "Índice", titulo: "Todos los temas para aprender IA",
+    sub: "De la matemática de base a la interpretabilidad y la seguridad.", stat: "<b>22</b> temas · 336 recursos" },
+  { file: "colecciones", kicker: "Índice", titulo: "Cursos gratis, libros, papers y canales",
+    sub: "Los mismos recursos cortados por precio, formato y nivel.", stat: "<b>5</b> colecciones" },
 ];
 
 for (const r of RUTAS) {

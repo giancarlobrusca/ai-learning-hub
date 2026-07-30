@@ -11,7 +11,7 @@ Todo el material propio está en español, orientado a lectores de Latinoaméric
 ## Cómo funciona
 
 El sitio es **HTML estático generado**. Un script de Node sin dependencias (`build.js`) lee los
-datos de `data/` y el contenido de `build/`, y escribe 37 páginas HTML con todo el texto adentro.
+datos de `data/` y el contenido de `build/`, y escribe 38 páginas HTML con todo el texto adentro.
 No hay framework, no hay bundler y no hay `node_modules`.
 
 Esto es deliberado y es una decisión de SEO: antes los 336 recursos se pintaban con JavaScript en
@@ -132,6 +132,8 @@ Lo que ya está resuelto en el generador, para no perderlo de vista al editar:
 - Página de autoría y método (`/sobre/`) con `AboutPage` + `Person`, que es lo que Google evalúa
   como E-E-A-T en contenido educativo.
 - `sitemap.xml`, `robots.txt` y `llms.txt` regenerados en cada build.
+- Enlaces internos contextuales: `build/render.js` enlaza términos del texto al tema que los
+  explica (primera aparición, nunca a la propia página, tope de 3 por bloque).
 
 **Si cambia el dominio**, se toca únicamente `SITE_URL` en `build/config.js` y se vuelve a
 construir: canonical, sitemap, Open Graph y JSON-LD salen todos de ahí.

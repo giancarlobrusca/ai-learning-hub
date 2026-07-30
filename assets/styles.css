@@ -587,3 +587,23 @@ footer .foot-nav { margin-top: 14px; }
 
 .related.colecciones { margin-top: 18px; padding-top: 0; border-top: 0; }
 .related.colecciones ul { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+/* ---------- Índice de temas ---------- */
+
+.tema-index { list-style: none; padding: 0; margin: 0; }
+.tema-index li {
+  display: grid; grid-template-columns: 1fr auto; gap: 2px 14px;
+  padding: 12px 0; border-bottom: 1px solid var(--border-soft);
+}
+.tema-index li a { font-weight: 600; font-size: 15.5px; color: var(--text); }
+.tema-index li a:hover { color: var(--accent); text-decoration: none; }
+.tema-count {
+  font-size: 12px; color: var(--text-faint); white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.tema-index li em {
+  grid-column: 1 / -1; font-style: normal;
+  color: var(--text-dim); font-size: 13.5px; max-width: 78ch;
+}
+.group-heading a { color: inherit; }
+.group-heading a:hover { color: var(--accent); }
