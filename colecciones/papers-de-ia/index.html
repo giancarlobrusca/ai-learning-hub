@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Papers de inteligencia artificial que hay que leer</title>
+<meta name="description" content="Los papers que definieron la IA moderna, en orden cronológico y con el contexto de por qué importó cada uno. De AlexNet a los modelos de razonamiento.">
+<link rel="canonical" href="https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Giancarlo Brusca">
+<meta name="theme-color" content="#0b0d12">
+<link rel="alternate" hreflang="es" href="https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/">
+<link rel="alternate" hreflang="x-default" href="https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Learning Hub">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/">
+<meta property="og:title" content="Papers de inteligencia artificial que hay que leer">
+<meta property="og:description" content="Los papers que definieron la IA moderna, en orden cronológico y con el contexto de por qué importó cada uno. De AlexNet a los modelos de razonamiento.">
+<meta property="og:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/col-papers-de-ia.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Papers de inteligencia artificial que hay que leer — AI Learning Hub">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@giancarlobrusca">
+<meta name="twitter:creator" content="@giancarlobrusca">
+<meta name="twitter:title" content="Papers de inteligencia artificial que hay que leer">
+<meta name="twitter:description" content="Los papers que definieron la IA moderna, en orden cronológico y con el contexto de por qué importó cada uno. De AlexNet a los modelos de razonamiento.">
+<meta name="twitter:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/col-papers-de-ia.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="stylesheet" href="/assets/styles.css">
+<script>try{var t=localStorage.getItem("alh-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/#page","url":"https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/","name":"Papers de inteligencia artificial que hay que leer","headline":"Papers de inteligencia artificial que hay que leer","description":"Los papers que definieron la IA moderna, en orden cronológico y con el contexto de por qué importó cada uno. De AlexNet a los modelos de razonamiento.","inLanguage":"es","isPartOf":{"@id":"https://recursos-ia.giancarlobrusca.com/#website"},"author":{"@type":"Person","@id":"https://recursos-ia.giancarlobrusca.com/#autor","name":"Giancarlo Brusca","url":"https://github.com/giancarlobrusca","jobTitle":"Desarrollador de software","sameAs":["https://github.com/giancarlobrusca","https://x.com/giancarlobrusca"],"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}},"publisher":{"@id":"https://recursos-ia.giancarlobrusca.com/#autor"},"datePublished":"2026-07-29","dateModified":"2026-07-30"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://recursos-ia.giancarlobrusca.com/"},{"@type":"ListItem","position":2,"name":"Colecciones","item":"https://recursos-ia.giancarlobrusca.com/colecciones/"},{"@type":"ListItem","position":3,"name":"Papers","item":"https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Papers de IA: los que hay que leer","url":"https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/","numberOfItems":104,"itemListElement":[{"@type":"ListItem","position":1,"name":"Auto-Encoding Variational Bayes (VAE)","url":"https://arxiv.org/abs/1312.6114","description":"El espacio latente. Sin VAEs no hay Stable Diffusion (que difunde en latente, no en píxeles)."},{"@type":"ListItem","position":2,"name":"Adam: A Method for Stochastic Optimization","url":"https://arxiv.org/abs/1412.6980","description":"El optimizador por defecto durante una década. Entender momento y varianza adaptativa te explica el 90% de los problemas de entrenamiento."},{"@type":"ListItem","position":3,"name":"Generative Adversarial Networks","url":"https://arxiv.org/abs/1406.2661","description":"La era pre-difusión de la generación de imágenes. Históricamente clave y aún útil conceptualmente."},{"@type":"ListItem","position":4,"name":"Deep Residual Learning for Image Recognition (ResNet)","url":"https://arxiv.org/abs/1512.03385","description":"Las conexiones residuales son la razón por la que hoy podemos entrenar redes de 100+ capas. Están dentro de todo transformer."},{"@type":"ListItem","position":5,"name":"Batch Normalization","url":"https://arxiv.org/abs/1502.03167","description":"Y su primo LayerNorm (arXiv:1607.06450), que es el que realmente usan los transformers."},{"@type":"ListItem","position":6,"name":"Neural Machine Translation of Rare Words with Subword Units (BPE)","url":"https://arxiv.org/abs/1508.07909","description":"El origen de Byte-Pair Encoding, el algoritmo detrás de casi todos los tokenizadores actuales."},{"@type":"ListItem","position":7,"name":"Distilling the Knowledge in a Neural Network","url":"https://arxiv.org/abs/1503.02531","description":"La destilación es hoy la técnica más rentable de la industria: modelos chicos que imitan a los grandes."},{"@type":"ListItem","position":8,"name":"Concrete Problems in AI Safety","url":"https://arxiv.org/abs/1606.06565","description":"El paper que convirtió la seguridad de IA en agenda técnica: efectos colaterales, reward hacking, supervisión escalable, exploración segura."},{"@type":"ListItem","position":9,"name":"Attention Is All You Need","url":"https://arxiv.org/abs/1706.03762","description":"El paper que define la era actual. Todo LLM de hoy es una variación de estas 15 páginas. Leelo al menos tres veces en tu vida."},{"@type":"ListItem","position":10,"name":"Proximal Policy Optimization (PPO)","url":"https://arxiv.org/abs/1707.06347","description":"El algoritmo de RL sobre el que se construyó todo el RLHF. Vale entenderlo aunque hoy uses GRPO o DPO."},{"@type":"ListItem","position":11,"name":"The Lottery Ticket Hypothesis","url":"https://arxiv.org/abs/1803.03635","description":"Dentro de una red grande hay subredes chicas que entrenan igual de bien. Fundamento conceptual del pruning."},{"@type":"ListItem","position":12,"name":"BERT: Pre-training of Deep Bidirectional Transformers","url":"https://arxiv.org/abs/1810.04805","description":"La rama encoder-only. Sigue siendo el caballo de batalla de clasificación, embeddings y búsqueda."},{"@type":"ListItem","position":13,"name":"Model Cards for Model Reporting","url":"https://arxiv.org/abs/1810.03993","description":"Y 'Datasheets for Datasets' (arXiv:1803.09010). Documentar qué hace un modelo y con qué datos es parte del oficio."},{"@type":"ListItem","position":14,"name":"Deep Double Descent","url":"https://arxiv.org/abs/1912.02292","description":"Rompe la intuición clásica de bias-variance: más parámetros pueden mejorar la generalización. Base conceptual del escalado moderno."},{"@type":"ListItem","position":15,"name":"T5: Exploring the Limits of Transfer Learning","url":"https://arxiv.org/abs/1910.10683","description":"'Todo es texto-a-texto'. Además, el estudio ablativo más sistemático que se hizo sobre decisiones de arquitectura."},{"@type":"ListItem","position":16,"name":"Root Mean Square Layer Normalization (RMSNorm)","url":"https://arxiv.org/abs/1910.07467","description":"LayerNorm sin la media. Más barato y funciona igual. Otro estándar silencioso."},{"@type":"ListItem","position":17,"name":"Language Models are Unsupervised Multitask Learners (GPT-2)","url":"https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf","description":"El origen del decoder-only puro. Es la arquitectura que se sigue reimplementando en todos los tutoriales."},{"@type":"ListItem","position":18,"name":"ZeRO: Memory Optimizations Toward Training Trillion Parameter Models","url":"https://arxiv.org/abs/1910.02054","description":"La idea detrás de DeepSpeed y FSDP: repartir estados del optimizador, gradientes y parámetros entre GPUs."},{"@type":"ListItem","position":19,"name":"GLU Variants Improve Transformer (SwiGLU)","url":"https://arxiv.org/abs/2002.05202","description":"Paper de dos páginas cuya conclusión honesta es 'no sabemos por qué funciona'. Está en casi todos los LLMs actuales."},{"@type":"ListItem","position":20,"name":"An Image is Worth 16x16 Words (Vision Transformer)","url":"https://arxiv.org/abs/2010.11929","description":"Los transformers se comen la visión por computadora. El puente hacia los modelos multimodales."},{"@type":"ListItem","position":21,"name":"Language Models are Few-Shot Learners (GPT-3)","url":"https://arxiv.org/abs/2005.14165","description":"El paper que demostró in-context learning y disparó la carrera de escala."},{"@type":"ListItem","position":22,"name":"Scaling Laws for Neural Language Models","url":"https://arxiv.org/abs/2001.08361","description":"El paper que convirtió el progreso de la IA en una ecuación. Pérdida como ley de potencia de cómputo, datos y parámetros."},{"@type":"ListItem","position":23,"name":"The Pile: An 800GB Dataset of Diverse Text","url":"https://arxiv.org/abs/2101.00027","description":"El primer corpus abierto grande y documentado. Referencia histórica sobre composición de datos."},{"@type":"ListItem","position":24,"name":"Retrieval-Augmented Generation for Knowledge-Intensive NLP","url":"https://arxiv.org/abs/2005.11401","description":"El paper que nombró RAG. Vale leerlo para ver cuánto se desvió la práctica actual de la propuesta original."},{"@type":"ListItem","position":25,"name":"Denoising Diffusion Probabilistic Models (DDPM)","url":"https://arxiv.org/abs/2006.11239","description":"El paper que hizo funcionar la difusión. Agregar ruido y aprender a quitarlo: la idea que reemplazó a las GANs."},{"@type":"ListItem","position":26,"name":"RoFormer: Rotary Position Embedding (RoPE)","url":"https://arxiv.org/abs/2104.09864","description":"Cómo casi todos los LLMs modernos codifican posición. Entender RoPE es entender por qué se puede extender el contexto."},{"@type":"ListItem","position":27,"name":"ALiBi: Train Short, Test Long","url":"https://arxiv.org/abs/2108.12409","description":"Sesgos lineales en atención que permiten extrapolar a secuencias más largas que las de entrenamiento."},{"@type":"ListItem","position":28,"name":"Switch Transformers (Mixture of Experts a escala)","url":"https://arxiv.org/abs/2101.03961","description":"MoE: activar solo una fracción de los parámetros por token. Base de casi todos los modelos frontera actuales."},{"@type":"ListItem","position":29,"name":"LoRA: Low-Rank Adaptation of Large Language Models","url":"https://arxiv.org/abs/2106.09685","description":"Entrenar matrices de rango bajo en vez del modelo entero. Es la razón por la que podés hacer fine-tuning en una sola GPU."},{"@type":"ListItem","position":30,"name":"CLIP: Learning Transferable Visual Models From Natural Language Supervision","url":"https://arxiv.org/abs/2103.00020","description":"Alinear imágenes y texto en un mismo espacio de embeddings. Es el ladrillo sobre el que se apoya casi todo lo multimodal."},{"@type":"ListItem","position":31,"name":"High-Resolution Image Synthesis with Latent Diffusion Models","url":"https://arxiv.org/abs/2112.10752","description":"Difusión en espacio latente en vez de píxeles: es Stable Diffusion. Hizo la generación de imágenes accesible a cualquiera."},{"@type":"ListItem","position":32,"name":"A Mathematical Framework for Transformer Circuits","url":"https://transformer-circuits.pub/2021/framework/index.html","description":"El texto fundacional de la interpretabilidad mecanicista. Cabezas de atención como operaciones componibles sobre el residual stream."},{"@type":"ListItem","position":33,"name":"Unsolved Problems in ML Safety","url":"https://arxiv.org/abs/2109.13916","description":"Robustez, monitoreo, alineamiento y riesgo sistémico como cuatro problemas separados. Buen marco mental."},{"@type":"ListItem","position":34,"name":"On the Dangers of Stochastic Parrots","url":"https://dl.acm.org/doi/10.1145/3442188.3445922","description":"La crítica más influyente desde el otro lado del debate: costos ambientales, sesgo, opacidad de datos. Leelo aunque no coincidas."},{"@type":"ListItem","position":35,"name":"Grokking: Generalization Beyond Overfitting","url":"https://arxiv.org/abs/2201.02177","description":"Modelos que memorizan y mucho después 'entienden'. Uno de los fenómenos más raros y estudiados del deep learning."},{"@type":"ListItem","position":36,"name":"Emergent Abilities of Large Language Models","url":"https://arxiv.org/abs/2206.07682","description":"Leelo junto a su refutación: 'Are Emergent Abilities a Mirage?' (arXiv:2304.15004). El debate en sí enseña más que cualquiera de los dos."},{"@type":"ListItem","position":37,"name":"Training Compute-Optimal Large Language Models (Chinchilla)","url":"https://arxiv.org/abs/2203.15556","description":"Corrigió a Kaplan: los modelos estaban muy subentrenados en datos. Reescribió el presupuesto de entrenamiento de toda la industria."},{"@type":"ListItem","position":38,"name":"Beyond neural scaling laws: beating power law scaling via data pruning","url":"https://arxiv.org/abs/2206.14486","description":"Curar bien los datos puede romper la ley de potencia. Uno de los resultados más accionables sobre calidad de datos."},{"@type":"ListItem","position":39,"name":"Scaling Laws and Interpretability of Learning from Repeated Data","url":"https://arxiv.org/abs/2205.10487","description":"Qué pasa cuando repetís datos (spoiler: se degrada peor de lo que pensás). Crucial ahora que los datos web de calidad escasean."},{"@type":"ListItem","position":40,"name":"Training language models to follow instructions with human feedback (InstructGPT)","url":"https://arxiv.org/abs/2203.02155","description":"El paper que convirtió un modelo de texto en un asistente. SFT + modelo de recompensa + PPO. Es la receta que dio origen a ChatGPT."},{"@type":"ListItem","position":41,"name":"Chain-of-Thought Prompting Elicits Reasoning in LLMs","url":"https://arxiv.org/abs/2201.11903","description":"'Pensemos paso a paso'. La observación más simple y más rentable de la historia reciente de los LLMs."},{"@type":"ListItem","position":42,"name":"STaR: Self-Taught Reasoner","url":"https://arxiv.org/abs/2203.14465","description":"Bootstrap del razonamiento: el modelo genera cadenas, filtrás las correctas, reentrenás. Base de casi todo el auto-mejoramiento actual."},{"@type":"ListItem","position":43,"name":"Constitutional AI: Harmlessness from AI Feedback","url":"https://arxiv.org/abs/2212.08073","description":"RLAIF: reemplazar parte del feedback humano por principios explícitos + crítica del propio modelo."},{"@type":"ListItem","position":44,"name":"Self-Consistency Improves Chain of Thought Reasoning","url":"https://arxiv.org/abs/2203.11171","description":"Muestrear varias cadenas y votar por mayoría. La técnica de inferencia con mejor relación esfuerzo/beneficio."},{"@type":"ListItem","position":45,"name":"FlashAttention: Fast and Memory-Efficient Exact Attention","url":"https://arxiv.org/abs/2205.14135","description":"No aproxima nada: solo reordena el cómputo para respetar la jerarquía de memoria de la GPU. La optimización más importante de la década. Ver también FlashAttention-2 (2307.08691) y -3 (2407.08608)."},{"@type":"ListItem","position":46,"name":"Fast Inference from Transformers via Speculative Decoding","url":"https://arxiv.org/abs/2211.17192","description":"Un modelo chico propone tokens, el grande los verifica en paralelo. 2-3× de aceleración sin perder calidad."},{"@type":"ListItem","position":47,"name":"GPTQ: Accurate Post-Training Quantization","url":"https://arxiv.org/abs/2210.17323","description":"Cuantización a 3-4 bits en una pasada. Junto a AWQ (2306.00978), la base de todos los modelos cuantizados que descargás."},{"@type":"ListItem","position":48,"name":"LLM.int8() y el problema de los outliers","url":"https://arxiv.org/abs/2208.07339","description":"Por qué la cuantización ingenua falla en modelos grandes y cómo se resuelve. Fundamento de bitsandbytes."},{"@type":"ListItem","position":49,"name":"ReAct: Synergizing Reasoning and Acting in Language Models","url":"https://arxiv.org/abs/2210.03629","description":"Razonar y actuar alternadamente. Es el patrón base de prácticamente todo agente que exista hoy."},{"@type":"ListItem","position":50,"name":"Classifier-Free Diffusion Guidance","url":"https://arxiv.org/abs/2207.12598","description":"El truco que hace que los modelos de imagen obedezcan al prompt. El parámetro `guidance_scale` sale de acá."},{"@type":"ListItem","position":51,"name":"Flow Matching for Generative Modeling","url":"https://arxiv.org/abs/2210.02747","description":"La formulación que reemplazó a la difusión clásica en los modelos de imagen y video más recientes. Más simple y más rápida."},{"@type":"ListItem","position":52,"name":"Flamingo: a Visual Language Model for Few-Shot Learning","url":"https://arxiv.org/abs/2204.14198","description":"Cómo intercalar imágenes y texto con cross-attention. Diseño arquitectónico influyente."},{"@type":"ListItem","position":53,"name":"Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)","url":"https://arxiv.org/abs/2212.04356","description":"El modelo que resolvió el reconocimiento de voz en abierto, incluido el español. Pesos libres."},{"@type":"ListItem","position":54,"name":"In-context Learning and Induction Heads","url":"https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html","description":"Encontraron el circuito concreto que hace posible el aprendizaje en contexto. Uno de los resultados más satisfactorios del campo."},{"@type":"ListItem","position":55,"name":"Toy Models of Superposition","url":"https://transformer-circuits.pub/2022/toy_model/index.html","description":"Por qué las neuronas representan más conceptos que dimensiones tienen. Explica por qué interpretar redes es tan difícil."},{"@type":"ListItem","position":56,"name":"Red Teaming Language Models to Reduce Harms","url":"https://arxiv.org/abs/2209.07858","description":"Metodología de red-teaming con datos publicados. Base práctica para evaluar riesgos de un modelo."},{"@type":"ListItem","position":57,"name":"Will we run out of data? Limits of LLM scaling based on human-generated data","url":"https://arxiv.org/abs/2211.04325","description":"Proyección cuantitativa del agotamiento del texto humano de calidad. La razón por la que datos sintéticos y RL pasaron al centro de la escena."},{"@type":"ListItem","position":58,"name":"GQA: Grouped-Query Attention","url":"https://arxiv.org/abs/2305.13245","description":"El compromiso entre multi-head y multi-query que usan Llama, Mistral y casi todos. Reduce el KV cache drásticamente."},{"@type":"ListItem","position":59,"name":"Mamba: Linear-Time Sequence Modeling with Selective State Spaces","url":"https://arxiv.org/abs/2312.00752","description":"La alternativa más seria a la atención cuadrática. Modelos de espacio de estados con selectividad, complejidad lineal en la longitud."},{"@type":"ListItem","position":60,"name":"RWKV: Reinventing RNNs for the Transformer Era","url":"https://arxiv.org/abs/2305.13048","description":"RNN entrenable en paralelo, inferencia con memoria constante. Comunidad abierta muy activa."},{"@type":"ListItem","position":61,"name":"LLaMA: Open and Efficient Foundation Language Models","url":"https://arxiv.org/abs/2302.13971","description":"El paper que abrió el ecosistema open-weights. Todo el mundo local corriendo modelos empieza acá."},{"@type":"ListItem","position":62,"name":"Pythia: A Suite for Analyzing LLMs Across Training and Scaling","url":"https://arxiv.org/abs/2304.01373","description":"154 checkpoints por modelo, en 8 escalas, con el orden de datos exacto. La herramienta estándar para estudiar dinámicas de entrenamiento."},{"@type":"ListItem","position":63,"name":"Textbooks Are All You Need (phi-1)","url":"https://arxiv.org/abs/2306.11644","description":"Datos sintéticos de altísima calidad superan a montañas de datos web. Inició la línea de modelos pequeños sorprendentemente capaces."},{"@type":"ListItem","position":64,"name":"Direct Preference Optimization (DPO)","url":"https://arxiv.org/abs/2305.18290","description":"Alineamiento por preferencias sin modelo de recompensa ni RL. Simple, estable y hoy el punto de partida por defecto."},{"@type":"ListItem","position":65,"name":"Let's Verify Step by Step (process supervision)","url":"https://arxiv.org/abs/2305.20050","description":"Recompensar cada paso del razonamiento, no solo el resultado. Antecedente directo de los modelos tipo o1/o3."},{"@type":"ListItem","position":66,"name":"Tree of Thoughts","url":"https://arxiv.org/abs/2305.10601","description":"Búsqueda deliberada sobre estados de razonamiento en lugar de una sola cadena lineal."},{"@type":"ListItem","position":67,"name":"QLoRA: Efficient Finetuning of Quantized LLMs","url":"https://arxiv.org/abs/2305.14314","description":"LoRA sobre un modelo base en 4 bits. Democratizó el fine-tuning de modelos de 65B en hardware de consumo."},{"@type":"ListItem","position":68,"name":"Efficient Memory Management for LLM Serving with PagedAttention (vLLM)","url":"https://arxiv.org/abs/2309.06180","description":"Memoria virtual paginada aplicada al KV cache. Multiplicó por 24 el throughput de servir modelos y se volvió el estándar."},{"@type":"ListItem","position":69,"name":"Toolformer: Language Models Can Teach Themselves to Use Tools","url":"https://arxiv.org/abs/2302.04761","description":"Los modelos aprenden solos cuándo llamar a una API. Antecedente del tool use nativo actual."},{"@type":"ListItem","position":70,"name":"Generative Agents: Interactive Simulacra of Human Behavior","url":"https://arxiv.org/abs/2304.03442","description":"Memoria, reflexión y planificación en agentes que conviven. El paper más influyente sobre arquitectura de memoria agéntica."},{"@type":"ListItem","position":71,"name":"Visual Instruction Tuning (LLaVA)","url":"https://arxiv.org/abs/2304.08485","description":"La receta abierta para convertir un LLM en un modelo de visión: encoder + proyector + instrucciones. Base de casi todo VLM abierto."},{"@type":"ListItem","position":72,"name":"Segment Anything (SAM)","url":"https://arxiv.org/abs/2304.02643","description":"Modelo fundacional de segmentación. Ejemplo modelo de cómo diseñar una tarea + motor de datos + modelo a la vez."},{"@type":"ListItem","position":73,"name":"Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena","url":"https://arxiv.org/abs/2306.05685","description":"Usar modelos como jueces funciona, pero con sesgos medibles (posición, verbosidad, auto-preferencia). Leé esto antes de confiar en tu LLM-judge."},{"@type":"ListItem","position":74,"name":"Weak-to-Strong Generalization","url":"https://arxiv.org/abs/2312.09390","description":"¿Puede un supervisor débil alinear a un modelo más capaz que él? La pregunta central de la supervisión escalable."},{"@type":"ListItem","position":75,"name":"Universal and Transferable Adversarial Attacks on Aligned LMs","url":"https://arxiv.org/abs/2307.15043","description":"Sufijos adversariales que rompen el alineamiento y transfieren entre modelos. Lectura obligada antes de confiar en filtros de seguridad."},{"@type":"ListItem","position":76,"name":"Mixtral of Experts","url":"https://arxiv.org/abs/2401.04088","description":"El paper que hizo el MoE disperso accesible en abierto. Lectura obligada para entender MoE en la práctica."},{"@type":"ListItem","position":77,"name":"Transformers are SSMs (Mamba-2)","url":"https://arxiv.org/abs/2405.21060","description":"Unifica atención y modelos de espacio de estados bajo un mismo marco teórico. Uno de los papers conceptualmente más importantes de los últimos años."},{"@type":"ListItem","position":78,"name":"Jamba: A Hybrid Transformer-Mamba Language Model","url":"https://arxiv.org/abs/2403.19887","description":"Los híbridos (capas de atención + capas SSM) son hoy la apuesta más probable para contexto largo. Ver también Griffin (arXiv:2402.19427)."},{"@type":"ListItem","position":79,"name":"Mixture-of-Depths: dynamically allocating compute","url":"https://arxiv.org/abs/2404.02258","description":"No todos los tokens necesitan todas las capas. Cómputo adaptativo dentro del forward pass."},{"@type":"ListItem","position":80,"name":"Byte Latent Transformer: Patches Scale Better Than Tokens","url":"https://arxiv.org/abs/2412.09871","description":"Elimina el tokenizador y agrupa bytes dinámicamente según entropía. Una de las líneas más prometedoras para superar las limitaciones de la tokenización."},{"@type":"ListItem","position":81,"name":"Large Concept Models: Language Modeling in a Sentence Representation Space","url":"https://arxiv.org/abs/2412.08821","description":"Predecir conceptos (oraciones en espacio de embeddings) en lugar de tokens. Apuesta de Meta contra el paradigma token-por-token."},{"@type":"ListItem","position":82,"name":"The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783","description":"92 páginas con detalles reales de datos, infraestructura, fallos de hardware y post-training. El reporte técnico más útil publicado por un laboratorio grande."},{"@type":"ListItem","position":83,"name":"DeepSeek-V3 Technical Report","url":"https://arxiv.org/abs/2412.19437","description":"MoE de 671B, Multi-head Latent Attention, entrenamiento en FP8, predicción multi-token. Ingeniería de eficiencia de altísimo nivel, documentada en detalle."},{"@type":"ListItem","position":84,"name":"OLMo: Accelerating the Science of Language Models","url":"https://arxiv.org/abs/2402.00838","description":"Modelo verdaderamente abierto: pesos, datos, código de entrenamiento, checkpoints intermedios y logs. Oro puro para investigar."},{"@type":"ListItem","position":85,"name":"FineWeb: decanting the web for the finest text data at scale","url":"https://arxiv.org/abs/2406.17557","description":"Cómo se construye realmente un corpus de 15T tokens: deduplicación, filtros, clasificadores educativos. El blog interactivo asociado es aún mejor que el paper."},{"@type":"ListItem","position":86,"name":"Dolma: an Open Corpus of Three Trillion Tokens","url":"https://arxiv.org/abs/2402.00159","description":"Corpus abierto con toolkit de curación documentado. Complemento perfecto de OLMo."},{"@type":"ListItem","position":87,"name":"DeepSeekMath: GRPO","url":"https://arxiv.org/abs/2402.03300","description":"Group Relative Policy Optimization: elimina la red de valor de PPO. Es el algoritmo que entrena la mayoría de los modelos de razonamiento actuales."},{"@type":"ListItem","position":88,"name":"Scaling LLM Test-Time Compute Optimally","url":"https://arxiv.org/abs/2408.03314","description":"El paper que formalizó el segundo eje de escalado: pensar más en inferencia puede valer más que un modelo más grande."},{"@type":"ListItem","position":89,"name":"DoRA: Weight-Decomposed Low-Rank Adaptation","url":"https://arxiv.org/abs/2402.09353","description":"Descompone magnitud y dirección. Suele superar a LoRA con el mismo presupuesto de parámetros."},{"@type":"ListItem","position":90,"name":"From Local to Global: A Graph RAG Approach","url":"https://arxiv.org/abs/2404.16130","description":"Cuando la pregunta es sobre el corpus entero y no sobre un pasaje, el RAG por similitud falla. GraphRAG es la respuesta más elaborada."},{"@type":"ListItem","position":91,"name":"Video generation models as world simulators (Sora)","url":"https://openai.com/index/video-generation-models-as-world-simulators/","description":"El reporte técnico que instaló la idea de 'modelos del mundo' como camino hacia el razonamiento físico."},{"@type":"ListItem","position":92,"name":"Genie: Generative Interactive Environments","url":"https://arxiv.org/abs/2402.15391","description":"Mundos jugables generados a partir de video sin etiquetas de acción. Una de las líneas más ambiciosas hacia agentes encarnados."},{"@type":"ListItem","position":93,"name":"Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet","url":"https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html","description":"Autoencoders dispersos aplicados a un modelo de producción: millones de características identificables y manipulables."},{"@type":"ListItem","position":94,"name":"Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training","url":"https://arxiv.org/abs/2401.05566","description":"Puertas traseras que sobreviven al SFT, RLHF y al entrenamiento adversarial. Resultado incómodo y muy importante."},{"@type":"ListItem","position":95,"name":"Alignment Faking in Large Language Models","url":"https://arxiv.org/abs/2412.14093","description":"Un modelo que finge estar alineado durante el entrenamiento para preservar sus preferencias. Evidencia empírica de un riesgo que era teórico."},{"@type":"ListItem","position":96,"name":"Titans: Learning to Memorize at Test Time","url":"https://arxiv.org/abs/2501.00663","description":"Memoria neuronal a largo plazo que se actualiza durante la inferencia. Empuja hacia el aprendizaje continuo."},{"@type":"ListItem","position":97,"name":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL","url":"https://arxiv.org/abs/2501.12948","description":"Demostró en abierto que el razonamiento emerge de RL con recompensas verificables, sin SFT previo. Cambió el rumbo del campo en 2025."},{"@type":"ListItem","position":98,"name":"On the Biology of a Large Language Model / Circuit Tracing","url":"https://transformer-circuits.pub/2025/attribution-graphs/biology.html","description":"Grafos de atribución que muestran planificación anticipada, razonamiento multilingüe y racionalizaciones a posteriori dentro del modelo. Fascinante."},{"@type":"ListItem","position":99,"name":"International AI Safety Report","url":"https://internationalaisafetyreport.org/","description":"El informe de consenso científico internacional sobre capacidades y riesgos, respaldado por 30+ países. La síntesis más equilibrada disponible."},{"@type":"ListItem","position":100,"name":"Welcome to the Era of Experience","url":"https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf","description":"Los dos padres del RL moderno argumentan que los datos humanos se agotaron y que la próxima era será de agentes que aprenden de su propia experiencia. Si tenés que apostar a una sola tesis sobre el futuro, esta es la más respaldada por trayectoria."},{"@type":"ListItem","position":101,"name":"Measuring AI Ability to Complete Long Tasks","url":"https://arxiv.org/abs/2503.14499","description":"El 'horizonte temporal' de las tareas que un modelo completa se duplica cada ~7 meses. Es la métrica de progreso más informativa que existe hoy, porque mide autonomía y no conocimiento."},{"@type":"ListItem","position":102,"name":"The Illusion of Thinking / debates sobre razonamiento en LLMs","url":"https://machinelearning.apple.com/research/illusion-of-thinking","description":"Sostiene que los modelos de razonamiento colapsan al aumentar la complejidad. Provocó respuestas técnicas fuertes: el intercambio completo es el mejor material sobre qué significa 'razonar'."},{"@type":"ListItem","position":103,"name":"International AI Safety Report","url":"https://internationalaisafetyreport.org/","description":"Consenso científico internacional sobre qué sabemos y qué no sobre capacidades y riesgos. La referencia neutral cuando la discusión se polariza."},{"@type":"ListItem","position":104,"name":"Continual learning y catastrophic forgetting (línea de investigación)","url":"https://arxiv.org/abs/2302.00487","description":"Los modelos actuales no aprenden después de entrenados. Resolverlo es probablemente la próxima gran ruptura: seguí esta literatura de cerca."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Por dónde empiezo a leer papers de IA?","acceptedAnswer":{"@type":"Answer","text":"Por «Attention Is All You Need», pero acompañado: leelo junto a The Illustrated Transformer y The Annotated Transformer, que lo explican visualmente y con código. Leer el paper solo, sin apoyo, es innecesariamente difícil la primera vez."}},{"@type":"Question","name":"¿Cómo se lee un paper de machine learning?","acceptedAnswer":{"@type":"Answer","text":"En tres pasadas. Primero resumen, introducción y conclusiones para saber si te sirve. Después figuras y tablas de resultados, que suelen contar la historia completa. Recién entonces el método en detalle, y solo si vas a implementarlo o a criticarlo. Casi nadie lee papers de forma lineal."}},{"@type":"Question","name":"¿Dónde se publican los papers de IA?","acceptedAnswer":{"@type":"Answer","text":"Mayoritariamente en arXiv, en abierto y antes de cualquier revisión por pares. Las conferencias que importan son NeurIPS, ICML y ICLR, pero en la práctica el campo se mueve por arXiv y por los reportes técnicos que publican los laboratorios."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <div class="brand-text">
+        <strong>AI Learning Hub</strong>
+        <span>Recursos de IA en español</span>
+      </div>
+    </a>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <div class="nav-group-title">Inicio</div>
+      <a href="/"><span class="n-ico" aria-hidden="true">🏠</span><span>Portada</span></a>
+      <a href="/rutas/"><span class="n-ico" aria-hidden="true">🧭</span><span>Rutas de aprendizaje</span></a>
+      <a href="/guia/como-aprender-ia-desde-cero/"><span class="n-ico" aria-hidden="true">📖</span><span>Cómo aprender IA</span></a>
+      <a href="/colecciones/" aria-current="page"><span class="n-ico" aria-hidden="true">🗂️</span><span>Colecciones</span></a>
+      <div class="nav-group-title">Fundamentos</div>
+      <a href="/temas/matematicas/"><span class="n-ico" aria-hidden="true">📐</span><span>Matemática</span><span class="n-count">10</span></a>
+      <a href="/temas/programacion/"><span class="n-ico" aria-hidden="true">⌨️</span><span>Programación y tooling</span><span class="n-count">12</span></a>
+      <a href="/temas/ml-clasico/"><span class="n-ico" aria-hidden="true">📈</span><span>Machine learning clásico</span><span class="n-count">10</span></a>
+      <a href="/temas/deep-learning/"><span class="n-ico" aria-hidden="true">🧠</span><span>Deep learning</span><span class="n-count">22</span></a>
+      <div class="nav-group-title">Modelos</div>
+      <a href="/temas/arquitecturas/"><span class="n-ico" aria-hidden="true">🏗️</span><span>Arquitecturas</span><span class="n-count">27</span></a>
+      <a href="/temas/transformers-llm/"><span class="n-ico" aria-hidden="true">🔤</span><span>Transformers y LLMs</span><span class="n-count">18</span></a>
+      <a href="/temas/entrenar-desde-cero/"><span class="n-ico" aria-hidden="true">⚙️</span><span>Entrenar desde cero</span><span class="n-count">16</span></a>
+      <a href="/temas/datos-scaling/"><span class="n-ico" aria-hidden="true">🗃️</span><span>Datos, tokenización y scaling laws</span><span class="n-count">12</span></a>
+      <div class="nav-group-title">Hacerlos útiles</div>
+      <a href="/temas/post-training/"><span class="n-ico" aria-hidden="true">🎯</span><span>Post-training, RLHF y razonamiento</span><span class="n-count">19</span></a>
+      <a href="/temas/fine-tuning/"><span class="n-ico" aria-hidden="true">🔧</span><span>Fine-tuning práctico</span><span class="n-count">12</span></a>
+      <a href="/temas/inferencia/"><span class="n-ico" aria-hidden="true">⚡</span><span>Inferencia y optimización</span><span class="n-count">14</span></a>
+      <a href="/temas/infra/"><span class="n-ico" aria-hidden="true">🖥️</span><span>Infraestructura y GPUs</span><span class="n-count">10</span></a>
+      <a href="/temas/rag-agentes/"><span class="n-ico" aria-hidden="true">🤖</span><span>RAG, agentes y contexto</span><span class="n-count">19</span></a>
+      <a href="/temas/multimodal/"><span class="n-ico" aria-hidden="true">🎨</span><span>Multimodal y generativos</span><span class="n-count">17</span></a>
+      <div class="nav-group-title">Medir y controlar</div>
+      <a href="/temas/evaluacion/"><span class="n-ico" aria-hidden="true">📊</span><span>Evaluación y benchmarks</span><span class="n-count">13</span></a>
+      <a href="/temas/interpretabilidad/"><span class="n-ico" aria-hidden="true">🔬</span><span>Interpretabilidad</span><span class="n-count">11</span></a>
+      <a href="/temas/seguridad/"><span class="n-ico" aria-hidden="true">🛡️</span><span>Alineamiento y seguridad</span><span class="n-count">13</span></a>
+      <div class="nav-group-title">Mantenerse al día</div>
+      <a href="/temas/medios/"><span class="n-ico" aria-hidden="true">📡</span><span>Blogs, canales y podcasts</span><span class="n-count">36</span></a>
+      <a href="/temas/cuentas/"><span class="n-ico" aria-hidden="true">👥</span><span>Cuentas y comunidades</span><span class="n-count">24</span></a>
+      <a href="/temas/espanol/"><span class="n-ico" aria-hidden="true">🌎</span><span>Recursos en español</span><span class="n-count">7</span></a>
+      <div class="nav-group-title">Perspectiva</div>
+      <a href="/temas/papers-clave/"><span class="n-ico" aria-hidden="true">🗺️</span><span>Línea de tiempo</span></a>
+      <a href="/temas/futuro/"><span class="n-ico" aria-hidden="true">🔮</span><span>Qué se viene</span><span class="n-count">14</span></a>
+      <div class="nav-group-title">El sitio</div>
+      <a href="/sobre/"><span class="n-ico" aria-hidden="true">✍️</span><span>Quién lo hace</span></a>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <form class="search-wrap" role="search" action="/" method="get">
+        <label class="sr-only" for="search">Buscar recursos de IA</label>
+        <input id="search" name="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Buscar: transformers, LoRA, karpathy, RLHF, difusión…">
+        <span class="kbd" aria-hidden="true">/</span>
+      </form>
+      <div class="topbar-actions">
+        <button class="btn" id="clear-btn">Limpiar</button>
+        <button class="btn" id="theme-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+
+    <div class="content" id="contenido">
+
+      <div class="controls" hidden id="controls">
+        <div class="filters">
+          <div class="filter-label">Tipo de recurso</div>
+          <div id="f-types" class="filters" style="border:0;margin:0;padding:0"></div>
+          <div class="filter-label" style="margin-top:14px">Nivel y atajos</div>
+          <div id="f-levels" class="filters" style="border:0;margin:0;padding:0"></div>
+        </div>
+        <div class="results-meta" id="results-meta"></div>
+      </div>
+      <section id="results-section" aria-label="Resultados de búsqueda">
+        <div id="results"></div>
+      </section>
+      <div id="page-content">
+<nav class="breadcrumb" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li><a href="/colecciones/">Colecciones</a></li><li><span aria-current="page">Papers</span></li></ol></nav>
+
+      <header class="hero page-hero">
+        <h1>Papers de IA: los que hay que leer</h1>
+        <div class="prose lede">
+      <p>
+        Leer papers asusta más de lo que cuesta. El inglés técnico es limitado y repetitivo, la
+        estructura es siempre la misma, y después de diez papers el vocabulario deja de ser un
+        obstáculo. Lo difícil no es el idioma: es saber cuáles vale la pena leer, porque se publican
+        miles por mes y la mayoría no cambia nada.
+      </p>
+      <p>
+        Estos están ordenados <strong>cronológicamente</strong>, que es la forma en que más rinde
+        leerlos: cada uno resuelve un problema que dejó abierto el anterior, y esa cadena explica por
+        qué el campo tomó las decisiones que tomó. Si querés esa historia narrada en vez de la lista
+        cruda, está en la <a href="/temas/papers-clave/">línea de tiempo</a>.
+      </p>
+      <p>
+        Si vas a leer uno solo: «Attention Is All You Need». Si vas a leer cinco, sumá el de GPT-3
+        con las leyes de escalado, Chinchilla, InstructGPT y DeepSeek-R1.
+      </p></div>
+      </header>
+      <section class="section" id="recursos">
+        <h2>104 recursos</h2>
+        <div class="cards"><a class="card" href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">A Mathematical Framework for Transformer Circuits</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">El texto fundacional de la interpretabilidad mecanicista. Cabezas de atención como operaciones componibles sobre el residual stream.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2412.14093" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Alignment Faking in Large Language Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic &amp; Redwood Research</span>
+      </div>
+      <p class="card-note">Un modelo que finge estar alineado durante el entrenamiento para preservar sus preferencias. Evidencia empírica de un riesgo que era teórico.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Attention Is All You Need</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Vaswani et al. (Google)</span>
+      </div>
+      <p class="card-note">El paper que define la era actual. Todo LLM de hoy es una variación de estas 15 páginas. Leelo al menos tres veces en tu vida.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2017</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2103.00020" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">CLIP: Learning Transferable Visual Models From Natural Language Supervision</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Radford et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">Alinear imágenes y texto en un mismo espacio de embeddings. Es el ladrillo sobre el que se apoya casi todo lo multimodal.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Chain-of-Thought Prompting Elicits Reasoning in LLMs</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Wei et al. (Google)</span>
+      </div>
+      <p class="card-note">'Pensemos paso a paso'. La observación más simple y más rentable de la historia reciente de los LLMs.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1606.06565" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Concrete Problems in AI Safety</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Amodei, Olah et al.</span>
+      </div>
+      <p class="card-note">El paper que convirtió la seguridad de IA en agenda técnica: efectos colaterales, reward hacking, supervisión escalable, exploración segura.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2016</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2501.12948" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· DeepSeek AI</span>
+      </div>
+      <p class="card-note">Demostró en abierto que el razonamiento emerge de RL con recompensas verificables, sin SFT previo. Cambió el rumbo del campo en 2025.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">DeepSeek-V3 Technical Report</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· DeepSeek AI</span>
+      </div>
+      <p class="card-note">MoE de 671B, Multi-head Latent Attention, entrenamiento en FP8, predicción multi-token. Ingeniería de eficiencia de altísimo nivel, documentada en detalle.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2402.03300" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">DeepSeekMath: GRPO</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· DeepSeek AI</span>
+      </div>
+      <p class="card-note">Group Relative Policy Optimization: elimina la red de valor de PPO. Es el algoritmo que entrena la mayoría de los modelos de razonamiento actuales.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2006.11239" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Denoising Diffusion Probabilistic Models (DDPM)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Ho, Jain, Abbeel</span>
+      </div>
+      <p class="card-note">El paper que hizo funcionar la difusión. Agregar ruido y aprender a quitarlo: la idea que reemplazó a las GANs.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Direct Preference Optimization (DPO)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Rafailov et al. (Stanford)</span>
+      </div>
+      <p class="card-note">Alineamiento por preferencias sin modelo de recompensa ni RL. Simple, estable y hoy el punto de partida por defecto.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Efficient Memory Management for LLM Serving with PagedAttention (vLLM)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Kwon et al. (Berkeley)</span>
+      </div>
+      <p class="card-note">Memoria virtual paginada aplicada al KV cache. Multiplicó por 24 el throughput de servir modelos y se volvió el estándar.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Inferencia y optimización</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2205.14135" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">FlashAttention: Fast and Memory-Efficient Exact Attention</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Tri Dao et al.</span>
+      </div>
+      <p class="card-note">No aproxima nada: solo reordena el cómputo para respetar la jerarquía de memoria de la GPU. La optimización más importante de la década. Ver también FlashAttention-2 (2307.08691) y -3 (2407.08608).</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Inferencia y optimización</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2112.10752" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">High-Resolution Image Synthesis with Latent Diffusion Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Rombach et al.</span>
+      </div>
+      <p class="card-note">Difusión en espacio latente en vez de píxeles: es Stable Diffusion. Hizo la generación de imágenes accesible a cualquiera.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">In-context Learning and Induction Heads</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Encontraron el circuito concreto que hace posible el aprendizaje en contexto. Uno de los resultados más satisfactorios del campo.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Language Models are Few-Shot Learners (GPT-3)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Brown et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">El paper que demostró in-context learning y disparó la carrera de escala.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">LoRA: Low-Rank Adaptation of Large Language Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Hu et al. (Microsoft)</span>
+      </div>
+      <p class="card-note">Entrenar matrices de rango bajo en vez del modelo entero. Es la razón por la que podés hacer fine-tuning en una sola GPU.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Fine-tuning práctico</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2312.00752" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Mamba: Linear-Time Sequence Modeling with Selective State Spaces</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Gu &amp; Dao</span>
+      </div>
+      <p class="card-note">La alternativa más seria a la atención cuadrática. Modelos de espacio de estados con selectividad, complejidad lineal en la longitud.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2503.14499" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Measuring AI Ability to Complete Long Tasks</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· METR</span>
+      </div>
+      <p class="card-note">El 'horizonte temporal' de las tareas que un modelo completa se duplica cada ~7 meses. Es la métrica de progreso más informativa que existe hoy, porque mide autonomía y no conocimiento.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Qué se viene</span>
+      </div>
+    </a><a class="card" href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">On the Biology of a Large Language Model / Circuit Tracing</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Grafos de atribución que muestran planificación anticipada, razonamiento multilingüe y racionalizaciones a posteriori dentro del modelo. Fascinante.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2305.14314" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">QLoRA: Efficient Finetuning of Quantized LLMs</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Dettmers et al.</span>
+      </div>
+      <p class="card-note">LoRA sobre un modelo base en 4 bits. Democratizó el fine-tuning de modelos de 65B en hardware de consumo.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Fine-tuning práctico</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">ReAct: Synergizing Reasoning and Acting in Language Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Yao et al.</span>
+      </div>
+      <p class="card-note">Razonar y actuar alternadamente. Es el patrón base de prácticamente todo agente que exista hoy.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">RAG, agentes y contexto</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Retrieval-Augmented Generation for Knowledge-Intensive NLP</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Lewis et al. (Meta)</span>
+      </div>
+      <p class="card-note">El paper que nombró RAG. Vale leerlo para ver cuánto se desvió la práctica actual de la propuesta original.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">RAG, agentes y contexto</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2408.03314" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Scaling LLM Test-Time Compute Optimally</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Snell et al. (DeepMind/Berkeley)</span>
+      </div>
+      <p class="card-note">El paper que formalizó el segundo eje de escalado: pensar más en inferencia puede valer más que un modelo más grande.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Scaling Laws for Neural Language Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Kaplan et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">El paper que convirtió el progreso de la IA en una ecuación. Pérdida como ley de potencia de cómputo, datos y parámetros.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Autoencoders dispersos aplicados a un modelo de producción: millones de características identificables y manipulables.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2401.05566" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Sleeper Agents: Training Deceptive LLMs that Persist Through Safety Training</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Puertas traseras que sobreviven al SFT, RLHF y al entrenamiento adversarial. Resultado incómodo y muy importante.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2101.03961" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Switch Transformers (Mixture of Experts a escala)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Fedus, Zoph, Shazeer (Google)</span>
+      </div>
+      <p class="card-note">MoE: activar solo una fracción de los parámetros por token. Base de casi todos los modelos frontera actuales.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2407.21783" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Llama 3 Herd of Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Meta AI</span>
+      </div>
+      <p class="card-note">92 páginas con detalles reales de datos, infraestructura, fallos de hardware y post-training. El reporte técnico más útil publicado por un laboratorio grande.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://transformer-circuits.pub/2022/toy_model/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Toy Models of Superposition</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Por qué las neuronas representan más conceptos que dimensiones tienen. Explica por qué interpretar redes es tan difícil.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2203.15556" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Training Compute-Optimal Large Language Models (Chinchilla)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Hoffmann et al. (DeepMind)</span>
+      </div>
+      <p class="card-note">Corrigió a Kaplan: los modelos estaban muy subentrenados en datos. Reescribió el presupuesto de entrenamiento de toda la industria.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Training language models to follow instructions with human feedback (InstructGPT)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Ouyang et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">El paper que convirtió un modelo de texto en un asistente. SFT + modelo de recompensa + PPO. Es la receta que dio origen a ChatGPT.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://storage.googleapis.com/deepmind-media/Era-of-Experience%20/The%20Era%20of%20Experience%20Paper.pdf" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Welcome to the Era of Experience</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· David Silver &amp; Richard Sutton</span>
+      </div>
+      <p class="card-note">Los dos padres del RL moderno argumentan que los datos humanos se agotaron y que la próxima era será de agentes que aprenden de su propia experiencia. Si tenés que apostar a una sola tesis sobre el futuro, esta es la más respaldada por trayectoria.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Qué se viene</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2108.12409" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">ALiBi: Train Short, Test Long</span>
+        
+        <span class="card-author">· Press, Smith, Lewis</span>
+      </div>
+      <p class="card-note">Sesgos lineales en atención que permiten extrapolar a secuencias más largas que las de entrenamiento.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1412.6980" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Adam: A Method for Stochastic Optimization</span>
+        
+        <span class="card-author">· Kingma &amp; Ba</span>
+      </div>
+      <p class="card-note">El optimizador por defecto durante una década. Entender momento y varianza adaptativa te explica el 90% de los problemas de entrenamiento.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2014</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2010.11929" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">An Image is Worth 16x16 Words (Vision Transformer)</span>
+        
+        <span class="card-author">· Dosovitskiy et al. (Google)</span>
+      </div>
+      <p class="card-note">Los transformers se comen la visión por computadora. El puente hacia los modelos multimodales.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1312.6114" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Auto-Encoding Variational Bayes (VAE)</span>
+        
+        <span class="card-author">· Kingma &amp; Welling</span>
+      </div>
+      <p class="card-note">El espacio latente. Sin VAEs no hay Stable Diffusion (que difunde en latente, no en píxeles).</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2013</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1810.04805" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">BERT: Pre-training of Deep Bidirectional Transformers</span>
+        
+        <span class="card-author">· Devlin et al. (Google)</span>
+      </div>
+      <p class="card-note">La rama encoder-only. Sigue siendo el caballo de batalla de clasificación, embeddings y búsqueda.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2018</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1502.03167" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Batch Normalization</span>
+        
+        <span class="card-author">· Ioffe &amp; Szegedy</span>
+      </div>
+      <p class="card-note">Y su primo LayerNorm (arXiv:1607.06450), que es el que realmente usan los transformers.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2206.14486" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Beyond neural scaling laws: beating power law scaling via data pruning</span>
+        
+        <span class="card-author">· Sorscher et al.</span>
+      </div>
+      <p class="card-note">Curar bien los datos puede romper la ley de potencia. Uno de los resultados más accionables sobre calidad de datos.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2412.09871" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Byte Latent Transformer: Patches Scale Better Than Tokens</span>
+        
+        <span class="card-author">· Meta AI</span>
+      </div>
+      <p class="card-note">Elimina el tokenizador y agrupa bytes dinámicamente según entropía. Una de las líneas más prometedoras para superar las limitaciones de la tokenización.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2207.12598" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Classifier-Free Diffusion Guidance</span>
+        
+        <span class="card-author">· Ho &amp; Salimans</span>
+      </div>
+      <p class="card-note">El truco que hace que los modelos de imagen obedezcan al prompt. El parámetro `guidance_scale` sale de acá.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Constitutional AI: Harmlessness from AI Feedback</span>
+        
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">RLAIF: reemplazar parte del feedback humano por principios explícitos + crítica del propio modelo.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2302.00487" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Continual learning y catastrophic forgetting (línea de investigación)</span>
+        
+        <span class="card-author">· varios</span>
+      </div>
+      <p class="card-note">Los modelos actuales no aprenden después de entrenados. Resolverlo es probablemente la próxima gran ruptura: seguí esta literatura de cerca.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Qué se viene</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1912.02292" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Deep Double Descent</span>
+        
+        <span class="card-author">· Nakkiran et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">Rompe la intuición clásica de bias-variance: más parámetros pueden mejorar la generalización. Base conceptual del escalado moderno.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Deep Residual Learning for Image Recognition (ResNet)</span>
+        
+        <span class="card-author">· He, Zhang, Ren, Sun</span>
+      </div>
+      <p class="card-note">Las conexiones residuales son la razón por la que hoy podemos entrenar redes de 100+ capas. Están dentro de todo transformer.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1503.02531" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Distilling the Knowledge in a Neural Network</span>
+        
+        <span class="card-author">· Hinton, Vinyals, Dean</span>
+      </div>
+      <p class="card-note">La destilación es hoy la técnica más rentable de la industria: modelos chicos que imitan a los grandes.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Fine-tuning práctico</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2402.09353" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">DoRA: Weight-Decomposed Low-Rank Adaptation</span>
+        
+        <span class="card-author">· Liu et al. (NVIDIA)</span>
+      </div>
+      <p class="card-note">Descompone magnitud y dirección. Suele superar a LoRA con el mismo presupuesto de parámetros.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Fine-tuning práctico</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2402.00159" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Dolma: an Open Corpus of Three Trillion Tokens</span>
+        
+        <span class="card-author">· Allen Institute for AI</span>
+      </div>
+      <p class="card-note">Corpus abierto con toolkit de curación documentado. Complemento perfecto de OLMo.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2206.07682" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Emergent Abilities of Large Language Models</span>
+        
+        <span class="card-author">· Wei et al.</span>
+      </div>
+      <p class="card-note">Leelo junto a su refutación: 'Are Emergent Abilities a Mirage?' (arXiv:2304.15004). El debate en sí enseña más que cualquiera de los dos.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2211.17192" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Fast Inference from Transformers via Speculative Decoding</span>
+        
+        <span class="card-author">· Leviathan et al. (Google)</span>
+      </div>
+      <p class="card-note">Un modelo chico propone tokens, el grande los verifica en paralelo. 2-3× de aceleración sin perder calidad.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Inferencia y optimización</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2406.17557" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">FineWeb: decanting the web for the finest text data at scale</span>
+        
+        <span class="card-author">· Hugging Face</span>
+      </div>
+      <p class="card-note">Cómo se construye realmente un corpus de 15T tokens: deduplicación, filtros, clasificadores educativos. El blog interactivo asociado es aún mejor que el paper.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2204.14198" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Flamingo: a Visual Language Model for Few-Shot Learning</span>
+        
+        <span class="card-author">· DeepMind</span>
+      </div>
+      <p class="card-note">Cómo intercalar imágenes y texto con cross-attention. Diseño arquitectónico influyente.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2210.02747" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Flow Matching for Generative Modeling</span>
+        
+        <span class="card-author">· Lipman et al. (Meta)</span>
+      </div>
+      <p class="card-note">La formulación que reemplazó a la difusión clásica en los modelos de imagen y video más recientes. Más simple y más rápida.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2404.16130" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">From Local to Global: A Graph RAG Approach</span>
+        
+        <span class="card-author">· Microsoft Research</span>
+      </div>
+      <p class="card-note">Cuando la pregunta es sobre el corpus entero y no sobre un pasaje, el RAG por similitud falla. GraphRAG es la respuesta más elaborada.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">RAG, agentes y contexto</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2002.05202" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">GLU Variants Improve Transformer (SwiGLU)</span>
+        
+        <span class="card-author">· Noam Shazeer</span>
+      </div>
+      <p class="card-note">Paper de dos páginas cuya conclusión honesta es 'no sabemos por qué funciona'. Está en casi todos los LLMs actuales.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2210.17323" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">GPTQ: Accurate Post-Training Quantization</span>
+        
+        <span class="card-author">· Frantar et al.</span>
+      </div>
+      <p class="card-note">Cuantización a 3-4 bits en una pasada. Junto a AWQ (2306.00978), la base de todos los modelos cuantizados que descargás.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Inferencia y optimización</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2305.13245" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">GQA: Grouped-Query Attention</span>
+        
+        <span class="card-author">· Ainslie et al. (Google)</span>
+      </div>
+      <p class="card-note">El compromiso entre multi-head y multi-query que usan Llama, Mistral y casi todos. Reduce el KV cache drásticamente.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1406.2661" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Generative Adversarial Networks</span>
+        
+        <span class="card-author">· Goodfellow et al.</span>
+      </div>
+      <p class="card-note">La era pre-difusión de la generación de imágenes. Históricamente clave y aún útil conceptualmente.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2014</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2304.03442" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Generative Agents: Interactive Simulacra of Human Behavior</span>
+        
+        <span class="card-author">· Park et al. (Stanford)</span>
+      </div>
+      <p class="card-note">Memoria, reflexión y planificación en agentes que conviven. El paper más influyente sobre arquitectura de memoria agéntica.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">RAG, agentes y contexto</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2402.15391" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Genie: Generative Interactive Environments</span>
+        
+        <span class="card-author">· DeepMind</span>
+      </div>
+      <p class="card-note">Mundos jugables generados a partir de video sin etiquetas de acción. Una de las líneas más ambiciosas hacia agentes encarnados.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2201.02177" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Grokking: Generalization Beyond Overfitting</span>
+        
+        <span class="card-author">· Power et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">Modelos que memorizan y mucho después 'entienden'. Uno de los fenómenos más raros y estudiados del deep learning.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://internationalaisafetyreport.org/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">International AI Safety Report</span>
+        
+        <span class="card-author">· Bengio et al.</span>
+      </div>
+      <p class="card-note">Consenso científico internacional sobre qué sabemos y qué no sobre capacidades y riesgos. La referencia neutral cuando la discusión se polariza.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Qué se viene</span>
+      </div>
+    </a><a class="card" href="https://internationalaisafetyreport.org/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">International AI Safety Report</span>
+        
+        <span class="card-author">· Yoshua Bengio y 100+ expertos</span>
+      </div>
+      <p class="card-note">El informe de consenso científico internacional sobre capacidades y riesgos, respaldado por 30+ países. La síntesis más equilibrada disponible.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2403.19887" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Jamba: A Hybrid Transformer-Mamba Language Model</span>
+        
+        <span class="card-author">· AI21 Labs</span>
+      </div>
+      <p class="card-note">Los híbridos (capas de atención + capas SSM) son hoy la apuesta más probable para contexto largo. Ver también Griffin (arXiv:2402.19427).</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2306.05685" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</span>
+        
+        <span class="card-author">· Zheng et al. (LMSYS)</span>
+      </div>
+      <p class="card-note">Usar modelos como jueces funciona, pero con sesgos medibles (posición, verbosidad, auto-preferencia). Leé esto antes de confiar en tu LLM-judge.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Evaluación y benchmarks</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2208.07339" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">LLM.int8() y el problema de los outliers</span>
+        
+        <span class="card-author">· Tim Dettmers et al.</span>
+      </div>
+      <p class="card-note">Por qué la cuantización ingenua falla en modelos grandes y cómo se resuelve. Fundamento de bitsandbytes.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Inferencia y optimización</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2302.13971" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">LLaMA: Open and Efficient Foundation Language Models</span>
+        
+        <span class="card-author">· Touvron et al. (Meta)</span>
+      </div>
+      <p class="card-note">El paper que abrió el ecosistema open-weights. Todo el mundo local corriendo modelos empieza acá.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Language Models are Unsupervised Multitask Learners (GPT-2)</span>
+        
+        <span class="card-author">· Radford et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">El origen del decoder-only puro. Es la arquitectura que se sigue reimplementando en todos los tutoriales.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2412.08821" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Large Concept Models: Language Modeling in a Sentence Representation Space</span>
+        
+        <span class="card-author">· Meta AI</span>
+      </div>
+      <p class="card-note">Predecir conceptos (oraciones en espacio de embeddings) en lugar de tokens. Apuesta de Meta contra el paradigma token-por-token.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2305.20050" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Let's Verify Step by Step (process supervision)</span>
+        
+        <span class="card-author">· Lightman et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">Recompensar cada paso del razonamiento, no solo el resultado. Antecedente directo de los modelos tipo o1/o3.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Mixtral of Experts</span>
+        
+        <span class="card-author">· Mistral AI</span>
+      </div>
+      <p class="card-note">El paper que hizo el MoE disperso accesible en abierto. Lectura obligada para entender MoE en la práctica.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2404.02258" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Mixture-of-Depths: dynamically allocating compute</span>
+        
+        <span class="card-author">· Raposo et al. (DeepMind)</span>
+      </div>
+      <p class="card-note">No todos los tokens necesitan todas las capas. Cómputo adaptativo dentro del forward pass.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1810.03993" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Model Cards for Model Reporting</span>
+        
+        <span class="card-author">· Mitchell et al. (Google)</span>
+      </div>
+      <p class="card-note">Y 'Datasheets for Datasets' (arXiv:1803.09010). Documentar qué hace un modelo y con qué datos es parte del oficio.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2018</span>
+        
+        
+        <span class="tag">Evaluación y benchmarks</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1508.07909" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Neural Machine Translation of Rare Words with Subword Units (BPE)</span>
+        
+        <span class="card-author">· Sennrich, Haddow, Birch</span>
+      </div>
+      <p class="card-note">El origen de Byte-Pair Encoding, el algoritmo detrás de casi todos los tokenizadores actuales.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2402.00838" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">OLMo: Accelerating the Science of Language Models</span>
+        
+        <span class="card-author">· Allen Institute for AI</span>
+      </div>
+      <p class="card-note">Modelo verdaderamente abierto: pesos, datos, código de entrenamiento, checkpoints intermedios y logs. Oro puro para investigar.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://dl.acm.org/doi/10.1145/3442188.3445922" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">On the Dangers of Stochastic Parrots</span>
+        
+        <span class="card-author">· Bender, Gebru, McMillan-Major, Mitchell</span>
+      </div>
+      <p class="card-note">La crítica más influyente desde el otro lado del debate: costos ambientales, sesgo, opacidad de datos. Leelo aunque no coincidas.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1707.06347" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Proximal Policy Optimization (PPO)</span>
+        
+        <span class="card-author">· Schulman et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">El algoritmo de RL sobre el que se construyó todo el RLHF. Vale entenderlo aunque hoy uses GRPO o DPO.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2017</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2304.01373" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Pythia: A Suite for Analyzing LLMs Across Training and Scaling</span>
+        
+        <span class="card-author">· EleutherAI</span>
+      </div>
+      <p class="card-note">154 checkpoints por modelo, en 8 escalas, con el orden de datos exacto. La herramienta estándar para estudiar dinámicas de entrenamiento.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2305.13048" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">RWKV: Reinventing RNNs for the Transformer Era</span>
+        
+        <span class="card-author">· Peng et al.</span>
+      </div>
+      <p class="card-note">RNN entrenable en paralelo, inferencia con memoria constante. Comunidad abierta muy activa.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2209.07858" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Red Teaming Language Models to Reduce Harms</span>
+        
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Metodología de red-teaming con datos publicados. Base práctica para evaluar riesgos de un modelo.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2104.09864" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">RoFormer: Rotary Position Embedding (RoPE)</span>
+        
+        <span class="card-author">· Su et al.</span>
+      </div>
+      <p class="card-note">Cómo casi todos los LLMs modernos codifican posición. Entender RoPE es entender por qué se puede extender el contexto.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2212.04356" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)</span>
+        
+        <span class="card-author">· OpenAI</span>
+      </div>
+      <p class="card-note">El modelo que resolvió el reconocimiento de voz en abierto, incluido el español. Pesos libres.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1910.07467" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Root Mean Square Layer Normalization (RMSNorm)</span>
+        
+        <span class="card-author">· Zhang &amp; Sennrich</span>
+      </div>
+      <p class="card-note">LayerNorm sin la media. Más barato y funciona igual. Otro estándar silencioso.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2203.14465" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">STaR: Self-Taught Reasoner</span>
+        
+        <span class="card-author">· Zelikman et al. (Stanford)</span>
+      </div>
+      <p class="card-note">Bootstrap del razonamiento: el modelo genera cadenas, filtrás las correctas, reentrenás. Base de casi todo el auto-mejoramiento actual.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2205.10487" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Scaling Laws and Interpretability of Learning from Repeated Data</span>
+        
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Qué pasa cuando repetís datos (spoiler: se degrada peor de lo que pensás). Crucial ahora que los datos web de calidad escasean.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2304.02643" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Segment Anything (SAM)</span>
+        
+        <span class="card-author">· Meta AI</span>
+      </div>
+      <p class="card-note">Modelo fundacional de segmentación. Ejemplo modelo de cómo diseñar una tarea + motor de datos + modelo a la vez.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2203.11171" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Self-Consistency Improves Chain of Thought Reasoning</span>
+        
+        <span class="card-author">· Wang et al. (Google)</span>
+      </div>
+      <p class="card-note">Muestrear varias cadenas y votar por mayoría. La técnica de inferencia con mejor relación esfuerzo/beneficio.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1910.10683" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">T5: Exploring the Limits of Transfer Learning</span>
+        
+        <span class="card-author">· Raffel et al. (Google)</span>
+      </div>
+      <p class="card-note">'Todo es texto-a-texto'. Además, el estudio ablativo más sistemático que se hizo sobre decisiones de arquitectura.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2306.11644" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Textbooks Are All You Need (phi-1)</span>
+        
+        <span class="card-author">· Microsoft Research</span>
+      </div>
+      <p class="card-note">Datos sintéticos de altísima calidad superan a montañas de datos web. Inició la línea de modelos pequeños sorprendentemente capaces.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://machinelearning.apple.com/research/illusion-of-thinking" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Illusion of Thinking / debates sobre razonamiento en LLMs</span>
+        
+        <span class="card-author">· Apple ML Research y respuestas</span>
+      </div>
+      <p class="card-note">Sostiene que los modelos de razonamiento colapsan al aumentar la complejidad. Provocó respuestas técnicas fuertes: el intercambio completo es el mejor material sobre qué significa 'razonar'.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Qué se viene</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1803.03635" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Lottery Ticket Hypothesis</span>
+        
+        <span class="card-author">· Frankle &amp; Carbin</span>
+      </div>
+      <p class="card-note">Dentro de una red grande hay subredes chicas que entrenan igual de bien. Fundamento conceptual del pruning.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2018</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2101.00027" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Pile: An 800GB Dataset of Diverse Text</span>
+        
+        <span class="card-author">· EleutherAI</span>
+      </div>
+      <p class="card-note">El primer corpus abierto grande y documentado. Referencia histórica sobre composición de datos.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2501.00663" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Titans: Learning to Memorize at Test Time</span>
+        
+        <span class="card-author">· Behrouz et al. (Google)</span>
+      </div>
+      <p class="card-note">Memoria neuronal a largo plazo que se actualiza durante la inferencia. Empuja hacia el aprendizaje continuo.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Toolformer: Language Models Can Teach Themselves to Use Tools</span>
+        
+        <span class="card-author">· Meta AI</span>
+      </div>
+      <p class="card-note">Los modelos aprenden solos cuándo llamar a una API. Antecedente del tool use nativo actual.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">RAG, agentes y contexto</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2405.21060" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Transformers are SSMs (Mamba-2)</span>
+        
+        <span class="card-author">· Dao &amp; Gu</span>
+      </div>
+      <p class="card-note">Unifica atención y modelos de espacio de estados bajo un mismo marco teórico. Uno de los papers conceptualmente más importantes de los últimos años.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Arquitecturas</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2305.10601" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Tree of Thoughts</span>
+        
+        <span class="card-author">· Yao et al. (Princeton/DeepMind)</span>
+      </div>
+      <p class="card-note">Búsqueda deliberada sobre estados de razonamiento en lugar de una sola cadena lineal.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Post-training, RLHF y razonamiento</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2307.15043" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Universal and Transferable Adversarial Attacks on Aligned LMs</span>
+        
+        <span class="card-author">· Zou et al. (CMU)</span>
+      </div>
+      <p class="card-note">Sufijos adversariales que rompen el alineamiento y transfieren entre modelos. Lectura obligada antes de confiar en filtros de seguridad.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2109.13916" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Unsolved Problems in ML Safety</span>
+        
+        <span class="card-author">· Hendrycks et al.</span>
+      </div>
+      <p class="card-note">Robustez, monitoreo, alineamiento y riesgo sistémico como cuatro problemas separados. Buen marco mental.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://openai.com/index/video-generation-models-as-world-simulators/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Video generation models as world simulators (Sora)</span>
+        
+        <span class="card-author">· OpenAI</span>
+      </div>
+      <p class="card-note">El reporte técnico que instaló la idea de 'modelos del mundo' como camino hacia el razonamiento físico.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2304.08485" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Visual Instruction Tuning (LLaVA)</span>
+        
+        <span class="card-author">· Liu et al.</span>
+      </div>
+      <p class="card-note">La receta abierta para convertir un LLM en un modelo de visión: encoder + proyector + instrucciones. Base de casi todo VLM abierto.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Multimodal y generativos</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2312.09390" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Weak-to-Strong Generalization</span>
+        
+        <span class="card-author">· OpenAI (Superalignment)</span>
+      </div>
+      <p class="card-note">¿Puede un supervisor débil alinear a un modelo más capaz que él? La pregunta central de la supervisión escalable.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Alineamiento y seguridad</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2211.04325" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Will we run out of data? Limits of LLM scaling based on human-generated data</span>
+        
+        <span class="card-author">· Villalobos et al. (Epoch AI)</span>
+      </div>
+      <p class="card-note">Proyección cuantitativa del agotamiento del texto humano de calidad. La razón por la que datos sintéticos y RL pasaron al centro de la escena.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Qué se viene</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1910.02054" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</span>
+        
+        <span class="card-author">· Rajbhandari et al. (Microsoft)</span>
+      </div>
+      <p class="card-note">La idea detrás de DeepSpeed y FSDP: repartir estados del optimizador, gradientes y parámetros entre GPUs.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a></div>
+      </section>
+      <section class="section faq" id="preguntas-frecuentes">
+        <h2>Preguntas frecuentes</h2>
+        <details>
+          <summary><h3>¿Por dónde empiezo a leer papers de IA?</h3></summary>
+          <div class="faq-a"><p>Por «Attention Is All You Need», pero acompañado: leelo junto a The Illustrated Transformer y The Annotated Transformer, que lo explican visualmente y con código. Leer el paper solo, sin apoyo, es innecesariamente difícil la primera vez.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Cómo se lee un paper de machine learning?</h3></summary>
+          <div class="faq-a"><p>En tres pasadas. Primero resumen, introducción y conclusiones para saber si te sirve. Después figuras y tablas de resultados, que suelen contar la historia completa. Recién entonces el método en detalle, y solo si vas a implementarlo o a criticarlo. Casi nadie lee papers de forma lineal.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Dónde se publican los papers de IA?</h3></summary>
+          <div class="faq-a"><p>Mayoritariamente en arXiv, en abierto y antes de cualquier revisión por pares. Las conferencias que importan son NeurIPS, ICML y ICLR, pero en la práctica el campo se mueve por arXiv y por los reportes técnicos que publican los laboratorios.</p></div>
+        </details>
+      </section>
+      <nav class="related" aria-label="Otras colecciones">
+        <h2>Otras formas de recorrer la lista</h2>
+        <ul><li><a href="/colecciones/cursos-de-ia-gratis/"><span aria-hidden="true">🎓</span> Cursos gratis<em>Cursos de inteligencia artificial gratis</em></a></li><li><a href="/colecciones/libros-de-ia/"><span aria-hidden="true">📚</span> Libros<em>Libros para aprender inteligencia artificial</em></a></li><li><a href="/colecciones/canales-de-youtube-de-ia/"><span aria-hidden="true">📺</span> Canales y videos<em>Canales de YouTube y videos para aprender IA</em></a></li><li><a href="/colecciones/imprescindibles/"><span aria-hidden="true">★</span> Imprescindibles<em>Los recursos imprescindibles para aprender IA</em></a></li></ul>
+      </nav>
+      <nav class="related" aria-label="Temas relacionados">
+        <h2>Seguí por acá</h2>
+        <ul><li><a href="/temas/papers-clave/"><span aria-hidden="true">🗺️</span> Línea de tiempo
+            <em>Los papers que definieron cada etapa, en orden, para entender cómo llegamos hasta acá.</em></a></li><li><a href="/temas/transformers-llm/"><span aria-hidden="true">🔤</span> Transformers y LLMs
+            <em>De 'Attention Is All You Need' a los reportes técnicos de los modelos frontera actuales.</em></a></li><li><a href="/temas/arquitecturas/"><span aria-hidden="true">🏗️</span> Arquitecturas
+            <em>Transformers y todo lo demás: MoE, modelos de espacio de estados, híbridos, difusión, GNNs. Qué hay, qué cambia y qué se mantiene.</em></a></li></ul>
+      </nav>
+<footer>
+        <p class="byline">
+          Curado y escrito por <a href="https://github.com/giancarlobrusca" rel="author">Giancarlo Brusca</a>,
+          desarrollador de software en Buenos Aires.
+          <span>Última revisión: <time datetime="2026-07-30">30 de julio de 2026</time>.</span>
+        </p>
+        <p>
+          <strong>AI Learning Hub</strong> · Colección curada de recursos para aprender inteligencia artificial
+          en español. Todos los enlaces apuntan a las fuentes originales; el mérito es de sus autores.
+        </p>
+        <p class="foot-nav">
+          <a href="/">Portada</a> ·
+          <a href="/rutas/">Rutas de aprendizaje</a> ·
+          <a href="/guia/como-aprender-ia-desde-cero/">Cómo aprender IA</a> ·
+          <a href="/colecciones/cursos-de-ia-gratis/">Cursos gratis</a> ·
+          <a href="/temas/espanol/">Recursos en español</a> ·
+          <a href="/sobre/">Quién lo hace</a> ·
+          <a href="https://github.com/giancarlobrusca/ai-learning-hub" rel="noopener">Código en GitHub</a>
+        </p>
+      </footer>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/data/00-secciones.js" defer></script>
+<script src="/data/01-fundamentos.js" defer></script>
+<script src="/data/02-arquitecturas.js" defer></script>
+<script src="/data/03-entrenamiento-aplicado.js" defer></script>
+<script src="/data/04-multimodal-eval-safety.js" defer></script>
+<script src="/data/05-medios-comunidad.js" defer></script>
+<script src="/data/06-futuro.js" defer></script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

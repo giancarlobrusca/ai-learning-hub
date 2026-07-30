@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interpretabilidad de modelos de IA: circuitos y SAEs</title>
+<meta name="description" content="Circuitos, superposición, autoencoders dispersos y grafos de atribución. Cómo se abre un modelo para entender qué está haciendo por dentro.">
+<link rel="canonical" href="https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Giancarlo Brusca">
+<meta name="theme-color" content="#0b0d12">
+<link rel="alternate" hreflang="es" href="https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/">
+<link rel="alternate" hreflang="x-default" href="https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Learning Hub">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/">
+<meta property="og:title" content="Interpretabilidad de modelos de IA: circuitos y SAEs">
+<meta property="og:description" content="Circuitos, superposición, autoencoders dispersos y grafos de atribución. Cómo se abre un modelo para entender qué está haciendo por dentro.">
+<meta property="og:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-interpretabilidad.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Interpretabilidad de modelos de IA: circuitos y SAEs — AI Learning Hub">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@giancarlobrusca">
+<meta name="twitter:creator" content="@giancarlobrusca">
+<meta name="twitter:title" content="Interpretabilidad de modelos de IA: circuitos y SAEs">
+<meta name="twitter:description" content="Circuitos, superposición, autoencoders dispersos y grafos de atribución. Cómo se abre un modelo para entender qué está haciendo por dentro.">
+<meta name="twitter:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-interpretabilidad.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="stylesheet" href="/assets/styles.css">
+<script>try{var t=localStorage.getItem("alh-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/#page","url":"https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/","name":"Interpretabilidad de modelos de IA: circuitos y SAEs","headline":"Interpretabilidad de modelos de IA: circuitos y SAEs","description":"Circuitos, superposición, autoencoders dispersos y grafos de atribución. Cómo se abre un modelo para entender qué está haciendo por dentro.","inLanguage":"es","isPartOf":{"@id":"https://recursos-ia.giancarlobrusca.com/#website"},"author":{"@type":"Person","@id":"https://recursos-ia.giancarlobrusca.com/#autor","name":"Giancarlo Brusca","url":"https://github.com/giancarlobrusca","jobTitle":"Desarrollador de software","sameAs":["https://github.com/giancarlobrusca","https://x.com/giancarlobrusca"],"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}},"publisher":{"@id":"https://recursos-ia.giancarlobrusca.com/#autor"},"datePublished":"2026-07-29","dateModified":"2026-07-30","about":{"@type":"Thing","name":"Interpretabilidad"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://recursos-ia.giancarlobrusca.com/"},{"@type":"ListItem","position":2,"name":"Temas","item":"https://recursos-ia.giancarlobrusca.com/#temas"},{"@type":"ListItem","position":3,"name":"Interpretabilidad","item":"https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Recursos de Interpretabilidad","url":"https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/","numberOfItems":11,"itemListElement":[{"@type":"ListItem","position":1,"name":"A Mathematical Framework for Transformer Circuits","url":"https://transformer-circuits.pub/2021/framework/index.html","description":"El texto fundacional de la interpretabilidad mecanicista. Cabezas de atención como operaciones componibles sobre el residual stream."},{"@type":"ListItem","position":2,"name":"ARENA: Alignment Research Engineer Accelerator","url":"https://learn.arena.education/","description":"Currículum completo y gratuito: fundamentos de deep learning, interpretabilidad de transformers, RL y evaluaciones de LLMs. El mejor camino estructurado hacia investigación en seguridad."},{"@type":"ListItem","position":3,"name":"In-context Learning and Induction Heads","url":"https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html","description":"Encontraron el circuito concreto que hace posible el aprendizaje en contexto. Uno de los resultados más satisfactorios del campo."},{"@type":"ListItem","position":4,"name":"Neel Nanda — guías de interpretabilidad mecanicista","url":"https://www.neelnanda.io/mechanistic-interpretability/getting-started","description":"La hoja de ruta más honesta para entrar al campo, incluyendo qué NO hacer. Además: '200 Concrete Open Problems'."},{"@type":"ListItem","position":5,"name":"On the Biology of a Large Language Model / Circuit Tracing","url":"https://transformer-circuits.pub/2025/attribution-graphs/biology.html","description":"Grafos de atribución que muestran planificación anticipada, razonamiento multilingüe y racionalizaciones a posteriori dentro del modelo. Fascinante."},{"@type":"ListItem","position":6,"name":"Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet","url":"https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html","description":"Autoencoders dispersos aplicados a un modelo de producción: millones de características identificables y manipulables."},{"@type":"ListItem","position":7,"name":"Toy Models of Superposition","url":"https://transformer-circuits.pub/2022/toy_model/index.html","description":"Por qué las neuronas representan más conceptos que dimensiones tienen. Explica por qué interpretar redes es tan difícil."},{"@type":"ListItem","position":8,"name":"Interpretable Machine Learning","url":"https://christophm.github.io/interpretable-ml-book/","description":"El lado clásico de la interpretabilidad: SHAP, LIME, importancia de features, modelos intrínsecamente interpretables."},{"@type":"ListItem","position":9,"name":"TransformerLens","url":"https://github.com/TransformerLensOrg/TransformerLens","description":"La librería estándar para hacer cirugía sobre activaciones: hooks, patching, ablaciones."},{"@type":"ListItem","position":10,"name":"Zoom In: An Introduction to Circuits","url":"https://distill.pub/2020/circuits/zoom-in/","description":"El origen del programa de circuitos, aplicado a visión. Las visualizaciones siguen sin ser superadas."},{"@type":"ListItem","position":11,"name":"nnsight & NDIF","url":"https://nnsight.net/","description":"Interpretabilidad sobre modelos gigantes que no entran en tu GPU, ejecutados remotamente. Abre la investigación a quien no tiene cluster."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Se puede saber por qué un modelo de IA responde lo que responde?","acceptedAnswer":{"@type":"Answer","text":"Parcialmente, y es un área de investigación muy activa. Existen técnicas para identificar qué características internas se activan y trazar cómo influyen en la salida. Todavía está lejos de ser una auditoría confiable y completa, pero dejó de ser puramente académica."}},{"@type":"Question","name":"¿Qué son los autoencoders dispersos (SAE)?","acceptedAnswer":{"@type":"Answer","text":"Son modelos auxiliares que descomponen las activaciones internas de una red en muchas características individuales e interpretables. Atacan el problema de la superposición: que una misma neurona representa varios conceptos a la vez, lo que hace ilegible el modelo si se lo mira neurona por neurona."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <div class="brand-text">
+        <strong>AI Learning Hub</strong>
+        <span>Recursos de IA en español</span>
+      </div>
+    </a>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <div class="nav-group-title">Inicio</div>
+      <a href="/"><span class="n-ico" aria-hidden="true">🏠</span><span>Portada</span></a>
+      <a href="/rutas/"><span class="n-ico" aria-hidden="true">🧭</span><span>Rutas de aprendizaje</span></a>
+      <a href="/guia/como-aprender-ia-desde-cero/"><span class="n-ico" aria-hidden="true">📖</span><span>Cómo aprender IA</span></a>
+      <a href="/colecciones/"><span class="n-ico" aria-hidden="true">🗂️</span><span>Colecciones</span></a>
+      <div class="nav-group-title">Fundamentos</div>
+      <a href="/temas/matematicas/"><span class="n-ico" aria-hidden="true">📐</span><span>Matemática</span><span class="n-count">10</span></a>
+      <a href="/temas/programacion/"><span class="n-ico" aria-hidden="true">⌨️</span><span>Programación y tooling</span><span class="n-count">12</span></a>
+      <a href="/temas/ml-clasico/"><span class="n-ico" aria-hidden="true">📈</span><span>Machine learning clásico</span><span class="n-count">10</span></a>
+      <a href="/temas/deep-learning/"><span class="n-ico" aria-hidden="true">🧠</span><span>Deep learning</span><span class="n-count">22</span></a>
+      <div class="nav-group-title">Modelos</div>
+      <a href="/temas/arquitecturas/"><span class="n-ico" aria-hidden="true">🏗️</span><span>Arquitecturas</span><span class="n-count">27</span></a>
+      <a href="/temas/transformers-llm/"><span class="n-ico" aria-hidden="true">🔤</span><span>Transformers y LLMs</span><span class="n-count">18</span></a>
+      <a href="/temas/entrenar-desde-cero/"><span class="n-ico" aria-hidden="true">⚙️</span><span>Entrenar desde cero</span><span class="n-count">16</span></a>
+      <a href="/temas/datos-scaling/"><span class="n-ico" aria-hidden="true">🗃️</span><span>Datos, tokenización y scaling laws</span><span class="n-count">12</span></a>
+      <div class="nav-group-title">Hacerlos útiles</div>
+      <a href="/temas/post-training/"><span class="n-ico" aria-hidden="true">🎯</span><span>Post-training, RLHF y razonamiento</span><span class="n-count">19</span></a>
+      <a href="/temas/fine-tuning/"><span class="n-ico" aria-hidden="true">🔧</span><span>Fine-tuning práctico</span><span class="n-count">12</span></a>
+      <a href="/temas/inferencia/"><span class="n-ico" aria-hidden="true">⚡</span><span>Inferencia y optimización</span><span class="n-count">14</span></a>
+      <a href="/temas/infra/"><span class="n-ico" aria-hidden="true">🖥️</span><span>Infraestructura y GPUs</span><span class="n-count">10</span></a>
+      <a href="/temas/rag-agentes/"><span class="n-ico" aria-hidden="true">🤖</span><span>RAG, agentes y contexto</span><span class="n-count">19</span></a>
+      <a href="/temas/multimodal/"><span class="n-ico" aria-hidden="true">🎨</span><span>Multimodal y generativos</span><span class="n-count">17</span></a>
+      <div class="nav-group-title">Medir y controlar</div>
+      <a href="/temas/evaluacion/"><span class="n-ico" aria-hidden="true">📊</span><span>Evaluación y benchmarks</span><span class="n-count">13</span></a>
+      <a href="/temas/interpretabilidad/" aria-current="page"><span class="n-ico" aria-hidden="true">🔬</span><span>Interpretabilidad</span><span class="n-count">11</span></a>
+      <a href="/temas/seguridad/"><span class="n-ico" aria-hidden="true">🛡️</span><span>Alineamiento y seguridad</span><span class="n-count">13</span></a>
+      <div class="nav-group-title">Mantenerse al día</div>
+      <a href="/temas/medios/"><span class="n-ico" aria-hidden="true">📡</span><span>Blogs, canales y podcasts</span><span class="n-count">36</span></a>
+      <a href="/temas/cuentas/"><span class="n-ico" aria-hidden="true">👥</span><span>Cuentas y comunidades</span><span class="n-count">24</span></a>
+      <a href="/temas/espanol/"><span class="n-ico" aria-hidden="true">🌎</span><span>Recursos en español</span><span class="n-count">7</span></a>
+      <div class="nav-group-title">Perspectiva</div>
+      <a href="/temas/papers-clave/"><span class="n-ico" aria-hidden="true">🗺️</span><span>Línea de tiempo</span></a>
+      <a href="/temas/futuro/"><span class="n-ico" aria-hidden="true">🔮</span><span>Qué se viene</span><span class="n-count">14</span></a>
+      <div class="nav-group-title">El sitio</div>
+      <a href="/sobre/"><span class="n-ico" aria-hidden="true">✍️</span><span>Quién lo hace</span></a>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <form class="search-wrap" role="search" action="/" method="get">
+        <label class="sr-only" for="search">Buscar recursos de IA</label>
+        <input id="search" name="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Buscar: transformers, LoRA, karpathy, RLHF, difusión…">
+        <span class="kbd" aria-hidden="true">/</span>
+      </form>
+      <div class="topbar-actions">
+        <button class="btn" id="clear-btn">Limpiar</button>
+        <button class="btn" id="theme-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+
+    <div class="content" id="contenido">
+
+      <div class="controls" hidden id="controls">
+        <div class="filters">
+          <div class="filter-label">Tipo de recurso</div>
+          <div id="f-types" class="filters" style="border:0;margin:0;padding:0"></div>
+          <div class="filter-label" style="margin-top:14px">Nivel y atajos</div>
+          <div id="f-levels" class="filters" style="border:0;margin:0;padding:0"></div>
+        </div>
+        <div class="results-meta" id="results-meta"></div>
+      </div>
+      <section id="results-section" aria-label="Resultados de búsqueda">
+        <div id="results"></div>
+      </section>
+      <div id="page-content">
+<nav class="breadcrumb" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li><a href="/#temas">Temas</a></li><li><span aria-current="page">Interpretabilidad</span></li></ol></nav>
+
+      <header class="hero page-hero">
+        <h1>Interpretabilidad: mirar adentro de un modelo</h1>
+        <div class="prose lede">
+      <p>
+        La interpretabilidad intenta responder una pregunta incómoda: sabemos que estos modelos funcionan,
+        pero no sabemos bien por qué. Abrirlos y mirar adentro —encontrar circuitos, características,
+        patrones de atribución— es el intento más serio de convertir eso en conocimiento.
+      </p>
+      <p>
+        Es además una de las pocas áreas donde alguien con una GPU y buenas ideas todavía puede producir
+        resultados relevantes, porque el cuello de botella es conceptual y no de cómputo. En los últimos
+        años pasó de resultados en modelos de juguete a encontrar características manipulables en modelos de
+        producción y a trazar grafos de atribución que muestran planificación anticipada y racionalización a
+        posteriori.
+      </p></div>
+      </header>
+      <section class="section" id="recursos">
+        <h2>11 recursos de interpretabilidad</h2>
+        <p class="sec-desc">
+          Ordenados con los imprescindibles primero y agrupados por tipo. Los marcados con ★ son los que
+          recomendaría alguien que ya recorrió el camino; los que dicen «gratis» no cuestan nada.
+        </p>
+        
+      <h3 class="subhead">🎓 Curso</h3>
+      <div class="cards"><a class="card" href="https://learn.arena.education/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">ARENA: Alignment Research Engineer Accelerator</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Callum McDougall y equipo</span>
+      </div>
+      <p class="card-note">Currículum completo y gratuito: fundamentos de deep learning, interpretabilidad de transformers, RL y evaluaciones de LLMs. El mejor camino estructurado hacia investigación en seguridad.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📚 Libro</h3>
+      <div class="cards"><a class="card" href="https://christophm.github.io/interpretable-ml-book/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Interpretable Machine Learning</span>
+        
+        <span class="card-author">· Christoph Molnar</span>
+      </div>
+      <p class="card-note">El lado clásico de la interpretabilidad: SHAP, LIME, importancia de features, modelos intrínsecamente interpretables.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📄 Paper</h3>
+      <div class="cards"><a class="card" href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">A Mathematical Framework for Transformer Circuits</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">El texto fundacional de la interpretabilidad mecanicista. Cabezas de atención como operaciones componibles sobre el residual stream.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2021</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">In-context Learning and Induction Heads</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Encontraron el circuito concreto que hace posible el aprendizaje en contexto. Uno de los resultados más satisfactorios del campo.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">On the Biology of a Large Language Model / Circuit Tracing</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Grafos de atribución que muestran planificación anticipada, razonamiento multilingüe y racionalizaciones a posteriori dentro del modelo. Fascinante.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Autoencoders dispersos aplicados a un modelo de producción: millones de características identificables y manipulables.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://transformer-circuits.pub/2022/toy_model/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Toy Models of Superposition</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Por qué las neuronas representan más conceptos que dimensiones tienen. Explica por qué interpretar redes es tan difícil.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">✍️ Blog/Post</h3>
+      <div class="cards"><a class="card" href="https://www.neelnanda.io/mechanistic-interpretability/getting-started" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Neel Nanda — guías de interpretabilidad mecanicista</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Neel Nanda (DeepMind)</span>
+      </div>
+      <p class="card-note">La hoja de ruta más honesta para entrar al campo, incluyendo qué NO hacer. Además: '200 Concrete Open Problems'.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://distill.pub/2020/circuits/zoom-in/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Zoom In: An Introduction to Circuits</span>
+        
+        <span class="card-author">· Olah et al. (Distill)</span>
+      </div>
+      <p class="card-note">El origen del programa de circuitos, aplicado a visión. Las visualizaciones siguen sin ser superadas.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">🐙 Repo</h3>
+      <div class="cards"><a class="card" href="https://github.com/TransformerLensOrg/TransformerLens" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">TransformerLens</span>
+        
+        <span class="card-author">· Neel Nanda y comunidad</span>
+      </div>
+      <p class="card-note">La librería estándar para hacer cirugía sobre activaciones: hooks, patching, ablaciones.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a><a class="card" href="https://nnsight.net/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">nnsight &amp; NDIF</span>
+        
+        <span class="card-author">· Northeastern / David Bau</span>
+      </div>
+      <p class="card-note">Interpretabilidad sobre modelos gigantes que no entran en tu GPU, ejecutados remotamente. Abre la investigación a quien no tiene cluster.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Interpretabilidad</span>
+      </div>
+    </a></div>
+      </section>
+      <section class="section faq" id="preguntas-frecuentes">
+        <h2>Preguntas frecuentes sobre interpretabilidad</h2>
+        <details>
+          <summary><h3>¿Se puede saber por qué un modelo de IA responde lo que responde?</h3></summary>
+          <div class="faq-a"><p>Parcialmente, y es un área de investigación muy activa. Existen técnicas para identificar qué características internas se activan y trazar cómo influyen en la salida. Todavía está lejos de ser una auditoría confiable y completa, pero dejó de ser puramente académica.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Qué son los autoencoders dispersos (SAE)?</h3></summary>
+          <div class="faq-a"><p>Son modelos auxiliares que descomponen las activaciones internas de una red en muchas características individuales e interpretables. Atacan el problema de la superposición: que una misma neurona representa varios conceptos a la vez, lo que hace ilegible el modelo si se lo mira neurona por neurona.</p></div>
+        </details>
+      </section>
+      <nav class="related" aria-label="Temas relacionados">
+        <h2>Seguí por acá</h2>
+        <ul><li><a href="/temas/seguridad/"><span aria-hidden="true">🛡️</span> Alineamiento y seguridad
+            <em>Alineamiento, red-teaming, riesgos, políticas de escalado y regulación. Técnico y no técnico.</em></a></li><li><a href="/temas/deep-learning/"><span aria-hidden="true">🧠</span> Deep learning
+            <em>Redes profundas, backpropagation, optimización, regularización y los fenómenos raros que todavía no entendemos del todo.</em></a></li><li><a href="/temas/evaluacion/"><span aria-hidden="true">📊</span> Evaluación y benchmarks
+            <em>Sin evaluaciones no hay ingeniería. Qué mide cada benchmark, cómo se contaminan y cómo armar las tuyas.</em></a></li></ul>
+      </nav>
+<footer>
+        <p class="byline">
+          Curado y escrito por <a href="https://github.com/giancarlobrusca" rel="author">Giancarlo Brusca</a>,
+          desarrollador de software en Buenos Aires.
+          <span>Última revisión: <time datetime="2026-07-30">30 de julio de 2026</time>.</span>
+        </p>
+        <p>
+          <strong>AI Learning Hub</strong> · Colección curada de recursos para aprender inteligencia artificial
+          en español. Todos los enlaces apuntan a las fuentes originales; el mérito es de sus autores.
+        </p>
+        <p class="foot-nav">
+          <a href="/">Portada</a> ·
+          <a href="/rutas/">Rutas de aprendizaje</a> ·
+          <a href="/guia/como-aprender-ia-desde-cero/">Cómo aprender IA</a> ·
+          <a href="/colecciones/cursos-de-ia-gratis/">Cursos gratis</a> ·
+          <a href="/temas/espanol/">Recursos en español</a> ·
+          <a href="/sobre/">Quién lo hace</a> ·
+          <a href="https://github.com/giancarlobrusca/ai-learning-hub" rel="noopener">Código en GitHub</a>
+        </p>
+      </footer>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/data/00-secciones.js" defer></script>
+<script src="/data/01-fundamentos.js" defer></script>
+<script src="/data/02-arquitecturas.js" defer></script>
+<script src="/data/03-entrenamiento-aplicado.js" defer></script>
+<script src="/data/04-multimodal-eval-safety.js" defer></script>
+<script src="/data/05-medios-comunidad.js" defer></script>
+<script src="/data/06-futuro.js" defer></script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

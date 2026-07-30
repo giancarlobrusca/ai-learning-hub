@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Infraestructura y GPUs para IA: CUDA, Triton y clusters</title>
+<meta name="description" content="CUDA, Triton, clusters, tracking de experimentos y la economía del cómputo. Saber leer un roofline te ahorra semanas de optimizar lo que no era el problema.">
+<link rel="canonical" href="https://recursos-ia.giancarlobrusca.com/temas/infra/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Giancarlo Brusca">
+<meta name="theme-color" content="#0b0d12">
+<link rel="alternate" hreflang="es" href="https://recursos-ia.giancarlobrusca.com/temas/infra/">
+<link rel="alternate" hreflang="x-default" href="https://recursos-ia.giancarlobrusca.com/temas/infra/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Learning Hub">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://recursos-ia.giancarlobrusca.com/temas/infra/">
+<meta property="og:title" content="Infraestructura y GPUs para IA: CUDA, Triton y clusters">
+<meta property="og:description" content="CUDA, Triton, clusters, tracking de experimentos y la economía del cómputo. Saber leer un roofline te ahorra semanas de optimizar lo que no era el problema.">
+<meta property="og:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-infra.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Infraestructura y GPUs para IA: CUDA, Triton y clusters — AI Learning Hub">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@giancarlobrusca">
+<meta name="twitter:creator" content="@giancarlobrusca">
+<meta name="twitter:title" content="Infraestructura y GPUs para IA: CUDA, Triton y clusters">
+<meta name="twitter:description" content="CUDA, Triton, clusters, tracking de experimentos y la economía del cómputo. Saber leer un roofline te ahorra semanas de optimizar lo que no era el problema.">
+<meta name="twitter:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-infra.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="stylesheet" href="/assets/styles.css">
+<script>try{var t=localStorage.getItem("alh-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://recursos-ia.giancarlobrusca.com/temas/infra/#page","url":"https://recursos-ia.giancarlobrusca.com/temas/infra/","name":"Infraestructura y GPUs para IA: CUDA, Triton y clusters","headline":"Infraestructura y GPUs para IA: CUDA, Triton y clusters","description":"CUDA, Triton, clusters, tracking de experimentos y la economía del cómputo. Saber leer un roofline te ahorra semanas de optimizar lo que no era el problema.","inLanguage":"es","isPartOf":{"@id":"https://recursos-ia.giancarlobrusca.com/#website"},"author":{"@type":"Person","@id":"https://recursos-ia.giancarlobrusca.com/#autor","name":"Giancarlo Brusca","url":"https://github.com/giancarlobrusca","jobTitle":"Desarrollador de software","sameAs":["https://github.com/giancarlobrusca","https://x.com/giancarlobrusca"],"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}},"publisher":{"@id":"https://recursos-ia.giancarlobrusca.com/#autor"},"datePublished":"2026-07-29","dateModified":"2026-07-30","about":{"@type":"Thing","name":"Infraestructura y GPUs"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://recursos-ia.giancarlobrusca.com/"},{"@type":"ListItem","position":2,"name":"Temas","item":"https://recursos-ia.giancarlobrusca.com/#temas"},{"@type":"ListItem","position":3,"name":"Infraestructura y GPUs","item":"https://recursos-ia.giancarlobrusca.com/temas/infra/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Recursos de Infraestructura y GPUs","url":"https://recursos-ia.giancarlobrusca.com/temas/infra/","numberOfItems":10,"itemListElement":[{"@type":"ListItem","position":1,"name":"Designing Machine Learning Systems","url":"https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/","description":"El libro de referencia para llevar ML a producción: datos, features, despliegue, monitoreo, deriva de datos."},{"@type":"ListItem","position":2,"name":"GPU MODE (antes CUDA MODE) — lecturas y comunidad","url":"https://github.com/gpu-mode/lectures","description":"Serie de charlas sobre CUDA, Triton, kernels y rendimiento, con un Discord muy activo. El mejor lugar para aprender programación de GPUs aplicada a IA."},{"@type":"ListItem","position":3,"name":"SemiAnalysis","url":"https://semianalysis.com/","description":"Análisis profundo de hardware, datacenters, cadena de suministro y economía real del cómputo de IA. Nadie más hace este trabajo con este nivel de detalle."},{"@type":"ListItem","position":4,"name":"ML Engineering Open Book","url":"https://github.com/stas00/ml-engineering","description":"Notas de campo de alguien que entrenó modelos grandes de verdad: debugging de NCCL, picos de loss, fallas de hardware, tuning de throughput."},{"@type":"ListItem","position":5,"name":"MLflow","url":"https://mlflow.org/","description":"La alternativa open source y self-hosted para tracking, registro de modelos y despliegue."},{"@type":"ListItem","position":6,"name":"Modal / RunPod / Lambda","url":"https://modal.com/","description":"GPUs por hora sin administrar infraestructura. Modal es especialmente cómodo para entrenar o servir desde Python puro."},{"@type":"ListItem","position":7,"name":"Programming Massively Parallel Processors (PMPP)","url":"https://www.elsevier.com/books/programming-massively-parallel-processors/hwu/978-0-323-91231-0","description":"El libro canónico de CUDA. GPU MODE organiza grupos de lectura sobre él."},{"@type":"ListItem","position":8,"name":"Triton — lenguaje de kernels","url":"https://triton-lang.org/main/index.html","description":"Escribir kernels de GPU en Python. Es cómo se implementan hoy FlashAttention, Unsloth y medio ecosistema."},{"@type":"ListItem","position":9,"name":"Weights & Biases","url":"https://wandb.ai/site","description":"Tracking de experimentos, sweeps de hiperparámetros y reportes. Gratis para uso personal y estándar en investigación."},{"@type":"ListItem","position":10,"name":"Which GPU(s) to Get for Deep Learning","url":"https://timdettmers.com/2023/01/30/which-gpu-for-deep-learning/","description":"La guía de referencia para elegir hardware, con razonamiento sobre ancho de banda y memoria, no solo benchmarks."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué GPU necesito para aprender IA?","acceptedAnswer":{"@type":"Answer","text":"Ninguna, para empezar. Colab y Kaggle ofrecen GPUs gratis suficientes para todos los ejercicios de aprendizaje, y alquilar por hora sale más barato que comprar si el uso es intermitente. Una GPU propia se justifica cuando entrenás de forma sostenida o necesitás privacidad sobre los datos."}},{"@type":"Question","name":"¿Hace falta saber CUDA para trabajar con IA?","acceptedAnswer":{"@type":"Answer","text":"No para la mayoría de los roles. Se vuelve necesario si te dedicás a optimizar inferencia o entrenamiento a bajo nivel, y ahí es una habilidad escasa y muy bien pagada. Triton bajó bastante la barrera: permite escribir kernels eficientes en Python."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <div class="brand-text">
+        <strong>AI Learning Hub</strong>
+        <span>Recursos de IA en español</span>
+      </div>
+    </a>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <div class="nav-group-title">Inicio</div>
+      <a href="/"><span class="n-ico" aria-hidden="true">🏠</span><span>Portada</span></a>
+      <a href="/rutas/"><span class="n-ico" aria-hidden="true">🧭</span><span>Rutas de aprendizaje</span></a>
+      <a href="/guia/como-aprender-ia-desde-cero/"><span class="n-ico" aria-hidden="true">📖</span><span>Cómo aprender IA</span></a>
+      <a href="/colecciones/"><span class="n-ico" aria-hidden="true">🗂️</span><span>Colecciones</span></a>
+      <div class="nav-group-title">Fundamentos</div>
+      <a href="/temas/matematicas/"><span class="n-ico" aria-hidden="true">📐</span><span>Matemática</span><span class="n-count">10</span></a>
+      <a href="/temas/programacion/"><span class="n-ico" aria-hidden="true">⌨️</span><span>Programación y tooling</span><span class="n-count">12</span></a>
+      <a href="/temas/ml-clasico/"><span class="n-ico" aria-hidden="true">📈</span><span>Machine learning clásico</span><span class="n-count">10</span></a>
+      <a href="/temas/deep-learning/"><span class="n-ico" aria-hidden="true">🧠</span><span>Deep learning</span><span class="n-count">22</span></a>
+      <div class="nav-group-title">Modelos</div>
+      <a href="/temas/arquitecturas/"><span class="n-ico" aria-hidden="true">🏗️</span><span>Arquitecturas</span><span class="n-count">27</span></a>
+      <a href="/temas/transformers-llm/"><span class="n-ico" aria-hidden="true">🔤</span><span>Transformers y LLMs</span><span class="n-count">18</span></a>
+      <a href="/temas/entrenar-desde-cero/"><span class="n-ico" aria-hidden="true">⚙️</span><span>Entrenar desde cero</span><span class="n-count">16</span></a>
+      <a href="/temas/datos-scaling/"><span class="n-ico" aria-hidden="true">🗃️</span><span>Datos, tokenización y scaling laws</span><span class="n-count">12</span></a>
+      <div class="nav-group-title">Hacerlos útiles</div>
+      <a href="/temas/post-training/"><span class="n-ico" aria-hidden="true">🎯</span><span>Post-training, RLHF y razonamiento</span><span class="n-count">19</span></a>
+      <a href="/temas/fine-tuning/"><span class="n-ico" aria-hidden="true">🔧</span><span>Fine-tuning práctico</span><span class="n-count">12</span></a>
+      <a href="/temas/inferencia/"><span class="n-ico" aria-hidden="true">⚡</span><span>Inferencia y optimización</span><span class="n-count">14</span></a>
+      <a href="/temas/infra/" aria-current="page"><span class="n-ico" aria-hidden="true">🖥️</span><span>Infraestructura y GPUs</span><span class="n-count">10</span></a>
+      <a href="/temas/rag-agentes/"><span class="n-ico" aria-hidden="true">🤖</span><span>RAG, agentes y contexto</span><span class="n-count">19</span></a>
+      <a href="/temas/multimodal/"><span class="n-ico" aria-hidden="true">🎨</span><span>Multimodal y generativos</span><span class="n-count">17</span></a>
+      <div class="nav-group-title">Medir y controlar</div>
+      <a href="/temas/evaluacion/"><span class="n-ico" aria-hidden="true">📊</span><span>Evaluación y benchmarks</span><span class="n-count">13</span></a>
+      <a href="/temas/interpretabilidad/"><span class="n-ico" aria-hidden="true">🔬</span><span>Interpretabilidad</span><span class="n-count">11</span></a>
+      <a href="/temas/seguridad/"><span class="n-ico" aria-hidden="true">🛡️</span><span>Alineamiento y seguridad</span><span class="n-count">13</span></a>
+      <div class="nav-group-title">Mantenerse al día</div>
+      <a href="/temas/medios/"><span class="n-ico" aria-hidden="true">📡</span><span>Blogs, canales y podcasts</span><span class="n-count">36</span></a>
+      <a href="/temas/cuentas/"><span class="n-ico" aria-hidden="true">👥</span><span>Cuentas y comunidades</span><span class="n-count">24</span></a>
+      <a href="/temas/espanol/"><span class="n-ico" aria-hidden="true">🌎</span><span>Recursos en español</span><span class="n-count">7</span></a>
+      <div class="nav-group-title">Perspectiva</div>
+      <a href="/temas/papers-clave/"><span class="n-ico" aria-hidden="true">🗺️</span><span>Línea de tiempo</span></a>
+      <a href="/temas/futuro/"><span class="n-ico" aria-hidden="true">🔮</span><span>Qué se viene</span><span class="n-count">14</span></a>
+      <div class="nav-group-title">El sitio</div>
+      <a href="/sobre/"><span class="n-ico" aria-hidden="true">✍️</span><span>Quién lo hace</span></a>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <form class="search-wrap" role="search" action="/" method="get">
+        <label class="sr-only" for="search">Buscar recursos de IA</label>
+        <input id="search" name="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Buscar: transformers, LoRA, karpathy, RLHF, difusión…">
+        <span class="kbd" aria-hidden="true">/</span>
+      </form>
+      <div class="topbar-actions">
+        <button class="btn" id="clear-btn">Limpiar</button>
+        <button class="btn" id="theme-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+
+    <div class="content" id="contenido">
+
+      <div class="controls" hidden id="controls">
+        <div class="filters">
+          <div class="filter-label">Tipo de recurso</div>
+          <div id="f-types" class="filters" style="border:0;margin:0;padding:0"></div>
+          <div class="filter-label" style="margin-top:14px">Nivel y atajos</div>
+          <div id="f-levels" class="filters" style="border:0;margin:0;padding:0"></div>
+        </div>
+        <div class="results-meta" id="results-meta"></div>
+      </div>
+      <section id="results-section" aria-label="Resultados de búsqueda">
+        <div id="results"></div>
+      </section>
+      <div id="page-content">
+<nav class="breadcrumb" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li><a href="/#temas">Temas</a></li><li><span aria-current="page">Infraestructura y GPUs</span></li></ol></nav>
+
+      <header class="hero page-hero">
+        <h1>Infraestructura, GPUs y cómputo para IA</h1>
+        <div class="prose lede">
+      <p>
+        Debajo de todo modelo hay hardware con límites muy concretos, y una parte enorme del trabajo real en
+        IA es pelear con esos límites. Esta sección cubre desde escribir kernels con CUDA o Triton hasta
+        entender la economía del cómputo: cuánto cuesta una hora de GPU, qué se alquila, qué se compra y por
+        qué el suministro condiciona el ritmo del campo.
+      </p>
+      <p>
+        La habilidad más rentable acá es diagnóstica: saber si estás limitado por cómputo o por memoria
+        antes de empezar a optimizar. Un análisis de roofline de media hora ahorra semanas de trabajo
+        dedicado a acelerar lo que no era el cuello de botella.
+      </p></div>
+      </header>
+      <section class="section" id="recursos">
+        <h2>10 recursos de infraestructura y GPUs</h2>
+        <p class="sec-desc">
+          Ordenados con los imprescindibles primero y agrupados por tipo. Los marcados con ★ son los que
+          recomendaría alguien que ya recorrió el camino; los que dicen «gratis» no cuestan nada.
+        </p>
+        
+      <h3 class="subhead">🎓 Curso</h3>
+      <div class="cards"><a class="card" href="https://github.com/gpu-mode/lectures" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">GPU MODE (antes CUDA MODE) — lecturas y comunidad</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· GPU MODE</span>
+      </div>
+      <p class="card-note">Serie de charlas sobre CUDA, Triton, kernels y rendimiento, con un Discord muy activo. El mejor lugar para aprender programación de GPUs aplicada a IA.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📚 Libro</h3>
+      <div class="cards"><a class="card" href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Designing Machine Learning Systems</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Chip Huyen</span>
+      </div>
+      <p class="card-note">El libro de referencia para llevar ML a producción: datos, features, despliegue, monitoreo, deriva de datos.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a><a class="card" href="https://www.elsevier.com/books/programming-massively-parallel-processors/hwu/978-0-323-91231-0" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Programming Massively Parallel Processors (PMPP)</span>
+        
+        <span class="card-author">· Hwu, Kirk, El Hajj</span>
+      </div>
+      <p class="card-note">El libro canónico de CUDA. GPU MODE organiza grupos de lectura sobre él.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">✍️ Blog/Post</h3>
+      <div class="cards"><a class="card" href="https://semianalysis.com/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">SemiAnalysis</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Dylan Patel y equipo</span>
+      </div>
+      <p class="card-note">Análisis profundo de hardware, datacenters, cadena de suministro y economía real del cómputo de IA. Nadie más hace este trabajo con este nivel de detalle.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a><a class="card" href="https://timdettmers.com/2023/01/30/which-gpu-for-deep-learning/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Which GPU(s) to Get for Deep Learning</span>
+        
+        <span class="card-author">· Tim Dettmers</span>
+      </div>
+      <p class="card-note">La guía de referencia para elegir hardware, con razonamiento sobre ancho de banda y memoria, no solo benchmarks.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">🐙 Repo</h3>
+      <div class="cards"><a class="card" href="https://github.com/stas00/ml-engineering" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">ML Engineering Open Book</span>
+        
+        <span class="card-author">· Stas Bekman</span>
+      </div>
+      <p class="card-note">Notas de campo de alguien que entrenó modelos grandes de verdad: debugging de NCCL, picos de loss, fallas de hardware, tuning de throughput.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">🛠️ Herramienta</h3>
+      <div class="cards"><a class="card" href="https://mlflow.org/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">MLflow</span>
+        
+        <span class="card-author">· Linux Foundation</span>
+      </div>
+      <p class="card-note">La alternativa open source y self-hosted para tracking, registro de modelos y despliegue.</p>
+      <div class="card-meta">
+        <span class="tag type">🛠️ Herramienta</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a><a class="card" href="https://modal.com/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Modal / RunPod / Lambda</span>
+        
+        <span class="card-author">· varios</span>
+      </div>
+      <p class="card-note">GPUs por hora sin administrar infraestructura. Modal es especialmente cómodo para entrenar o servir desde Python puro.</p>
+      <div class="card-meta">
+        <span class="tag type">🛠️ Herramienta</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a><a class="card" href="https://wandb.ai/site" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Weights &amp; Biases</span>
+        
+        <span class="card-author">· W&amp;B</span>
+      </div>
+      <p class="card-note">Tracking de experimentos, sweeps de hiperparámetros y reportes. Gratis para uso personal y estándar en investigación.</p>
+      <div class="card-meta">
+        <span class="tag type">🛠️ Herramienta</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📘 Docs</h3>
+      <div class="cards"><a class="card" href="https://triton-lang.org/main/index.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Triton — lenguaje de kernels</span>
+        
+        <span class="card-author">· OpenAI</span>
+      </div>
+      <p class="card-note">Escribir kernels de GPU en Python. Es cómo se implementan hoy FlashAttention, Unsloth y medio ecosistema.</p>
+      <div class="card-meta">
+        <span class="tag type">📘 Docs</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Infraestructura y GPUs</span>
+      </div>
+    </a></div>
+      </section>
+      <section class="section faq" id="preguntas-frecuentes">
+        <h2>Preguntas frecuentes sobre infraestructura y GPUs</h2>
+        <details>
+          <summary><h3>¿Qué GPU necesito para aprender IA?</h3></summary>
+          <div class="faq-a"><p>Ninguna, para empezar. Colab y Kaggle ofrecen GPUs gratis suficientes para todos los ejercicios de aprendizaje, y alquilar por hora sale más barato que comprar si el uso es intermitente. Una GPU propia se justifica cuando entrenás de forma sostenida o necesitás privacidad sobre los datos.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Hace falta saber CUDA para trabajar con IA?</h3></summary>
+          <div class="faq-a"><p>No para la mayoría de los roles. Se vuelve necesario si te dedicás a optimizar inferencia o entrenamiento a bajo nivel, y ahí es una habilidad escasa y muy bien pagada. Triton bajó bastante la barrera: permite escribir kernels eficientes en Python.</p></div>
+        </details>
+      </section>
+      <nav class="related" aria-label="Temas relacionados">
+        <h2>Seguí por acá</h2>
+        <ul><li><a href="/temas/inferencia/"><span aria-hidden="true">⚡</span> Inferencia y optimización
+            <em>FlashAttention, KV cache, cuantización, decodificación especulativa y motores de serving. Acá se define el costo real.</em></a></li><li><a href="/temas/entrenar-desde-cero/"><span aria-hidden="true">⚙️</span> Entrenar desde cero
+            <em>El pipeline completo de pre-entrenamiento: código, paralelismo, clusters y los detalles sucios que ningún paper cuenta.</em></a></li><li><a href="/temas/programacion/"><span aria-hidden="true">⌨️</span> Programación y tooling
+            <em>Python, PyTorch, JAX y las herramientas con las que vas a pasar el 90% del tiempo.</em></a></li></ul>
+      </nav>
+<footer>
+        <p class="byline">
+          Curado y escrito por <a href="https://github.com/giancarlobrusca" rel="author">Giancarlo Brusca</a>,
+          desarrollador de software en Buenos Aires.
+          <span>Última revisión: <time datetime="2026-07-30">30 de julio de 2026</time>.</span>
+        </p>
+        <p>
+          <strong>AI Learning Hub</strong> · Colección curada de recursos para aprender inteligencia artificial
+          en español. Todos los enlaces apuntan a las fuentes originales; el mérito es de sus autores.
+        </p>
+        <p class="foot-nav">
+          <a href="/">Portada</a> ·
+          <a href="/rutas/">Rutas de aprendizaje</a> ·
+          <a href="/guia/como-aprender-ia-desde-cero/">Cómo aprender IA</a> ·
+          <a href="/colecciones/cursos-de-ia-gratis/">Cursos gratis</a> ·
+          <a href="/temas/espanol/">Recursos en español</a> ·
+          <a href="/sobre/">Quién lo hace</a> ·
+          <a href="https://github.com/giancarlobrusca/ai-learning-hub" rel="noopener">Código en GitHub</a>
+        </p>
+      </footer>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/data/00-secciones.js" defer></script>
+<script src="/data/01-fundamentos.js" defer></script>
+<script src="/data/02-arquitecturas.js" defer></script>
+<script src="/data/03-entrenamiento-aplicado.js" defer></script>
+<script src="/data/04-multimodal-eval-safety.js" defer></script>
+<script src="/data/05-medios-comunidad.js" defer></script>
+<script src="/data/06-futuro.js" defer></script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrenar un modelo desde cero: el pipeline completo</title>
+<meta name="description" content="Pre-entrenamiento de punta a punta: código, paralelismo, clusters y los detalles que ningún paper cuenta. nanoGPT, CS336 y los playbooks de entrenamiento a escala.">
+<link rel="canonical" href="https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Giancarlo Brusca">
+<meta name="theme-color" content="#0b0d12">
+<link rel="alternate" hreflang="es" href="https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/">
+<link rel="alternate" hreflang="x-default" href="https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Learning Hub">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/">
+<meta property="og:title" content="Entrenar un modelo desde cero: el pipeline completo">
+<meta property="og:description" content="Pre-entrenamiento de punta a punta: código, paralelismo, clusters y los detalles que ningún paper cuenta. nanoGPT, CS336 y los playbooks de entrenamiento a escala.">
+<meta property="og:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-entrenar-desde-cero.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Entrenar un modelo desde cero: el pipeline completo — AI Learning Hub">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@giancarlobrusca">
+<meta name="twitter:creator" content="@giancarlobrusca">
+<meta name="twitter:title" content="Entrenar un modelo desde cero: el pipeline completo">
+<meta name="twitter:description" content="Pre-entrenamiento de punta a punta: código, paralelismo, clusters y los detalles que ningún paper cuenta. nanoGPT, CS336 y los playbooks de entrenamiento a escala.">
+<meta name="twitter:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-entrenar-desde-cero.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="stylesheet" href="/assets/styles.css">
+<script>try{var t=localStorage.getItem("alh-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/#page","url":"https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/","name":"Entrenar un modelo desde cero: el pipeline completo","headline":"Entrenar un modelo desde cero: el pipeline completo","description":"Pre-entrenamiento de punta a punta: código, paralelismo, clusters y los detalles que ningún paper cuenta. nanoGPT, CS336 y los playbooks de entrenamiento a escala.","inLanguage":"es","isPartOf":{"@id":"https://recursos-ia.giancarlobrusca.com/#website"},"author":{"@type":"Person","@id":"https://recursos-ia.giancarlobrusca.com/#autor","name":"Giancarlo Brusca","url":"https://github.com/giancarlobrusca","jobTitle":"Desarrollador de software","sameAs":["https://github.com/giancarlobrusca","https://x.com/giancarlobrusca"],"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}},"publisher":{"@id":"https://recursos-ia.giancarlobrusca.com/#autor"},"datePublished":"2026-07-29","dateModified":"2026-07-30","about":{"@type":"Thing","name":"Entrenar desde cero"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://recursos-ia.giancarlobrusca.com/"},{"@type":"ListItem","position":2,"name":"Temas","item":"https://recursos-ia.giancarlobrusca.com/#temas"},{"@type":"ListItem","position":3,"name":"Entrenar desde cero","item":"https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Recursos de Entrenar desde cero","url":"https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/","numberOfItems":16,"itemListElement":[{"@type":"ListItem","position":1,"name":"Build a Large Language Model (From Scratch)","url":"https://www.manning.com/books/build-a-large-language-model-from-scratch","description":"Capítulo a capítulo: attention, GPT, pretraining, fine-tuning para clasificación e instrucciones. Todo el código es gratis en GitHub."},{"@type":"ListItem","position":2,"name":"LLMs-from-scratch (código del libro)","url":"https://github.com/rasbt/LLMs-from-scratch","description":"Notebooks, bonus sobre Llama/Qwen/Gemma, DPO, KV cache y MoE. Se actualiza constantemente."},{"@type":"ListItem","position":3,"name":"Stanford CS336: Language Modeling from Scratch","url":"https://stanford-cs336.github.io/","description":"Construís un LLM completo: tokenizador, arquitectura, kernels en Triton, entrenamiento distribuido, scaling laws, datos, alineamiento. Clases en YouTube y assignments públicos. El curso más importante que se dicta hoy."},{"@type":"ListItem","position":4,"name":"The Smol Training Playbook: The Secrets to Building World-Class LLMs","url":"https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook","description":"La bitácora honesta de entrenar SmolLM3: ablaciones, picos de loss, bugs de infraestructura, decisiones de datos. Lo que ningún paper te cuenta."},{"@type":"ListItem","position":5,"name":"The Ultra-Scale Playbook: Training LLMs on GPU Clusters","url":"https://huggingface.co/spaces/nanotron/ultrascale-playbook","description":"Paralelismo de datos, tensorial, de pipeline, de contexto y de expertos, explicado con más de 4000 experimentos reales. Gratis y sin equivalente."},{"@type":"ListItem","position":6,"name":"nanoGPT","url":"https://github.com/karpathy/nanoGPT","description":"~300 líneas que reproducen GPT-2. El repositorio educativo más copiado del mundo."},{"@type":"ListItem","position":7,"name":"nanochat","url":"https://github.com/karpathy/nanochat","description":"El pipeline COMPLETO de un ChatGPT mínimo por ~100 dólares: tokenizador, pretraining, SFT, RL, inferencia y UI web. La culminación de todo lo que enseña Karpathy."},{"@type":"ListItem","position":8,"name":"DeepSpeed","url":"https://github.com/deepspeedai/DeepSpeed","description":"ZeRO, offloading a CPU/NVMe, inferencia optimizada. Estándar de facto en muchos clusters."},{"@type":"ListItem","position":9,"name":"Megatron-LM","url":"https://github.com/NVIDIA/Megatron-LM","description":"La implementación industrial de paralelismo tensorial y de pipeline. Ver también el paper original (arXiv:1909.08053)."},{"@type":"ListItem","position":10,"name":"Reasoning-From-Scratch","url":"https://github.com/rasbt/reasoning-from-scratch","description":"El equivalente del anterior pero para modelos de razonamiento: cadena de pensamiento, verificadores, RL."},{"@type":"ListItem","position":11,"name":"ZeRO: Memory Optimizations Toward Training Trillion Parameter Models","url":"https://arxiv.org/abs/1910.02054","description":"La idea detrás de DeepSpeed y FSDP: repartir estados del optimizador, gradientes y parámetros entre GPUs."},{"@type":"ListItem","position":12,"name":"levanter / marin","url":"https://github.com/stanford-crfm/levanter","description":"Entrenamiento en JAX con foco en reproducibilidad bit a bit. Proyecto asociado: Marin, un laboratorio abierto de modelos."},{"@type":"ListItem","position":13,"name":"llm.c","url":"https://github.com/karpathy/llm.c","description":"Entrenamiento de GPT-2 en C/CUDA puro, sin PyTorch. Para entender qué hace realmente el hardware."},{"@type":"ListItem","position":14,"name":"modded-nanogpt (NanoGPT speedrun)","url":"https://github.com/KellerJordan/modded-nanogpt","description":"Competencia abierta por entrenar GPT-2 lo más rápido posible. Cada récord introduce un truco real (optimizador Muon, atención con ventanas, etc.). Aprendizaje por ingeniería inversa."},{"@type":"ListItem","position":15,"name":"nanotron","url":"https://github.com/huggingface/nanotron","description":"Pretraining 3D-parallel minimalista y legible. Ideal para leer código de escala sin ahogarte."},{"@type":"ListItem","position":16,"name":"torchtitan","url":"https://github.com/pytorch/torchtitan","description":"Referencia oficial de PyTorch para pretraining a gran escala: FSDP2, tensor/pipeline parallel, torch.compile, float8."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuánto cuesta entrenar un modelo de lenguaje?","acceptedAnswer":{"@type":"Answer","text":"Reproducir algo del tamaño de GPT-2 cuesta hoy decenas de dólares en GPUs alquiladas, con código abierto disponible. Un modelo abierto competitivo de tamaño medio está en el orden de cientos de miles a millones. Los modelos frontera están en cientos de millones. La curva de costo por unidad de capacidad viene bajando muy rápido."}},{"@type":"Question","name":"¿Puedo entrenar un modelo con una sola GPU?","acceptedAnswer":{"@type":"Answer","text":"Un modelo chico, sí, y es el mejor ejercicio de aprendizaje que existe. Para adaptar un modelo grande ya entrenado a una tarea propia con una sola GPU está el fine-tuning con LoRA o QLoRA, que es otra cosa y mucho más barata."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <div class="brand-text">
+        <strong>AI Learning Hub</strong>
+        <span>Recursos de IA en español</span>
+      </div>
+    </a>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <div class="nav-group-title">Inicio</div>
+      <a href="/"><span class="n-ico" aria-hidden="true">🏠</span><span>Portada</span></a>
+      <a href="/rutas/"><span class="n-ico" aria-hidden="true">🧭</span><span>Rutas de aprendizaje</span></a>
+      <a href="/guia/como-aprender-ia-desde-cero/"><span class="n-ico" aria-hidden="true">📖</span><span>Cómo aprender IA</span></a>
+      <a href="/colecciones/"><span class="n-ico" aria-hidden="true">🗂️</span><span>Colecciones</span></a>
+      <div class="nav-group-title">Fundamentos</div>
+      <a href="/temas/matematicas/"><span class="n-ico" aria-hidden="true">📐</span><span>Matemática</span><span class="n-count">10</span></a>
+      <a href="/temas/programacion/"><span class="n-ico" aria-hidden="true">⌨️</span><span>Programación y tooling</span><span class="n-count">12</span></a>
+      <a href="/temas/ml-clasico/"><span class="n-ico" aria-hidden="true">📈</span><span>Machine learning clásico</span><span class="n-count">10</span></a>
+      <a href="/temas/deep-learning/"><span class="n-ico" aria-hidden="true">🧠</span><span>Deep learning</span><span class="n-count">22</span></a>
+      <div class="nav-group-title">Modelos</div>
+      <a href="/temas/arquitecturas/"><span class="n-ico" aria-hidden="true">🏗️</span><span>Arquitecturas</span><span class="n-count">27</span></a>
+      <a href="/temas/transformers-llm/"><span class="n-ico" aria-hidden="true">🔤</span><span>Transformers y LLMs</span><span class="n-count">18</span></a>
+      <a href="/temas/entrenar-desde-cero/" aria-current="page"><span class="n-ico" aria-hidden="true">⚙️</span><span>Entrenar desde cero</span><span class="n-count">16</span></a>
+      <a href="/temas/datos-scaling/"><span class="n-ico" aria-hidden="true">🗃️</span><span>Datos, tokenización y scaling laws</span><span class="n-count">12</span></a>
+      <div class="nav-group-title">Hacerlos útiles</div>
+      <a href="/temas/post-training/"><span class="n-ico" aria-hidden="true">🎯</span><span>Post-training, RLHF y razonamiento</span><span class="n-count">19</span></a>
+      <a href="/temas/fine-tuning/"><span class="n-ico" aria-hidden="true">🔧</span><span>Fine-tuning práctico</span><span class="n-count">12</span></a>
+      <a href="/temas/inferencia/"><span class="n-ico" aria-hidden="true">⚡</span><span>Inferencia y optimización</span><span class="n-count">14</span></a>
+      <a href="/temas/infra/"><span class="n-ico" aria-hidden="true">🖥️</span><span>Infraestructura y GPUs</span><span class="n-count">10</span></a>
+      <a href="/temas/rag-agentes/"><span class="n-ico" aria-hidden="true">🤖</span><span>RAG, agentes y contexto</span><span class="n-count">19</span></a>
+      <a href="/temas/multimodal/"><span class="n-ico" aria-hidden="true">🎨</span><span>Multimodal y generativos</span><span class="n-count">17</span></a>
+      <div class="nav-group-title">Medir y controlar</div>
+      <a href="/temas/evaluacion/"><span class="n-ico" aria-hidden="true">📊</span><span>Evaluación y benchmarks</span><span class="n-count">13</span></a>
+      <a href="/temas/interpretabilidad/"><span class="n-ico" aria-hidden="true">🔬</span><span>Interpretabilidad</span><span class="n-count">11</span></a>
+      <a href="/temas/seguridad/"><span class="n-ico" aria-hidden="true">🛡️</span><span>Alineamiento y seguridad</span><span class="n-count">13</span></a>
+      <div class="nav-group-title">Mantenerse al día</div>
+      <a href="/temas/medios/"><span class="n-ico" aria-hidden="true">📡</span><span>Blogs, canales y podcasts</span><span class="n-count">36</span></a>
+      <a href="/temas/cuentas/"><span class="n-ico" aria-hidden="true">👥</span><span>Cuentas y comunidades</span><span class="n-count">24</span></a>
+      <a href="/temas/espanol/"><span class="n-ico" aria-hidden="true">🌎</span><span>Recursos en español</span><span class="n-count">7</span></a>
+      <div class="nav-group-title">Perspectiva</div>
+      <a href="/temas/papers-clave/"><span class="n-ico" aria-hidden="true">🗺️</span><span>Línea de tiempo</span></a>
+      <a href="/temas/futuro/"><span class="n-ico" aria-hidden="true">🔮</span><span>Qué se viene</span><span class="n-count">14</span></a>
+      <div class="nav-group-title">El sitio</div>
+      <a href="/sobre/"><span class="n-ico" aria-hidden="true">✍️</span><span>Quién lo hace</span></a>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <form class="search-wrap" role="search" action="/" method="get">
+        <label class="sr-only" for="search">Buscar recursos de IA</label>
+        <input id="search" name="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Buscar: transformers, LoRA, karpathy, RLHF, difusión…">
+        <span class="kbd" aria-hidden="true">/</span>
+      </form>
+      <div class="topbar-actions">
+        <button class="btn" id="clear-btn">Limpiar</button>
+        <button class="btn" id="theme-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+
+    <div class="content" id="contenido">
+
+      <div class="controls" hidden id="controls">
+        <div class="filters">
+          <div class="filter-label">Tipo de recurso</div>
+          <div id="f-types" class="filters" style="border:0;margin:0;padding:0"></div>
+          <div class="filter-label" style="margin-top:14px">Nivel y atajos</div>
+          <div id="f-levels" class="filters" style="border:0;margin:0;padding:0"></div>
+        </div>
+        <div class="results-meta" id="results-meta"></div>
+      </div>
+      <section id="results-section" aria-label="Resultados de búsqueda">
+        <div id="results"></div>
+      </section>
+      <div id="page-content">
+<nav class="breadcrumb" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li><a href="/#temas">Temas</a></li><li><span aria-current="page">Entrenar desde cero</span></li></ol></nav>
+
+      <header class="hero page-hero">
+        <h1>Entrenar un modelo de IA desde cero</h1>
+        <div class="prose lede">
+      <p>
+        Nunca vas a entrenar un modelo frontera solo, y no es el objetivo. Pero entrenar uno chico de punta
+        a punta —tokenizador, arquitectura, datos, bucle de entrenamiento, evaluación— cambia
+        irreversiblemente cómo entendés a los grandes. Deja de ser una caja negra y pasa a ser un sistema
+        con partes que ya tocaste.
+      </p>
+      <p>
+        El recorrido canónico está bien establecido: nanoGPT para reproducir GPT-2 a escala manejable,
+        Stanford CS336 para el pipeline completo con paralelismo y kernels, y los playbooks de entrenamiento
+        a escala para la parte que los papers omiten: qué se rompe en un cluster, cómo se detectan
+        divergencias y cuánto del trabajo real es infraestructura y no ciencia.
+      </p></div>
+      </header>
+      <section class="section" id="recursos">
+        <h2>16 recursos para entrenar un modelo desde cero</h2>
+        <p class="sec-desc">
+          Ordenados con los imprescindibles primero y agrupados por tipo. Los marcados con ★ son los que
+          recomendaría alguien que ya recorrió el camino; los que dicen «gratis» no cuestan nada.
+        </p>
+        
+      <h3 class="subhead">🎓 Curso</h3>
+      <div class="cards"><a class="card" href="https://stanford-cs336.github.io/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Stanford CS336: Language Modeling from Scratch</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Percy Liang, Tatsunori Hashimoto</span>
+      </div>
+      <p class="card-note">Construís un LLM completo: tokenizador, arquitectura, kernels en Triton, entrenamiento distribuido, scaling laws, datos, alineamiento. Clases en YouTube y assignments públicos. El curso más importante que se dicta hoy.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📚 Libro</h3>
+      <div class="cards"><a class="card" href="https://www.manning.com/books/build-a-large-language-model-from-scratch" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Build a Large Language Model (From Scratch)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Sebastian Raschka</span>
+      </div>
+      <p class="card-note">Capítulo a capítulo: attention, GPT, pretraining, fine-tuning para clasificación e instrucciones. Todo el código es gratis en GitHub.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📄 Paper</h3>
+      <div class="cards"><a class="card" href="https://arxiv.org/abs/1910.02054" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">ZeRO: Memory Optimizations Toward Training Trillion Parameter Models</span>
+        
+        <span class="card-author">· Rajbhandari et al. (Microsoft)</span>
+      </div>
+      <p class="card-note">La idea detrás de DeepSpeed y FSDP: repartir estados del optimizador, gradientes y parámetros entre GPUs.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">✍️ Blog/Post</h3>
+      <div class="cards"><a class="card" href="https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Smol Training Playbook: The Secrets to Building World-Class LLMs</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Hugging Face</span>
+      </div>
+      <p class="card-note">La bitácora honesta de entrenar SmolLM3: ablaciones, picos de loss, bugs de infraestructura, decisiones de datos. Lo que ningún paper te cuenta.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://huggingface.co/spaces/nanotron/ultrascale-playbook" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Ultra-Scale Playbook: Training LLMs on GPU Clusters</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Hugging Face</span>
+      </div>
+      <p class="card-note">Paralelismo de datos, tensorial, de pipeline, de contexto y de expertos, explicado con más de 4000 experimentos reales. Gratis y sin equivalente.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">🐙 Repo</h3>
+      <div class="cards"><a class="card" href="https://github.com/rasbt/LLMs-from-scratch" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">LLMs-from-scratch (código del libro)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Sebastian Raschka</span>
+      </div>
+      <p class="card-note">Notebooks, bonus sobre Llama/Qwen/Gemma, DPO, KV cache y MoE. Se actualiza constantemente.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/karpathy/nanoGPT" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">nanoGPT</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">~300 líneas que reproducen GPT-2. El repositorio educativo más copiado del mundo.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/karpathy/nanochat" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">nanochat</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">El pipeline COMPLETO de un ChatGPT mínimo por ~100 dólares: tokenizador, pretraining, SFT, RL, inferencia y UI web. La culminación de todo lo que enseña Karpathy.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/deepspeedai/DeepSpeed" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">DeepSpeed</span>
+        
+        <span class="card-author">· Microsoft</span>
+      </div>
+      <p class="card-note">ZeRO, offloading a CPU/NVMe, inferencia optimizada. Estándar de facto en muchos clusters.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/NVIDIA/Megatron-LM" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Megatron-LM</span>
+        
+        <span class="card-author">· NVIDIA</span>
+      </div>
+      <p class="card-note">La implementación industrial de paralelismo tensorial y de pipeline. Ver también el paper original (arXiv:1909.08053).</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/rasbt/reasoning-from-scratch" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Reasoning-From-Scratch</span>
+        
+        <span class="card-author">· Sebastian Raschka</span>
+      </div>
+      <p class="card-note">El equivalente del anterior pero para modelos de razonamiento: cadena de pensamiento, verificadores, RL.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/stanford-crfm/levanter" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">levanter / marin</span>
+        
+        <span class="card-author">· Stanford CRFM</span>
+      </div>
+      <p class="card-note">Entrenamiento en JAX con foco en reproducibilidad bit a bit. Proyecto asociado: Marin, un laboratorio abierto de modelos.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/karpathy/llm.c" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">llm.c</span>
+        
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">Entrenamiento de GPT-2 en C/CUDA puro, sin PyTorch. Para entender qué hace realmente el hardware.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/KellerJordan/modded-nanogpt" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">modded-nanogpt (NanoGPT speedrun)</span>
+        
+        <span class="card-author">· Keller Jordan y comunidad</span>
+      </div>
+      <p class="card-note">Competencia abierta por entrenar GPT-2 lo más rápido posible. Cada récord introduce un truco real (optimizador Muon, atención con ventanas, etc.). Aprendizaje por ingeniería inversa.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/huggingface/nanotron" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">nanotron</span>
+        
+        <span class="card-author">· Hugging Face</span>
+      </div>
+      <p class="card-note">Pretraining 3D-parallel minimalista y legible. Ideal para leer código de escala sin ahogarte.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a><a class="card" href="https://github.com/pytorch/torchtitan" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">torchtitan</span>
+        
+        <span class="card-author">· PyTorch</span>
+      </div>
+      <p class="card-note">Referencia oficial de PyTorch para pretraining a gran escala: FSDP2, tensor/pipeline parallel, torch.compile, float8.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Entrenar desde cero</span>
+      </div>
+    </a></div>
+      </section>
+      <section class="section faq" id="preguntas-frecuentes">
+        <h2>Preguntas frecuentes sobre entrenar desde cero</h2>
+        <details>
+          <summary><h3>¿Cuánto cuesta entrenar un modelo de lenguaje?</h3></summary>
+          <div class="faq-a"><p>Reproducir algo del tamaño de GPT-2 cuesta hoy decenas de dólares en GPUs alquiladas, con código abierto disponible. Un modelo abierto competitivo de tamaño medio está en el orden de cientos de miles a millones. Los modelos frontera están en cientos de millones. La curva de costo por unidad de capacidad viene bajando muy rápido.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Puedo entrenar un modelo con una sola GPU?</h3></summary>
+          <div class="faq-a"><p>Un modelo chico, sí, y es el mejor ejercicio de aprendizaje que existe. Para adaptar un modelo grande ya entrenado a una tarea propia con una sola GPU está el fine-tuning con LoRA o QLoRA, que es otra cosa y mucho más barata.</p></div>
+        </details>
+      </section>
+      <nav class="related" aria-label="Temas relacionados">
+        <h2>Seguí por acá</h2>
+        <ul><li><a href="/temas/datos-scaling/"><span aria-hidden="true">🗃️</span> Datos, tokenización y scaling laws
+            <em>Cómo se arma un corpus, cómo se parte el texto y cómo predecir qué vas a obtener antes de gastar el presupuesto.</em></a></li><li><a href="/temas/infra/"><span aria-hidden="true">🖥️</span> Infraestructura y GPUs
+            <em>CUDA, Triton, clusters, tracking de experimentos y la economía del cómputo.</em></a></li><li><a href="/temas/fine-tuning/"><span aria-hidden="true">🔧</span> Fine-tuning práctico
+            <em>LoRA, QLoRA y las herramientas para adaptar un modelo con una sola GPU (y cuándo conviene no hacerlo).</em></a></li></ul>
+      </nav>
+<footer>
+        <p class="byline">
+          Curado y escrito por <a href="https://github.com/giancarlobrusca" rel="author">Giancarlo Brusca</a>,
+          desarrollador de software en Buenos Aires.
+          <span>Última revisión: <time datetime="2026-07-30">30 de julio de 2026</time>.</span>
+        </p>
+        <p>
+          <strong>AI Learning Hub</strong> · Colección curada de recursos para aprender inteligencia artificial
+          en español. Todos los enlaces apuntan a las fuentes originales; el mérito es de sus autores.
+        </p>
+        <p class="foot-nav">
+          <a href="/">Portada</a> ·
+          <a href="/rutas/">Rutas de aprendizaje</a> ·
+          <a href="/guia/como-aprender-ia-desde-cero/">Cómo aprender IA</a> ·
+          <a href="/colecciones/cursos-de-ia-gratis/">Cursos gratis</a> ·
+          <a href="/temas/espanol/">Recursos en español</a> ·
+          <a href="/sobre/">Quién lo hace</a> ·
+          <a href="https://github.com/giancarlobrusca/ai-learning-hub" rel="noopener">Código en GitHub</a>
+        </p>
+      </footer>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/data/00-secciones.js" defer></script>
+<script src="/data/01-fundamentos.js" defer></script>
+<script src="/data/02-arquitecturas.js" defer></script>
+<script src="/data/03-entrenamiento-aplicado.js" defer></script>
+<script src="/data/04-multimodal-eval-safety.js" defer></script>
+<script src="/data/05-medios-comunidad.js" defer></script>
+<script src="/data/06-futuro.js" defer></script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

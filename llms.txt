@@ -1,0 +1,58 @@
+# AI Learning Hub
+
+> Colección curada de 336 recursos para aprender inteligencia artificial, escrita en español
+> por Giancarlo Brusca (Buenos Aires, Argentina). Cubre desde la matemática de base hasta el
+> entrenamiento, la alineación y el despliegue de modelos frontera. Cada recurso fue revisado
+> individualmente; no es una lista agregada automáticamente.
+
+Última revisión: 2026-07-30. Todo el material propio está en castellano; los recursos
+enlazados están mayoritariamente en inglés, con una sección específica de material en español.
+
+## Empezar
+
+- [Guía: cómo aprender IA desde cero](https://recursos-ia.giancarlobrusca.com/guia/como-aprender-ia-desde-cero/): Qué estudiar y en qué orden, cuánto tiempo lleva, qué matemática hace falta y los errores que hacen abandonar.
+- [Rutas de aprendizaje](https://recursos-ia.giancarlobrusca.com/rutas/): Cuatro caminos según el punto de partida.
+- [Cómo aprender IA desde cero](https://recursos-ia.giancarlobrusca.com/rutas/desde-cero/): Sabés programar poco o nada. Meta: entender qué es una red neuronal y entrenar una. Tiempo estimado: 3 a 6 meses con unas 10 horas semanales.
+- [Cómo construir productos con LLMs](https://recursos-ia.giancarlobrusca.com/rutas/construir-con-llms/): Sos desarrollador. Meta: construir productos con modelos, no entrenarlos desde cero. Tiempo estimado: 1 a 3 meses si ya programás.
+- [Cómo aprender a entrenar modelos de IA](https://recursos-ia.giancarlobrusca.com/rutas/entrenar-modelos/): Tenés base de programación y matemática. Meta: entender y modificar el pipeline completo. Tiempo estimado: 6 a 12 meses con base previa.
+- [Cómo entrar a investigar en IA](https://recursos-ia.giancarlobrusca.com/rutas/investigar/): Meta: contribuir a interpretabilidad, alineamiento o arquitecturas. Tiempo estimado: 1 a 2 años, dependiendo de la base previa.
+
+## Colecciones
+
+- [Cursos de inteligencia artificial gratis](https://recursos-ia.giancarlobrusca.com/colecciones/cursos-de-ia-gratis/): Los mejores cursos gratuitos de inteligencia artificial y machine learning: Stanford, MIT, fast.ai, Karpathy. Sin registro, sin trampa, ordenados por nivel. (33 recursos)
+- [Libros para aprender inteligencia artificial](https://recursos-ia.giancarlobrusca.com/colecciones/libros-de-ia/): Los libros de referencia sobre IA y machine learning, con los que tienen PDF gratuito señalados: Murphy, Prince, Bishop, Mathematics for Machine Learning y más. (21 recursos)
+- [Canales de YouTube y videos para aprender IA](https://recursos-ia.giancarlobrusca.com/colecciones/canales-de-youtube-de-ia/): Los canales y series en video que realmente enseñan inteligencia artificial: 3Blue1Brown, Karpathy, Yannic Kilcher y más, con qué mirar primero en cada uno. (23 recursos)
+- [Papers de IA: los que hay que leer](https://recursos-ia.giancarlobrusca.com/colecciones/papers-de-ia/): Los papers que definieron la IA moderna, en orden cronológico y con el contexto de por qué importó cada uno. De AlexNet a los modelos de razonamiento. (104 recursos)
+- [Los recursos imprescindibles para aprender IA](https://recursos-ia.giancarlobrusca.com/colecciones/imprescindibles/): La lista corta: los recursos que elegiría si solo pudiera recomendar unos pocos para aprender inteligencia artificial. Uno o dos por tema, sin relleno. (119 recursos)
+
+## Temas
+
+- [Matemática](https://recursos-ia.giancarlobrusca.com/temas/matematicas/): Álgebra lineal, cálculo, probabilidad y optimización: lo mínimo indispensable para no leer papers como si fueran magia. (10 recursos)
+- [Programación y tooling](https://recursos-ia.giancarlobrusca.com/temas/programacion/): Python, PyTorch, JAX y las herramientas con las que vas a pasar el 90% del tiempo. (12 recursos)
+- [Machine learning clásico](https://recursos-ia.giancarlobrusca.com/temas/ml-clasico/): Regresión, árboles, validación cruzada, bias-variance. Todo lo que sigue vigente aunque ya no aparezca en los titulares. (10 recursos)
+- [Deep learning](https://recursos-ia.giancarlobrusca.com/temas/deep-learning/): Redes profundas, backpropagation, optimización, regularización y los fenómenos raros que todavía no entendemos del todo. (22 recursos)
+- [Arquitecturas](https://recursos-ia.giancarlobrusca.com/temas/arquitecturas/): Transformers y todo lo demás: MoE, modelos de espacio de estados, híbridos, difusión, GNNs. Qué hay, qué cambia y qué se mantiene. (27 recursos)
+- [Transformers y LLMs](https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/): De 'Attention Is All You Need' a los reportes técnicos de los modelos frontera actuales. (18 recursos)
+- [Entrenar desde cero](https://recursos-ia.giancarlobrusca.com/temas/entrenar-desde-cero/): El pipeline completo de pre-entrenamiento: código, paralelismo, clusters y los detalles sucios que ningún paper cuenta. (16 recursos)
+- [Datos, tokenización y scaling laws](https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/): Cómo se arma un corpus, cómo se parte el texto y cómo predecir qué vas a obtener antes de gastar el presupuesto. (12 recursos)
+- [Post-training, RLHF y razonamiento](https://recursos-ia.giancarlobrusca.com/temas/post-training/): SFT, modelos de recompensa, DPO, GRPO y RL con recompensas verificables: donde se decide hoy la calidad de un modelo. (19 recursos)
+- [Fine-tuning práctico](https://recursos-ia.giancarlobrusca.com/temas/fine-tuning/): LoRA, QLoRA y las herramientas para adaptar un modelo con una sola GPU (y cuándo conviene no hacerlo). (12 recursos)
+- [Inferencia y optimización](https://recursos-ia.giancarlobrusca.com/temas/inferencia/): FlashAttention, KV cache, cuantización, decodificación especulativa y motores de serving. Acá se define el costo real. (14 recursos)
+- [Infraestructura y GPUs](https://recursos-ia.giancarlobrusca.com/temas/infra/): CUDA, Triton, clusters, tracking de experimentos y la economía del cómputo. (10 recursos)
+- [RAG, agentes y contexto](https://recursos-ia.giancarlobrusca.com/temas/rag-agentes/): Recuperación, uso de herramientas, memoria, orquestación y el arte de administrar el contexto como recurso escaso. (19 recursos)
+- [Multimodal y generativos](https://recursos-ia.giancarlobrusca.com/temas/multimodal/): Visión, difusión, audio, video y modelos del mundo. La rama que dejó de ser un anexo del texto. (17 recursos)
+- [Evaluación y benchmarks](https://recursos-ia.giancarlobrusca.com/temas/evaluacion/): Sin evaluaciones no hay ingeniería. Qué mide cada benchmark, cómo se contaminan y cómo armar las tuyas. (13 recursos)
+- [Interpretabilidad](https://recursos-ia.giancarlobrusca.com/temas/interpretabilidad/): Abrir el modelo y mirar adentro: circuitos, superposición, autoencoders dispersos, grafos de atribución. (11 recursos)
+- [Alineamiento y seguridad](https://recursos-ia.giancarlobrusca.com/temas/seguridad/): Alineamiento, red-teaming, riesgos, políticas de escalado y regulación. Técnico y no técnico. (13 recursos)
+- [Blogs, canales y podcasts](https://recursos-ia.giancarlobrusca.com/temas/medios/): Las fuentes que vale la pena seguir de forma sostenida, ordenadas por tipo. (36 recursos)
+- [Cuentas y comunidades](https://recursos-ia.giancarlobrusca.com/temas/cuentas/): A quién seguir y dónde se discuten las cosas antes de que lleguen a los papers. (24 recursos)
+- [Recursos en español](https://recursos-ia.giancarlobrusca.com/temas/espanol/): Material de calidad en castellano. Es menos y suele ir un poco atrasado, pero sirve como puente. (7 recursos)
+- [Línea de tiempo](https://recursos-ia.giancarlobrusca.com/temas/papers-clave/): Los papers que definieron cada etapa, en orden, para entender cómo llegamos hasta acá. (0 recursos)
+- [Qué se viene](https://recursos-ia.giancarlobrusca.com/temas/futuro/): Qué es apuesta segura, qué está cambiando ahora mismo y qué está genuinamente en disputa. (14 recursos)
+
+## Sobre el sitio
+
+- Autor: Giancarlo Brusca — https://github.com/giancarlobrusca, https://x.com/giancarlobrusca
+- Criterio de curación y método: https://recursos-ia.giancarlobrusca.com/sobre/
+- Código fuente: https://github.com/giancarlobrusca/ai-learning-hub
+- Idioma: español (es), pensado para lectores de Latinoamérica y España

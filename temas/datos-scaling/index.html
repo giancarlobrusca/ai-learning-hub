@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datos, tokenización y scaling laws en IA</title>
+<meta name="description" content="Cómo se arma un corpus de entrenamiento, cómo se tokeniza el texto y cómo predecir el resultado antes de gastar el presupuesto. Papers y herramientas.">
+<link rel="canonical" href="https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Giancarlo Brusca">
+<meta name="theme-color" content="#0b0d12">
+<link rel="alternate" hreflang="es" href="https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/">
+<link rel="alternate" hreflang="x-default" href="https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Learning Hub">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/">
+<meta property="og:title" content="Datos, tokenización y scaling laws en IA">
+<meta property="og:description" content="Cómo se arma un corpus de entrenamiento, cómo se tokeniza el texto y cómo predecir el resultado antes de gastar el presupuesto. Papers y herramientas.">
+<meta property="og:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-datos-scaling.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Datos, tokenización y scaling laws en IA — AI Learning Hub">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@giancarlobrusca">
+<meta name="twitter:creator" content="@giancarlobrusca">
+<meta name="twitter:title" content="Datos, tokenización y scaling laws en IA">
+<meta name="twitter:description" content="Cómo se arma un corpus de entrenamiento, cómo se tokeniza el texto y cómo predecir el resultado antes de gastar el presupuesto. Papers y herramientas.">
+<meta name="twitter:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-datos-scaling.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="stylesheet" href="/assets/styles.css">
+<script>try{var t=localStorage.getItem("alh-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/#page","url":"https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/","name":"Datos, tokenización y scaling laws en IA","headline":"Datos, tokenización y scaling laws en IA","description":"Cómo se arma un corpus de entrenamiento, cómo se tokeniza el texto y cómo predecir el resultado antes de gastar el presupuesto. Papers y herramientas.","inLanguage":"es","isPartOf":{"@id":"https://recursos-ia.giancarlobrusca.com/#website"},"author":{"@type":"Person","@id":"https://recursos-ia.giancarlobrusca.com/#autor","name":"Giancarlo Brusca","url":"https://github.com/giancarlobrusca","jobTitle":"Desarrollador de software","sameAs":["https://github.com/giancarlobrusca","https://x.com/giancarlobrusca"],"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}},"publisher":{"@id":"https://recursos-ia.giancarlobrusca.com/#autor"},"datePublished":"2026-07-29","dateModified":"2026-07-30","about":{"@type":"Thing","name":"Datos, tokenización y scaling laws"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://recursos-ia.giancarlobrusca.com/"},{"@type":"ListItem","position":2,"name":"Temas","item":"https://recursos-ia.giancarlobrusca.com/#temas"},{"@type":"ListItem","position":3,"name":"Datos, tokenización y scaling laws","item":"https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Recursos de Datos, tokenización y scaling laws","url":"https://recursos-ia.giancarlobrusca.com/temas/datos-scaling/","numberOfItems":12,"itemListElement":[{"@type":"ListItem","position":1,"name":"Scaling Laws for Neural Language Models","url":"https://arxiv.org/abs/2001.08361","description":"El paper que convirtió el progreso de la IA en una ecuación. Pérdida como ley de potencia de cómputo, datos y parámetros."},{"@type":"ListItem","position":2,"name":"The Bitter Lesson","url":"http://www.incompleteideas.net/IncIdeas/BitterLesson.html","description":"Un ensayo de una página que explica 70 años de historia de la IA: los métodos generales que escalan con cómputo siempre ganan. El texto más citado del campo."},{"@type":"ListItem","position":3,"name":"Training Compute-Optimal Large Language Models (Chinchilla)","url":"https://arxiv.org/abs/2203.15556","description":"Corrigió a Kaplan: los modelos estaban muy subentrenados en datos. Reescribió el presupuesto de entrenamiento de toda la industria."},{"@type":"ListItem","position":4,"name":"Beyond neural scaling laws: beating power law scaling via data pruning","url":"https://arxiv.org/abs/2206.14486","description":"Curar bien los datos puede romper la ley de potencia. Uno de los resultados más accionables sobre calidad de datos."},{"@type":"ListItem","position":5,"name":"Dolma: an Open Corpus of Three Trillion Tokens","url":"https://arxiv.org/abs/2402.00159","description":"Corpus abierto con toolkit de curación documentado. Complemento perfecto de OLMo."},{"@type":"ListItem","position":6,"name":"FineWeb: decanting the web for the finest text data at scale","url":"https://arxiv.org/abs/2406.17557","description":"Cómo se construye realmente un corpus de 15T tokens: deduplicación, filtros, clasificadores educativos. El blog interactivo asociado es aún mejor que el paper."},{"@type":"ListItem","position":7,"name":"Neural Machine Translation of Rare Words with Subword Units (BPE)","url":"https://arxiv.org/abs/1508.07909","description":"El origen de Byte-Pair Encoding, el algoritmo detrás de casi todos los tokenizadores actuales."},{"@type":"ListItem","position":8,"name":"Scaling Laws and Interpretability of Learning from Repeated Data","url":"https://arxiv.org/abs/2205.10487","description":"Qué pasa cuando repetís datos (spoiler: se degrada peor de lo que pensás). Crucial ahora que los datos web de calidad escasean."},{"@type":"ListItem","position":9,"name":"Textbooks Are All You Need (phi-1)","url":"https://arxiv.org/abs/2306.11644","description":"Datos sintéticos de altísima calidad superan a montañas de datos web. Inició la línea de modelos pequeños sorprendentemente capaces."},{"@type":"ListItem","position":10,"name":"The Pile: An 800GB Dataset of Diverse Text","url":"https://arxiv.org/abs/2101.00027","description":"El primer corpus abierto grande y documentado. Referencia histórica sobre composición de datos."},{"@type":"ListItem","position":11,"name":"The Scaling Hypothesis","url":"https://gwern.net/scaling-hypothesis","description":"El ensayo que articuló, antes que casi nadie, por qué la escala sola iba a llevar tan lejos. Documento histórico."},{"@type":"ListItem","position":12,"name":"tiktoken / tokenizers","url":"https://github.com/openai/tiktoken","description":"Los tokenizadores de producción. Jugá con tiktokenizer.vercel.app para ver cómo se parte tu texto."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Qué son las scaling laws o leyes de escalado?","acceptedAnswer":{"@type":"Answer","text":"Son relaciones empíricas —típicamente leyes de potencia— entre la pérdida de un modelo y el cómputo, los datos y los parámetros usados para entrenarlo. Permiten extrapolar desde experimentos chicos y baratos qué va a pasar a escala grande, y son el hallazgo empírico más robusto que tiene el campo."}},{"@type":"Question","name":"¿Se están agotando los datos para entrenar IA?","acceptedAnswer":{"@type":"Answer","text":"El stock de texto público de alta calidad tiene margen estrecho según las proyecciones más citadas. La respuesta de la industria son datos sintéticos, currículums curados, entornos verificables y aprendizaje por refuerzo: si no quedan datos humanos nuevos, el aprendizaje tiene que venir de la interacción."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <div class="brand-text">
+        <strong>AI Learning Hub</strong>
+        <span>Recursos de IA en español</span>
+      </div>
+    </a>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <div class="nav-group-title">Inicio</div>
+      <a href="/"><span class="n-ico" aria-hidden="true">🏠</span><span>Portada</span></a>
+      <a href="/rutas/"><span class="n-ico" aria-hidden="true">🧭</span><span>Rutas de aprendizaje</span></a>
+      <a href="/guia/como-aprender-ia-desde-cero/"><span class="n-ico" aria-hidden="true">📖</span><span>Cómo aprender IA</span></a>
+      <a href="/colecciones/"><span class="n-ico" aria-hidden="true">🗂️</span><span>Colecciones</span></a>
+      <div class="nav-group-title">Fundamentos</div>
+      <a href="/temas/matematicas/"><span class="n-ico" aria-hidden="true">📐</span><span>Matemática</span><span class="n-count">10</span></a>
+      <a href="/temas/programacion/"><span class="n-ico" aria-hidden="true">⌨️</span><span>Programación y tooling</span><span class="n-count">12</span></a>
+      <a href="/temas/ml-clasico/"><span class="n-ico" aria-hidden="true">📈</span><span>Machine learning clásico</span><span class="n-count">10</span></a>
+      <a href="/temas/deep-learning/"><span class="n-ico" aria-hidden="true">🧠</span><span>Deep learning</span><span class="n-count">22</span></a>
+      <div class="nav-group-title">Modelos</div>
+      <a href="/temas/arquitecturas/"><span class="n-ico" aria-hidden="true">🏗️</span><span>Arquitecturas</span><span class="n-count">27</span></a>
+      <a href="/temas/transformers-llm/"><span class="n-ico" aria-hidden="true">🔤</span><span>Transformers y LLMs</span><span class="n-count">18</span></a>
+      <a href="/temas/entrenar-desde-cero/"><span class="n-ico" aria-hidden="true">⚙️</span><span>Entrenar desde cero</span><span class="n-count">16</span></a>
+      <a href="/temas/datos-scaling/" aria-current="page"><span class="n-ico" aria-hidden="true">🗃️</span><span>Datos, tokenización y scaling laws</span><span class="n-count">12</span></a>
+      <div class="nav-group-title">Hacerlos útiles</div>
+      <a href="/temas/post-training/"><span class="n-ico" aria-hidden="true">🎯</span><span>Post-training, RLHF y razonamiento</span><span class="n-count">19</span></a>
+      <a href="/temas/fine-tuning/"><span class="n-ico" aria-hidden="true">🔧</span><span>Fine-tuning práctico</span><span class="n-count">12</span></a>
+      <a href="/temas/inferencia/"><span class="n-ico" aria-hidden="true">⚡</span><span>Inferencia y optimización</span><span class="n-count">14</span></a>
+      <a href="/temas/infra/"><span class="n-ico" aria-hidden="true">🖥️</span><span>Infraestructura y GPUs</span><span class="n-count">10</span></a>
+      <a href="/temas/rag-agentes/"><span class="n-ico" aria-hidden="true">🤖</span><span>RAG, agentes y contexto</span><span class="n-count">19</span></a>
+      <a href="/temas/multimodal/"><span class="n-ico" aria-hidden="true">🎨</span><span>Multimodal y generativos</span><span class="n-count">17</span></a>
+      <div class="nav-group-title">Medir y controlar</div>
+      <a href="/temas/evaluacion/"><span class="n-ico" aria-hidden="true">📊</span><span>Evaluación y benchmarks</span><span class="n-count">13</span></a>
+      <a href="/temas/interpretabilidad/"><span class="n-ico" aria-hidden="true">🔬</span><span>Interpretabilidad</span><span class="n-count">11</span></a>
+      <a href="/temas/seguridad/"><span class="n-ico" aria-hidden="true">🛡️</span><span>Alineamiento y seguridad</span><span class="n-count">13</span></a>
+      <div class="nav-group-title">Mantenerse al día</div>
+      <a href="/temas/medios/"><span class="n-ico" aria-hidden="true">📡</span><span>Blogs, canales y podcasts</span><span class="n-count">36</span></a>
+      <a href="/temas/cuentas/"><span class="n-ico" aria-hidden="true">👥</span><span>Cuentas y comunidades</span><span class="n-count">24</span></a>
+      <a href="/temas/espanol/"><span class="n-ico" aria-hidden="true">🌎</span><span>Recursos en español</span><span class="n-count">7</span></a>
+      <div class="nav-group-title">Perspectiva</div>
+      <a href="/temas/papers-clave/"><span class="n-ico" aria-hidden="true">🗺️</span><span>Línea de tiempo</span></a>
+      <a href="/temas/futuro/"><span class="n-ico" aria-hidden="true">🔮</span><span>Qué se viene</span><span class="n-count">14</span></a>
+      <div class="nav-group-title">El sitio</div>
+      <a href="/sobre/"><span class="n-ico" aria-hidden="true">✍️</span><span>Quién lo hace</span></a>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <form class="search-wrap" role="search" action="/" method="get">
+        <label class="sr-only" for="search">Buscar recursos de IA</label>
+        <input id="search" name="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Buscar: transformers, LoRA, karpathy, RLHF, difusión…">
+        <span class="kbd" aria-hidden="true">/</span>
+      </form>
+      <div class="topbar-actions">
+        <button class="btn" id="clear-btn">Limpiar</button>
+        <button class="btn" id="theme-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+
+    <div class="content" id="contenido">
+
+      <div class="controls" hidden id="controls">
+        <div class="filters">
+          <div class="filter-label">Tipo de recurso</div>
+          <div id="f-types" class="filters" style="border:0;margin:0;padding:0"></div>
+          <div class="filter-label" style="margin-top:14px">Nivel y atajos</div>
+          <div id="f-levels" class="filters" style="border:0;margin:0;padding:0"></div>
+        </div>
+        <div class="results-meta" id="results-meta"></div>
+      </div>
+      <section id="results-section" aria-label="Resultados de búsqueda">
+        <div id="results"></div>
+      </section>
+      <div id="page-content">
+<nav class="breadcrumb" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li><a href="/#temas">Temas</a></li><li><span aria-current="page">Datos, tokenización y scaling laws</span></li></ol></nav>
+
+      <header class="hero page-hero">
+        <h1>Datos, tokenización y leyes de escalado</h1>
+        <div class="prose lede">
+      <p>
+        La parte menos glamorosa y más determinante. La calidad del corpus explica más varianza entre
+        modelos que la arquitectura: dos equipos con el mismo diseño y presupuesto distinto de curación de
+        datos terminan con modelos muy distintos. Casi nadie publica su receta completa, y esa opacidad es
+        en sí misma un dato sobre dónde está el valor.
+      </p>
+      <p>
+        Las leyes de escalado son lo que convirtió el entrenamiento en ingeniería predecible: permiten
+        estimar qué desempeño vas a obtener con determinado cómputo, datos y parámetros antes de gastar el
+        presupuesto. Chinchilla corrigió el equilibrio hacia más datos; después el eje se corrió otra vez,
+        esta vez hacia el cómputo en tiempo de inferencia.
+      </p></div>
+      </header>
+      <section class="section" id="recursos">
+        <h2>12 recursos de datos, tokenización y scaling laws</h2>
+        <p class="sec-desc">
+          Ordenados con los imprescindibles primero y agrupados por tipo. Los marcados con ★ son los que
+          recomendaría alguien que ya recorrió el camino; los que dicen «gratis» no cuestan nada.
+        </p>
+        
+      <h3 class="subhead">📄 Paper</h3>
+      <div class="cards"><a class="card" href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Scaling Laws for Neural Language Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Kaplan et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">El paper que convirtió el progreso de la IA en una ecuación. Pérdida como ley de potencia de cómputo, datos y parámetros.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2203.15556" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Training Compute-Optimal Large Language Models (Chinchilla)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Hoffmann et al. (DeepMind)</span>
+      </div>
+      <p class="card-note">Corrigió a Kaplan: los modelos estaban muy subentrenados en datos. Reescribió el presupuesto de entrenamiento de toda la industria.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2206.14486" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Beyond neural scaling laws: beating power law scaling via data pruning</span>
+        
+        <span class="card-author">· Sorscher et al.</span>
+      </div>
+      <p class="card-note">Curar bien los datos puede romper la ley de potencia. Uno de los resultados más accionables sobre calidad de datos.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2402.00159" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Dolma: an Open Corpus of Three Trillion Tokens</span>
+        
+        <span class="card-author">· Allen Institute for AI</span>
+      </div>
+      <p class="card-note">Corpus abierto con toolkit de curación documentado. Complemento perfecto de OLMo.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2406.17557" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">FineWeb: decanting the web for the finest text data at scale</span>
+        
+        <span class="card-author">· Hugging Face</span>
+      </div>
+      <p class="card-note">Cómo se construye realmente un corpus de 15T tokens: deduplicación, filtros, clasificadores educativos. El blog interactivo asociado es aún mejor que el paper.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1508.07909" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Neural Machine Translation of Rare Words with Subword Units (BPE)</span>
+        
+        <span class="card-author">· Sennrich, Haddow, Birch</span>
+      </div>
+      <p class="card-note">El origen de Byte-Pair Encoding, el algoritmo detrás de casi todos los tokenizadores actuales.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2205.10487" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Scaling Laws and Interpretability of Learning from Repeated Data</span>
+        
+        <span class="card-author">· Anthropic</span>
+      </div>
+      <p class="card-note">Qué pasa cuando repetís datos (spoiler: se degrada peor de lo que pensás). Crucial ahora que los datos web de calidad escasean.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2306.11644" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Textbooks Are All You Need (phi-1)</span>
+        
+        <span class="card-author">· Microsoft Research</span>
+      </div>
+      <p class="card-note">Datos sintéticos de altísima calidad superan a montañas de datos web. Inició la línea de modelos pequeños sorprendentemente capaces.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2101.00027" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Pile: An 800GB Dataset of Diverse Text</span>
+        
+        <span class="card-author">· EleutherAI</span>
+      </div>
+      <p class="card-note">El primer corpus abierto grande y documentado. Referencia histórica sobre composición de datos.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">✍️ Blog/Post</h3>
+      <div class="cards"><a class="card" href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Bitter Lesson</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Rich Sutton</span>
+      </div>
+      <p class="card-note">Un ensayo de una página que explica 70 años de historia de la IA: los métodos generales que escalan con cómputo siempre ganan. El texto más citado del campo.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a><a class="card" href="https://gwern.net/scaling-hypothesis" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Scaling Hypothesis</span>
+        
+        <span class="card-author">· Gwern Branwen</span>
+      </div>
+      <p class="card-note">El ensayo que articuló, antes que casi nadie, por qué la escala sola iba a llevar tan lejos. Documento histórico.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">🐙 Repo</h3>
+      <div class="cards"><a class="card" href="https://github.com/openai/tiktoken" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">tiktoken / tokenizers</span>
+        
+        <span class="card-author">· OpenAI / Hugging Face</span>
+      </div>
+      <p class="card-note">Los tokenizadores de producción. Jugá con tiktokenizer.vercel.app para ver cómo se parte tu texto.</p>
+      <div class="card-meta">
+        <span class="tag type">🐙 Repo</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Datos, tokenización y scaling laws</span>
+      </div>
+    </a></div>
+      </section>
+      <section class="section faq" id="preguntas-frecuentes">
+        <h2>Preguntas frecuentes sobre datos, tokenización y scaling laws</h2>
+        <details>
+          <summary><h3>¿Qué son las scaling laws o leyes de escalado?</h3></summary>
+          <div class="faq-a"><p>Son relaciones empíricas —típicamente leyes de potencia— entre la pérdida de un modelo y el cómputo, los datos y los parámetros usados para entrenarlo. Permiten extrapolar desde experimentos chicos y baratos qué va a pasar a escala grande, y son el hallazgo empírico más robusto que tiene el campo.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Se están agotando los datos para entrenar IA?</h3></summary>
+          <div class="faq-a"><p>El stock de texto público de alta calidad tiene margen estrecho según las proyecciones más citadas. La respuesta de la industria son datos sintéticos, currículums curados, entornos verificables y aprendizaje por refuerzo: si no quedan datos humanos nuevos, el aprendizaje tiene que venir de la interacción.</p></div>
+        </details>
+      </section>
+      <nav class="related" aria-label="Temas relacionados">
+        <h2>Seguí por acá</h2>
+        <ul><li><a href="/temas/entrenar-desde-cero/"><span aria-hidden="true">⚙️</span> Entrenar desde cero
+            <em>El pipeline completo de pre-entrenamiento: código, paralelismo, clusters y los detalles sucios que ningún paper cuenta.</em></a></li><li><a href="/temas/post-training/"><span aria-hidden="true">🎯</span> Post-training, RLHF y razonamiento
+            <em>SFT, modelos de recompensa, DPO, GRPO y RL con recompensas verificables: donde se decide hoy la calidad de un modelo.</em></a></li><li><a href="/temas/evaluacion/"><span aria-hidden="true">📊</span> Evaluación y benchmarks
+            <em>Sin evaluaciones no hay ingeniería. Qué mide cada benchmark, cómo se contaminan y cómo armar las tuyas.</em></a></li></ul>
+      </nav>
+<footer>
+        <p class="byline">
+          Curado y escrito por <a href="https://github.com/giancarlobrusca" rel="author">Giancarlo Brusca</a>,
+          desarrollador de software en Buenos Aires.
+          <span>Última revisión: <time datetime="2026-07-30">30 de julio de 2026</time>.</span>
+        </p>
+        <p>
+          <strong>AI Learning Hub</strong> · Colección curada de recursos para aprender inteligencia artificial
+          en español. Todos los enlaces apuntan a las fuentes originales; el mérito es de sus autores.
+        </p>
+        <p class="foot-nav">
+          <a href="/">Portada</a> ·
+          <a href="/rutas/">Rutas de aprendizaje</a> ·
+          <a href="/guia/como-aprender-ia-desde-cero/">Cómo aprender IA</a> ·
+          <a href="/colecciones/cursos-de-ia-gratis/">Cursos gratis</a> ·
+          <a href="/temas/espanol/">Recursos en español</a> ·
+          <a href="/sobre/">Quién lo hace</a> ·
+          <a href="https://github.com/giancarlobrusca/ai-learning-hub" rel="noopener">Código en GitHub</a>
+        </p>
+      </footer>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/data/00-secciones.js" defer></script>
+<script src="/data/01-fundamentos.js" defer></script>
+<script src="/data/02-arquitecturas.js" defer></script>
+<script src="/data/03-entrenamiento-aplicado.js" defer></script>
+<script src="/data/04-multimodal-eval-safety.js" defer></script>
+<script src="/data/05-medios-comunidad.js" defer></script>
+<script src="/data/06-futuro.js" defer></script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

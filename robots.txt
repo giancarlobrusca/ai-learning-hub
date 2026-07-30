@@ -1,0 +1,8 @@
+# AI Learning Hub — https://recursos-ia.giancarlobrusca.com
+User-agent: *
+Allow: /
+
+# Los rastreadores no necesitan el JSON de datos ni los scripts.
+Disallow: /*?q=
+
+Sitemap: https://recursos-ia.giancarlobrusca.com/sitemap.xml

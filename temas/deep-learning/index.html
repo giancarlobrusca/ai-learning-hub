@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep learning: recursos para entender redes neuronales</title>
+<meta name="description" content="Redes profundas, backpropagation, optimización y regularización. Cursos, libros y videos para entender de verdad cómo aprende una red neuronal.">
+<link rel="canonical" href="https://recursos-ia.giancarlobrusca.com/temas/deep-learning/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Giancarlo Brusca">
+<meta name="theme-color" content="#0b0d12">
+<link rel="alternate" hreflang="es" href="https://recursos-ia.giancarlobrusca.com/temas/deep-learning/">
+<link rel="alternate" hreflang="x-default" href="https://recursos-ia.giancarlobrusca.com/temas/deep-learning/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Learning Hub">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://recursos-ia.giancarlobrusca.com/temas/deep-learning/">
+<meta property="og:title" content="Deep learning: recursos para entender redes neuronales">
+<meta property="og:description" content="Redes profundas, backpropagation, optimización y regularización. Cursos, libros y videos para entender de verdad cómo aprende una red neuronal.">
+<meta property="og:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-deep-learning.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Deep learning: recursos para entender redes neuronales — AI Learning Hub">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@giancarlobrusca">
+<meta name="twitter:creator" content="@giancarlobrusca">
+<meta name="twitter:title" content="Deep learning: recursos para entender redes neuronales">
+<meta name="twitter:description" content="Redes profundas, backpropagation, optimización y regularización. Cursos, libros y videos para entender de verdad cómo aprende una red neuronal.">
+<meta name="twitter:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-deep-learning.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="stylesheet" href="/assets/styles.css">
+<script>try{var t=localStorage.getItem("alh-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://recursos-ia.giancarlobrusca.com/temas/deep-learning/#page","url":"https://recursos-ia.giancarlobrusca.com/temas/deep-learning/","name":"Deep learning: recursos para entender redes neuronales","headline":"Deep learning: recursos para entender redes neuronales","description":"Redes profundas, backpropagation, optimización y regularización. Cursos, libros y videos para entender de verdad cómo aprende una red neuronal.","inLanguage":"es","isPartOf":{"@id":"https://recursos-ia.giancarlobrusca.com/#website"},"author":{"@type":"Person","@id":"https://recursos-ia.giancarlobrusca.com/#autor","name":"Giancarlo Brusca","url":"https://github.com/giancarlobrusca","jobTitle":"Desarrollador de software","sameAs":["https://github.com/giancarlobrusca","https://x.com/giancarlobrusca"],"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}},"publisher":{"@id":"https://recursos-ia.giancarlobrusca.com/#autor"},"datePublished":"2026-07-29","dateModified":"2026-07-30","about":{"@type":"Thing","name":"Deep learning"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://recursos-ia.giancarlobrusca.com/"},{"@type":"ListItem","position":2,"name":"Temas","item":"https://recursos-ia.giancarlobrusca.com/#temas"},{"@type":"ListItem","position":3,"name":"Deep learning","item":"https://recursos-ia.giancarlobrusca.com/temas/deep-learning/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Recursos de Deep learning","url":"https://recursos-ia.giancarlobrusca.com/temas/deep-learning/","numberOfItems":22,"itemListElement":[{"@type":"ListItem","position":1,"name":"Deep Learning Specialization","url":"https://www.coursera.org/specializations/deep-learning","description":"Cinco cursos: redes profundas, hiperparámetros/regularización, estructuración de proyectos, CNNs, secuencias. Sigue siendo la mejor base ordenada."},{"@type":"ListItem","position":2,"name":"Dive into Deep Learning (D2L)","url":"https://d2l.ai/","description":"Libro interactivo: cada concepto viene con código ejecutable en PyTorch, JAX y TensorFlow. Usado en 500+ universidades. Hay traducción al español parcial."},{"@type":"ListItem","position":3,"name":"MIT 6.S191: Introduction to Deep Learning","url":"http://introtodeeplearning.com/","description":"Se actualiza cada año en enero. Denso, moderno y gratis: CNNs, RNNs, transformers, generativos, RL, LLMs. Todas las clases en YouTube."},{"@type":"ListItem","position":4,"name":"Practical Deep Learning for Coders","url":"https://course.fast.ai/","description":"Enfoque top-down: entrenás un modelo útil en la lección 1 y recién después bajás a la teoría. Si los cursos tradicionales te aburren, este es tu camino."},{"@type":"ListItem","position":5,"name":"Understanding Deep Learning","url":"https://udlbook.github.io/udlbook/","description":"PDF gratis + notebooks + slides. El mejor libro de deep learning escrito en los últimos años: cubre transformers, difusión, GNNs y RL con figuras excelentes."},{"@type":"ListItem","position":6,"name":"Understanding LSTM Networks","url":"https://colah.github.io/posts/2015-08-Understanding-LSTMs/","description":"El post que enseñó LSTMs a una generación entera. Aún hoy es la referencia para entender memoria en secuencias."},{"@type":"ListItem","position":7,"name":"Adam: A Method for Stochastic Optimization","url":"https://arxiv.org/abs/1412.6980","description":"El optimizador por defecto durante una década. Entender momento y varianza adaptativa te explica el 90% de los problemas de entrenamiento."},{"@type":"ListItem","position":8,"name":"Alice's Adventures in a Differentiable Wonderland","url":"https://www.sscardapane.it/alice-book/","description":"Deep learning contado como diseño de programas diferenciables. Enfoque fresco y muy bien escrito."},{"@type":"ListItem","position":9,"name":"Batch Normalization","url":"https://arxiv.org/abs/1502.03167","description":"Y su primo LayerNorm (arXiv:1607.06450), que es el que realmente usan los transformers."},{"@type":"ListItem","position":10,"name":"CMU 11-785: Introduction to Deep Learning","url":"https://deeplearning.cs.cmu.edu/","description":"Uno de los cursos más exigentes y completos, con homeworks reales de implementación desde cero."},{"@type":"ListItem","position":11,"name":"Deep Double Descent","url":"https://arxiv.org/abs/1912.02292","description":"Rompe la intuición clásica de bias-variance: más parámetros pueden mejorar la generalización. Base conceptual del escalado moderno."},{"@type":"ListItem","position":12,"name":"Deep Learning (el 'libro de flores')","url":"https://www.deeplearningbook.org/","description":"El clásico de 2016. Anterior a los transformers, pero la Parte I (matemática) y la Parte II (fundamentos) siguen siendo insuperables."},{"@type":"ListItem","position":13,"name":"Deep Learning: Foundations and Concepts","url":"https://www.bishopbook.com/","description":"El sucesor del legendario 'Pattern Recognition and Machine Learning'. Lectura online gratis. Rigor bayesiano + contenido moderno."},{"@type":"ListItem","position":14,"name":"Deep Residual Learning for Image Recognition (ResNet)","url":"https://arxiv.org/abs/1512.03385","description":"Las conexiones residuales son la razón por la que hoy podemos entrenar redes de 100+ capas. Están dentro de todo transformer."},{"@type":"ListItem","position":15,"name":"Distill.pub","url":"https://distill.pub/","description":"Publicación (en pausa) de artículos con visualizaciones interactivas. 'Feature Visualization', 'Building Blocks of Interpretability' y 'Momentum' son obligatorios."},{"@type":"ListItem","position":16,"name":"Grokking: Generalization Beyond Overfitting","url":"https://arxiv.org/abs/2201.02177","description":"Modelos que memorizan y mucho después 'entienden'. Uno de los fenómenos más raros y estudiados del deep learning."},{"@type":"ListItem","position":17,"name":"NYU Deep Learning (DS-GA 1008)","url":"https://atcold.github.io/NYU-DLSP21/","description":"Perspectiva de LeCun: energy-based models, self-supervised learning, arquitecturas para percepción. Con transcripciones en varios idiomas."},{"@type":"ListItem","position":18,"name":"Neural Networks and Deep Learning","url":"http://neuralnetworksanddeeplearning.com/","description":"Online y gratis. La mejor explicación escrita de por qué backprop funciona, con demos interactivas."},{"@type":"ListItem","position":19,"name":"The Little Book of Deep Learning","url":"https://fleuret.org/francois/lbdl.html","description":"~180 páginas formateadas para leer en el teléfono. Densidad de información altísima. Ideal como repaso."},{"@type":"ListItem","position":20,"name":"The Lottery Ticket Hypothesis","url":"https://arxiv.org/abs/1803.03635","description":"Dentro de una red grande hay subredes chicas que entrenan igual de bien. Fundamento conceptual del pruning."},{"@type":"ListItem","position":21,"name":"The Unreasonable Effectiveness of Recurrent Neural Networks","url":"https://karpathy.github.io/2015/05/21/rnn-effectiveness/","description":"El post que anticipó todo lo que vino después. Contexto histórico esencial: qué se podía hacer antes de los transformers."},{"@type":"ListItem","position":22,"name":"UvA Deep Learning Tutorials","url":"https://uvadlc-notebooks.readthedocs.io/en/latest/","description":"Notebooks de altísima calidad en PyTorch y JAX: optimización, inicialización, transformers, GNNs, energy-based models, difusión."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la diferencia entre machine learning y deep learning?","acceptedAnswer":{"@type":"Answer","text":"El deep learning es una rama del machine learning que usa redes neuronales con muchas capas y aprende las representaciones directamente de los datos crudos, en vez de depender de features diseñadas a mano. Todo deep learning es machine learning; no al revés."}},{"@type":"Question","name":"¿Qué es backpropagation, en simple?","acceptedAnswer":{"@type":"Answer","text":"Es la aplicación de la regla de la cadena del cálculo para saber cuánto contribuyó cada parámetro al error final. Con esa información, el optimizador ajusta cada peso en la dirección que reduce el error. Es el mecanismo que hace posible entrenar redes profundas."}},{"@type":"Question","name":"¿Cuánto tiempo lleva aprender deep learning?","acceptedAnswer":{"@type":"Answer","text":"Con dedicación sostenida de unas diez horas semanales, tres a seis meses alcanzan para entender los fundamentos y entrenar modelos propios. Llegar a leer papers con comodidad suele llevar un año. La variable que más pesa no es la inteligencia: es la constancia y la cantidad de código propio escrito."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <div class="brand-text">
+        <strong>AI Learning Hub</strong>
+        <span>Recursos de IA en español</span>
+      </div>
+    </a>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <div class="nav-group-title">Inicio</div>
+      <a href="/"><span class="n-ico" aria-hidden="true">🏠</span><span>Portada</span></a>
+      <a href="/rutas/"><span class="n-ico" aria-hidden="true">🧭</span><span>Rutas de aprendizaje</span></a>
+      <a href="/guia/como-aprender-ia-desde-cero/"><span class="n-ico" aria-hidden="true">📖</span><span>Cómo aprender IA</span></a>
+      <a href="/colecciones/"><span class="n-ico" aria-hidden="true">🗂️</span><span>Colecciones</span></a>
+      <div class="nav-group-title">Fundamentos</div>
+      <a href="/temas/matematicas/"><span class="n-ico" aria-hidden="true">📐</span><span>Matemática</span><span class="n-count">10</span></a>
+      <a href="/temas/programacion/"><span class="n-ico" aria-hidden="true">⌨️</span><span>Programación y tooling</span><span class="n-count">12</span></a>
+      <a href="/temas/ml-clasico/"><span class="n-ico" aria-hidden="true">📈</span><span>Machine learning clásico</span><span class="n-count">10</span></a>
+      <a href="/temas/deep-learning/" aria-current="page"><span class="n-ico" aria-hidden="true">🧠</span><span>Deep learning</span><span class="n-count">22</span></a>
+      <div class="nav-group-title">Modelos</div>
+      <a href="/temas/arquitecturas/"><span class="n-ico" aria-hidden="true">🏗️</span><span>Arquitecturas</span><span class="n-count">27</span></a>
+      <a href="/temas/transformers-llm/"><span class="n-ico" aria-hidden="true">🔤</span><span>Transformers y LLMs</span><span class="n-count">18</span></a>
+      <a href="/temas/entrenar-desde-cero/"><span class="n-ico" aria-hidden="true">⚙️</span><span>Entrenar desde cero</span><span class="n-count">16</span></a>
+      <a href="/temas/datos-scaling/"><span class="n-ico" aria-hidden="true">🗃️</span><span>Datos, tokenización y scaling laws</span><span class="n-count">12</span></a>
+      <div class="nav-group-title">Hacerlos útiles</div>
+      <a href="/temas/post-training/"><span class="n-ico" aria-hidden="true">🎯</span><span>Post-training, RLHF y razonamiento</span><span class="n-count">19</span></a>
+      <a href="/temas/fine-tuning/"><span class="n-ico" aria-hidden="true">🔧</span><span>Fine-tuning práctico</span><span class="n-count">12</span></a>
+      <a href="/temas/inferencia/"><span class="n-ico" aria-hidden="true">⚡</span><span>Inferencia y optimización</span><span class="n-count">14</span></a>
+      <a href="/temas/infra/"><span class="n-ico" aria-hidden="true">🖥️</span><span>Infraestructura y GPUs</span><span class="n-count">10</span></a>
+      <a href="/temas/rag-agentes/"><span class="n-ico" aria-hidden="true">🤖</span><span>RAG, agentes y contexto</span><span class="n-count">19</span></a>
+      <a href="/temas/multimodal/"><span class="n-ico" aria-hidden="true">🎨</span><span>Multimodal y generativos</span><span class="n-count">17</span></a>
+      <div class="nav-group-title">Medir y controlar</div>
+      <a href="/temas/evaluacion/"><span class="n-ico" aria-hidden="true">📊</span><span>Evaluación y benchmarks</span><span class="n-count">13</span></a>
+      <a href="/temas/interpretabilidad/"><span class="n-ico" aria-hidden="true">🔬</span><span>Interpretabilidad</span><span class="n-count">11</span></a>
+      <a href="/temas/seguridad/"><span class="n-ico" aria-hidden="true">🛡️</span><span>Alineamiento y seguridad</span><span class="n-count">13</span></a>
+      <div class="nav-group-title">Mantenerse al día</div>
+      <a href="/temas/medios/"><span class="n-ico" aria-hidden="true">📡</span><span>Blogs, canales y podcasts</span><span class="n-count">36</span></a>
+      <a href="/temas/cuentas/"><span class="n-ico" aria-hidden="true">👥</span><span>Cuentas y comunidades</span><span class="n-count">24</span></a>
+      <a href="/temas/espanol/"><span class="n-ico" aria-hidden="true">🌎</span><span>Recursos en español</span><span class="n-count">7</span></a>
+      <div class="nav-group-title">Perspectiva</div>
+      <a href="/temas/papers-clave/"><span class="n-ico" aria-hidden="true">🗺️</span><span>Línea de tiempo</span></a>
+      <a href="/temas/futuro/"><span class="n-ico" aria-hidden="true">🔮</span><span>Qué se viene</span><span class="n-count">14</span></a>
+      <div class="nav-group-title">El sitio</div>
+      <a href="/sobre/"><span class="n-ico" aria-hidden="true">✍️</span><span>Quién lo hace</span></a>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <form class="search-wrap" role="search" action="/" method="get">
+        <label class="sr-only" for="search">Buscar recursos de IA</label>
+        <input id="search" name="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Buscar: transformers, LoRA, karpathy, RLHF, difusión…">
+        <span class="kbd" aria-hidden="true">/</span>
+      </form>
+      <div class="topbar-actions">
+        <button class="btn" id="clear-btn">Limpiar</button>
+        <button class="btn" id="theme-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+
+    <div class="content" id="contenido">
+
+      <div class="controls" hidden id="controls">
+        <div class="filters">
+          <div class="filter-label">Tipo de recurso</div>
+          <div id="f-types" class="filters" style="border:0;margin:0;padding:0"></div>
+          <div class="filter-label" style="margin-top:14px">Nivel y atajos</div>
+          <div id="f-levels" class="filters" style="border:0;margin:0;padding:0"></div>
+        </div>
+        <div class="results-meta" id="results-meta"></div>
+      </div>
+      <section id="results-section" aria-label="Resultados de búsqueda">
+        <div id="results"></div>
+      </section>
+      <div id="page-content">
+<nav class="breadcrumb" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li><a href="/#temas">Temas</a></li><li><span aria-current="page">Deep learning</span></li></ol></nav>
+
+      <header class="hero page-hero">
+        <h1>Deep learning: cómo aprenden las redes neuronales</h1>
+        <div class="prose lede">
+      <p>
+        Acá está el corazón conceptual de todo lo demás. Una red neuronal profunda es una función enorme
+        con millones de parámetros que se ajusta bajando por el gradiente de un error. Suena simple porque
+        lo es; lo difícil es que funcione: inicialización, normalización, tasas de aprendizaje, regularización
+        y una cantidad de decisiones que la literatura justifica a posteriori.
+      </p>
+      <p>
+        Esta sección incluye también los fenómenos que todavía no entendemos bien —doble descenso, grokking,
+        la hipótesis de la lotería— porque son la mejor vacuna contra la idea de que el campo es una ciencia
+        cerrada. Buena parte de lo que sabemos es empírico y provisorio, y conviene aprenderlo sabiendo eso.
+      </p>
+      <p>
+        El mejor uso de esta sección: mirar la serie <em>Neural Networks: Zero to Hero</em> de Karpathy
+        escribiendo el código vos, no copiándolo. Construir un motor de autodiff en cien líneas hace por la
+        comprensión lo que ningún video puede hacer solo.
+      </p></div>
+      </header>
+      <section class="section" id="recursos">
+        <h2>22 recursos de deep learning</h2>
+        <p class="sec-desc">
+          Ordenados con los imprescindibles primero y agrupados por tipo. Los marcados con ★ son los que
+          recomendaría alguien que ya recorrió el camino; los que dicen «gratis» no cuestan nada.
+        </p>
+        
+      <h3 class="subhead">🎓 Curso</h3>
+      <div class="cards"><a class="card" href="https://www.coursera.org/specializations/deep-learning" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Deep Learning Specialization</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Andrew Ng / DeepLearning.AI</span>
+      </div>
+      <p class="card-note">Cinco cursos: redes profundas, hiperparámetros/regularización, estructuración de proyectos, CNNs, secuencias. Sigue siendo la mejor base ordenada.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="http://introtodeeplearning.com/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">MIT 6.S191: Introduction to Deep Learning</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Alexander &amp; Ava Amini (MIT)</span>
+      </div>
+      <p class="card-note">Se actualiza cada año en enero. Denso, moderno y gratis: CNNs, RNNs, transformers, generativos, RL, LLMs. Todas las clases en YouTube.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://course.fast.ai/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Practical Deep Learning for Coders</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· fast.ai (Jeremy Howard)</span>
+      </div>
+      <p class="card-note">Enfoque top-down: entrenás un modelo útil en la lección 1 y recién después bajás a la teoría. Si los cursos tradicionales te aburren, este es tu camino.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://deeplearning.cs.cmu.edu/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">CMU 11-785: Introduction to Deep Learning</span>
+        
+        <span class="card-author">· Bhiksha Raj (CMU)</span>
+      </div>
+      <p class="card-note">Uno de los cursos más exigentes y completos, con homeworks reales de implementación desde cero.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://atcold.github.io/NYU-DLSP21/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">NYU Deep Learning (DS-GA 1008)</span>
+        
+        <span class="card-author">· Yann LeCun &amp; Alfredo Canziani</span>
+      </div>
+      <p class="card-note">Perspectiva de LeCun: energy-based models, self-supervised learning, arquitecturas para percepción. Con transcripciones en varios idiomas.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2021</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://uvadlc-notebooks.readthedocs.io/en/latest/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">UvA Deep Learning Tutorials</span>
+        
+        <span class="card-author">· Universidad de Ámsterdam</span>
+      </div>
+      <p class="card-note">Notebooks de altísima calidad en PyTorch y JAX: optimización, inicialización, transformers, GNNs, energy-based models, difusión.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📚 Libro</h3>
+      <div class="cards"><a class="card" href="https://d2l.ai/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Dive into Deep Learning (D2L)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Zhang, Lipton, Li, Smola</span>
+      </div>
+      <p class="card-note">Libro interactivo: cada concepto viene con código ejecutable en PyTorch, JAX y TensorFlow. Usado en 500+ universidades. Hay traducción al español parcial.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2024</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://udlbook.github.io/udlbook/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Understanding Deep Learning</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Simon J.D. Prince</span>
+      </div>
+      <p class="card-note">PDF gratis + notebooks + slides. El mejor libro de deep learning escrito en los últimos años: cubre transformers, difusión, GNNs y RL con figuras excelentes.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://www.sscardapane.it/alice-book/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Alice's Adventures in a Differentiable Wonderland</span>
+        
+        <span class="card-author">· Simone Scardapane</span>
+      </div>
+      <p class="card-note">Deep learning contado como diseño de programas diferenciables. Enfoque fresco y muy bien escrito.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://www.deeplearningbook.org/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Deep Learning (el 'libro de flores')</span>
+        
+        <span class="card-author">· Goodfellow, Bengio, Courville</span>
+      </div>
+      <p class="card-note">El clásico de 2016. Anterior a los transformers, pero la Parte I (matemática) y la Parte II (fundamentos) siguen siendo insuperables.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2016</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://www.bishopbook.com/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Deep Learning: Foundations and Concepts</span>
+        
+        <span class="card-author">· Christopher Bishop &amp; Hugh Bishop</span>
+      </div>
+      <p class="card-note">El sucesor del legendario 'Pattern Recognition and Machine Learning'. Lectura online gratis. Rigor bayesiano + contenido moderno.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="http://neuralnetworksanddeeplearning.com/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Neural Networks and Deep Learning</span>
+        
+        <span class="card-author">· Michael Nielsen</span>
+      </div>
+      <p class="card-note">Online y gratis. La mejor explicación escrita de por qué backprop funciona, con demos interactivas.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2015</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://fleuret.org/francois/lbdl.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Little Book of Deep Learning</span>
+        
+        <span class="card-author">· François Fleuret</span>
+      </div>
+      <p class="card-note">~180 páginas formateadas para leer en el teléfono. Densidad de información altísima. Ideal como repaso.</p>
+      <div class="card-meta">
+        <span class="tag type">📚 Libro</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2023</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📄 Paper</h3>
+      <div class="cards"><a class="card" href="https://arxiv.org/abs/1412.6980" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Adam: A Method for Stochastic Optimization</span>
+        
+        <span class="card-author">· Kingma &amp; Ba</span>
+      </div>
+      <p class="card-note">El optimizador por defecto durante una década. Entender momento y varianza adaptativa te explica el 90% de los problemas de entrenamiento.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2014</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1502.03167" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Batch Normalization</span>
+        
+        <span class="card-author">· Ioffe &amp; Szegedy</span>
+      </div>
+      <p class="card-note">Y su primo LayerNorm (arXiv:1607.06450), que es el que realmente usan los transformers.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1912.02292" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Deep Double Descent</span>
+        
+        <span class="card-author">· Nakkiran et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">Rompe la intuición clásica de bias-variance: más parámetros pueden mejorar la generalización. Base conceptual del escalado moderno.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Deep Residual Learning for Image Recognition (ResNet)</span>
+        
+        <span class="card-author">· He, Zhang, Ren, Sun</span>
+      </div>
+      <p class="card-note">Las conexiones residuales son la razón por la que hoy podemos entrenar redes de 100+ capas. Están dentro de todo transformer.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2201.02177" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Grokking: Generalization Beyond Overfitting</span>
+        
+        <span class="card-author">· Power et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">Modelos que memorizan y mucho después 'entienden'. Uno de los fenómenos más raros y estudiados del deep learning.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/1803.03635" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Lottery Ticket Hypothesis</span>
+        
+        <span class="card-author">· Frankle &amp; Carbin</span>
+      </div>
+      <p class="card-note">Dentro de una red grande hay subredes chicas que entrenan igual de bien. Fundamento conceptual del pruning.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2018</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">✍️ Blog/Post</h3>
+      <div class="cards"><a class="card" href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Understanding LSTM Networks</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Christopher Olah</span>
+      </div>
+      <p class="card-note">El post que enseñó LSTMs a una generación entera. Aún hoy es la referencia para entender memoria en secuencias.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://distill.pub/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Distill.pub</span>
+        
+        <span class="card-author">· varios</span>
+      </div>
+      <p class="card-note">Publicación (en pausa) de artículos con visualizaciones interactivas. 'Feature Visualization', 'Building Blocks of Interpretability' y 'Momentum' son obligatorios.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a><a class="card" href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Unreasonable Effectiveness of Recurrent Neural Networks</span>
+        
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">El post que anticipó todo lo que vino después. Contexto histórico esencial: qué se podía hacer antes de los transformers.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2015</span>
+        
+        
+        <span class="tag">Deep learning</span>
+      </div>
+    </a></div>
+      </section>
+      <section class="section faq" id="preguntas-frecuentes">
+        <h2>Preguntas frecuentes sobre deep learning</h2>
+        <details>
+          <summary><h3>¿Cuál es la diferencia entre machine learning y deep learning?</h3></summary>
+          <div class="faq-a"><p>El deep learning es una rama del machine learning que usa redes neuronales con muchas capas y aprende las representaciones directamente de los datos crudos, en vez de depender de features diseñadas a mano. Todo deep learning es machine learning; no al revés.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Qué es backpropagation, en simple?</h3></summary>
+          <div class="faq-a"><p>Es la aplicación de la regla de la cadena del cálculo para saber cuánto contribuyó cada parámetro al error final. Con esa información, el optimizador ajusta cada peso en la dirección que reduce el error. Es el mecanismo que hace posible entrenar redes profundas.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Cuánto tiempo lleva aprender deep learning?</h3></summary>
+          <div class="faq-a"><p>Con dedicación sostenida de unas diez horas semanales, tres a seis meses alcanzan para entender los fundamentos y entrenar modelos propios. Llegar a leer papers con comodidad suele llevar un año. La variable que más pesa no es la inteligencia: es la constancia y la cantidad de código propio escrito.</p></div>
+        </details>
+      </section>
+      <nav class="related" aria-label="Temas relacionados">
+        <h2>Seguí por acá</h2>
+        <ul><li><a href="/temas/matematicas/"><span aria-hidden="true">📐</span> Matemática
+            <em>Álgebra lineal, cálculo, probabilidad y optimización: lo mínimo indispensable para no leer papers como si fueran magia.</em></a></li><li><a href="/temas/arquitecturas/"><span aria-hidden="true">🏗️</span> Arquitecturas
+            <em>Transformers y todo lo demás: MoE, modelos de espacio de estados, híbridos, difusión, GNNs. Qué hay, qué cambia y qué se mantiene.</em></a></li><li><a href="/temas/entrenar-desde-cero/"><span aria-hidden="true">⚙️</span> Entrenar desde cero
+            <em>El pipeline completo de pre-entrenamiento: código, paralelismo, clusters y los detalles sucios que ningún paper cuenta.</em></a></li></ul>
+      </nav>
+<footer>
+        <p class="byline">
+          Curado y escrito por <a href="https://github.com/giancarlobrusca" rel="author">Giancarlo Brusca</a>,
+          desarrollador de software en Buenos Aires.
+          <span>Última revisión: <time datetime="2026-07-30">30 de julio de 2026</time>.</span>
+        </p>
+        <p>
+          <strong>AI Learning Hub</strong> · Colección curada de recursos para aprender inteligencia artificial
+          en español. Todos los enlaces apuntan a las fuentes originales; el mérito es de sus autores.
+        </p>
+        <p class="foot-nav">
+          <a href="/">Portada</a> ·
+          <a href="/rutas/">Rutas de aprendizaje</a> ·
+          <a href="/guia/como-aprender-ia-desde-cero/">Cómo aprender IA</a> ·
+          <a href="/colecciones/cursos-de-ia-gratis/">Cursos gratis</a> ·
+          <a href="/temas/espanol/">Recursos en español</a> ·
+          <a href="/sobre/">Quién lo hace</a> ·
+          <a href="https://github.com/giancarlobrusca/ai-learning-hub" rel="noopener">Código en GitHub</a>
+        </p>
+      </footer>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/data/00-secciones.js" defer></script>
+<script src="/data/01-fundamentos.js" defer></script>
+<script src="/data/02-arquitecturas.js" defer></script>
+<script src="/data/03-entrenamiento-aplicado.js" defer></script>
+<script src="/data/04-multimodal-eval-safety.js" defer></script>
+<script src="/data/05-medios-comunidad.js" defer></script>
+<script src="/data/06-futuro.js" defer></script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

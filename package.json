@@ -1,0 +1,19 @@
+{
+  "name": "ai-learning-hub",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Guía curada de recursos para aprender inteligencia artificial, en español.",
+  "author": "Giancarlo Brusca",
+  "license": "MIT",
+  "homepage": "https://recursos-ia.giancarlobrusca.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/giancarlobrusca/ai-learning-hub.git"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "check": "node build.js && node build/check.js",
+    "dev": "node build.js && python3 -m http.server 8000",
+    "og": "node build/og.js"
+  }
+}

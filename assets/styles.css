@@ -410,3 +410,180 @@ footer {
   .layout { display: block; }
   body { background: #fff; color: #000; }
 }
+
+/* ===========================================================
+   Sitio multipágina: migas, encabezados de página, FAQ y navegación
+   entre temas. Todo lo de abajo se agregó junto con el generador estático.
+   =========================================================== */
+
+/* ---------- Accesibilidad ---------- */
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 100;
+  background: var(--accent); color: #fff; padding: 10px 16px;
+  border-radius: 0 0 8px 0; font-size: 14px; font-weight: 600;
+}
+.skip-link:focus { left: 0; text-decoration: none; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+/* ---------- Marca (ahora es un enlace a la portada) ---------- */
+
+a.brand { color: inherit; }
+a.brand:hover { text-decoration: none; }
+a.brand:hover .brand-text strong { color: var(--accent); }
+
+.nav a[aria-current="page"] {
+  background: var(--bg-card-hover); color: var(--text); font-weight: 600;
+}
+
+/* ---------- Migas de pan ---------- */
+
+.breadcrumb { padding-top: 18px; font-size: 12.5px; color: var(--text-faint); }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.breadcrumb li + li::before { content: "/"; margin-right: 6px; color: var(--border); }
+.breadcrumb a { color: var(--text-faint); }
+.breadcrumb a:hover { color: var(--accent); }
+
+/* ---------- Encabezado de página interna ---------- */
+
+.page-hero { padding-top: 14px; }
+.page-hero h1 { font-size: 32px; }
+.hero .lede, p.lede { font-size: 16.5px; color: var(--text-dim); max-width: 70ch; }
+.hero .lede p { font-size: 16.5px; }
+.hero .lede p:last-child { margin-bottom: 0; }
+
+.byline-top { font-size: 12.5px; color: var(--text-faint); margin-top: 16px; }
+.ruta-para { color: var(--text-faint); font-size: 13.5px; margin: 0 0 14px; }
+.ruta-meta {
+  font-size: 13px; color: var(--text-dim); margin-top: 18px;
+  border-left: 3px solid var(--accent); padding-left: 12px;
+}
+
+/* ---------- Portada: grupos y vistas previas ---------- */
+
+.group-heading {
+  font-size: 13px; text-transform: uppercase; letter-spacing: .09em;
+  color: var(--text-faint); font-weight: 700;
+  margin: 56px 0 0; padding-top: 22px; border-top: 1px solid var(--border-soft);
+}
+#temas.group-heading { margin-bottom: 6px; }
+
+.section > h3 {
+  font-size: 20px; letter-spacing: -.02em; margin: 0 0 6px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section > h3 a { color: var(--text); }
+.section > h3 a:hover { color: var(--accent); }
+.section > h3 .sec-ico { font-size: 19px; }
+
+p.more { margin: 14px 0 0; font-size: 13.5px; }
+p.more a, .rm-more a { font-weight: 600; }
+
+/* ---------- Rutas ---------- */
+
+.rm-card h3 { margin: 0 0 3px; font-size: 15.5px; display: flex; align-items: center; gap: 8px; }
+.rm-card h3 a { color: var(--text); }
+.rm-card h3 a:hover { color: var(--accent); }
+.rm-more { margin: 12px 0 0; font-size: 12.5px; }
+
+.pasos { list-style: none; counter-reset: paso; padding: 0; margin: 0; }
+.pasos > li {
+  counter-increment: paso;
+  position: relative; padding: 0 0 22px 46px; margin: 0;
+  border-left: 2px solid var(--border-soft); margin-left: 15px;
+}
+.pasos > li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.pasos > li::before {
+  content: counter(paso);
+  position: absolute; left: -16px; top: 0;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--accent); font-weight: 700; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+.pasos h3 { margin: 4px 0 6px; font-size: 16px; letter-spacing: -.01em; }
+.pasos p { color: var(--text-dim); margin: 0 0 8px; max-width: 70ch; font-size: 14.5px; }
+.paso-link { font-size: 13px; }
+
+/* ---------- Preguntas frecuentes ---------- */
+
+.faq details {
+  border: 1px solid var(--border); border-radius: 10px;
+  background: var(--bg-card); margin-bottom: 8px; overflow: hidden;
+}
+.faq summary {
+  cursor: pointer; padding: 13px 16px; list-style: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; color: var(--text-faint); font-size: 18px; line-height: 1; flex: none;
+}
+.faq details[open] summary::after { content: "−"; }
+.faq summary:hover { background: var(--bg-card-hover); }
+.faq summary h3 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+.faq .faq-a { padding: 0 16px 14px; }
+.faq .faq-a p { margin: 0; color: var(--text-dim); max-width: 74ch; font-size: 14.5px; }
+
+/* ---------- Temas relacionados ---------- */
+
+.related { margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--border-soft); }
+.related h2 { font-size: 18px; margin: 0 0 14px; letter-spacing: -.02em; }
+.related ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.related li a {
+  display: block; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 13px 15px; color: var(--text);
+  font-weight: 600; font-size: 14.5px;
+}
+.related li a:hover { background: var(--bg-card-hover); border-color: var(--accent); text-decoration: none; }
+.related li a em {
+  display: block; font-style: normal; font-weight: 400;
+  color: var(--text-faint); font-size: 12.5px; margin-top: 4px; line-height: 1.5;
+}
+
+/* ---------- Prosa ---------- */
+
+.prose h2 {
+  font-size: 21px; margin: 38px 0 10px; letter-spacing: -.02em;
+  padding-top: 4px;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose a { text-decoration: underline; text-underline-offset: 2px; }
+.home-intro { margin-top: 34px; }
+.guia h2 { border-top: 1px solid var(--border-soft); padding-top: 28px; }
+.guia h2:first-child { border-top: 0; padding-top: 0; }
+
+/* ---------- Línea de tiempo (ahora con h2) ---------- */
+
+.tl-item h2 { margin: 1px 0 3px; font-size: 15px; letter-spacing: -.01em; }
+
+/* ---------- Modo búsqueda ---------- */
+
+body.filtering #page-content { display: none; }
+.subhead a { color: inherit; }
+.subhead a:hover { color: var(--accent); }
+
+/* ---------- Pie ---------- */
+
+footer .byline { color: var(--text-dim); }
+footer .byline span { color: var(--text-faint); }
+footer .foot-nav { margin-top: 14px; }
+
+@media (max-width: 900px) {
+  .page-hero h1 { font-size: 26px; }
+  .pasos > li { padding-left: 34px; }
+}
+
+/* ---------- Colecciones ---------- */
+
+.related.colecciones { margin-top: 18px; padding-top: 0; border-top: 0; }
+.related.colecciones ul { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }

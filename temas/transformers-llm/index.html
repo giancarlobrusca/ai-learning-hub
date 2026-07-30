@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transformers y LLMs: cómo funcionan de verdad</title>
+<meta name="description" content="De «Attention Is All You Need» a los reportes técnicos de los modelos frontera. Papers, cursos y explicaciones visuales para entender cómo funciona un LLM.">
+<link rel="canonical" href="https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="Giancarlo Brusca">
+<meta name="theme-color" content="#0b0d12">
+<link rel="alternate" hreflang="es" href="https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/">
+<link rel="alternate" hreflang="x-default" href="https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Learning Hub">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/">
+<meta property="og:title" content="Transformers y LLMs: cómo funcionan de verdad">
+<meta property="og:description" content="De «Attention Is All You Need» a los reportes técnicos de los modelos frontera. Papers, cursos y explicaciones visuales para entender cómo funciona un LLM.">
+<meta property="og:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-transformers-llm.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Transformers y LLMs: cómo funcionan de verdad — AI Learning Hub">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@giancarlobrusca">
+<meta name="twitter:creator" content="@giancarlobrusca">
+<meta name="twitter:title" content="Transformers y LLMs: cómo funcionan de verdad">
+<meta name="twitter:description" content="De «Attention Is All You Need» a los reportes técnicos de los modelos frontera. Papers, cursos y explicaciones visuales para entender cómo funciona un LLM.">
+<meta name="twitter:image" content="https://recursos-ia.giancarlobrusca.com/assets/og/tema-transformers-llm.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="stylesheet" href="/assets/styles.css">
+<script>try{var t=localStorage.getItem("alh-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/#page","url":"https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/","name":"Transformers y LLMs: cómo funcionan de verdad","headline":"Transformers y LLMs: cómo funcionan de verdad","description":"De «Attention Is All You Need» a los reportes técnicos de los modelos frontera. Papers, cursos y explicaciones visuales para entender cómo funciona un LLM.","inLanguage":"es","isPartOf":{"@id":"https://recursos-ia.giancarlobrusca.com/#website"},"author":{"@type":"Person","@id":"https://recursos-ia.giancarlobrusca.com/#autor","name":"Giancarlo Brusca","url":"https://github.com/giancarlobrusca","jobTitle":"Desarrollador de software","sameAs":["https://github.com/giancarlobrusca","https://x.com/giancarlobrusca"],"address":{"@type":"PostalAddress","addressLocality":"Buenos Aires","addressCountry":"AR"}},"publisher":{"@id":"https://recursos-ia.giancarlobrusca.com/#autor"},"datePublished":"2026-07-29","dateModified":"2026-07-30","about":{"@type":"Thing","name":"Transformers y LLMs"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://recursos-ia.giancarlobrusca.com/"},{"@type":"ListItem","position":2,"name":"Temas","item":"https://recursos-ia.giancarlobrusca.com/#temas"},{"@type":"ListItem","position":3,"name":"Transformers y LLMs","item":"https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Recursos de Transformers y LLMs","url":"https://recursos-ia.giancarlobrusca.com/temas/transformers-llm/","numberOfItems":18,"itemListElement":[{"@type":"ListItem","position":1,"name":"Deep Dive into LLMs like ChatGPT","url":"https://www.youtube.com/watch?v=7xTGNNLPyMI","description":"3h30 que explican TODO el pipeline: pretraining, tokenización, alucinaciones, SFT, RLHF, modelos de razonamiento. Si solo podés ver un video, es este."},{"@type":"ListItem","position":2,"name":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL","url":"https://arxiv.org/abs/2501.12948","description":"Demostró en abierto que el razonamiento emerge de RL con recompensas verificables, sin SFT previo. Cambió el rumbo del campo en 2025."},{"@type":"ListItem","position":3,"name":"DeepSeek-V3 Technical Report","url":"https://arxiv.org/abs/2412.19437","description":"MoE de 671B, Multi-head Latent Attention, entrenamiento en FP8, predicción multi-token. Ingeniería de eficiencia de altísimo nivel, documentada en detalle."},{"@type":"ListItem","position":4,"name":"Language Models are Few-Shot Learners (GPT-3)","url":"https://arxiv.org/abs/2005.14165","description":"El paper que demostró in-context learning y disparó la carrera de escala."},{"@type":"ListItem","position":5,"name":"Let's build GPT: from scratch, in code, spelled out","url":"https://www.youtube.com/watch?v=kCc8FmEb1nY","description":"Un GPT completo, línea por línea, en dos horas. Es el rito de iniciación del campo."},{"@type":"ListItem","position":6,"name":"Let's build the GPT Tokenizer","url":"https://www.youtube.com/watch?v=zduSFxRajkE","description":"La tokenización es la fuente de la mitad de las rarezas de los LLMs (aritmética, deletreo, idiomas no ingleses). Este video las explica todas."},{"@type":"ListItem","position":7,"name":"Neural Networks: Zero to Hero","url":"https://karpathy.ai/zero-to-hero.html","description":"El curso completo: micrograd → makemore → GPT → tokenizador. Gratis. Probablemente el mejor material de IA jamás publicado."},{"@type":"ListItem","position":8,"name":"The Llama 3 Herd of Models","url":"https://arxiv.org/abs/2407.21783","description":"92 páginas con detalles reales de datos, infraestructura, fallos de hardware y post-training. El reporte técnico más útil publicado por un laboratorio grande."},{"@type":"ListItem","position":9,"name":"[1hr Talk] Intro to Large Language Models","url":"https://www.youtube.com/watch?v=zjkBMFhNj_g","description":"La charla que instaló la analogía 'LLM = sistema operativo'. Excelente panorama de una hora."},{"@type":"ListItem","position":10,"name":"Emergent Abilities of Large Language Models","url":"https://arxiv.org/abs/2206.07682","description":"Leelo junto a su refutación: 'Are Emergent Abilities a Mirage?' (arXiv:2304.15004). El debate en sí enseña más que cualquiera de los dos."},{"@type":"ListItem","position":11,"name":"How I Use LLMs","url":"https://www.youtube.com/watch?v=EWvNQjAaOHw","description":"Uso práctico: cuándo razonamiento, cuándo herramientas, cuándo desconfiar. Complemento aplicado del anterior."},{"@type":"ListItem","position":12,"name":"How To Scale Your Model","url":"https://jax-ml.github.io/scaling-book/","description":"Libro online sobre el rendimiento real de TPUs/GPUs: paralelismo, roofline, comunicación colectiva. Muy poco material de esta calidad existe en abierto."},{"@type":"ListItem","position":13,"name":"LLaMA: Open and Efficient Foundation Language Models","url":"https://arxiv.org/abs/2302.13971","description":"El paper que abrió el ecosistema open-weights. Todo el mundo local corriendo modelos empieza acá."},{"@type":"ListItem","position":14,"name":"Language Models are Unsupervised Multitask Learners (GPT-2)","url":"https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf","description":"El origen del decoder-only puro. Es la arquitectura que se sigue reimplementando en todos los tutoriales."},{"@type":"ListItem","position":15,"name":"OLMo: Accelerating the Science of Language Models","url":"https://arxiv.org/abs/2402.00838","description":"Modelo verdaderamente abierto: pesos, datos, código de entrenamiento, checkpoints intermedios y logs. Oro puro para investigar."},{"@type":"ListItem","position":16,"name":"Pythia: A Suite for Analyzing LLMs Across Training and Scaling","url":"https://arxiv.org/abs/2304.01373","description":"154 checkpoints por modelo, en 8 escalas, con el orden de datos exacto. La herramienta estándar para estudiar dinámicas de entrenamiento."},{"@type":"ListItem","position":17,"name":"Transformer Inference Arithmetic","url":"https://kipp.ly/transformer-inference-arithmetic/","description":"Las cuentas reales: memoria, ancho de banda, latencia, KV cache. Te enseña a estimar costos antes de gastarlos."},{"@type":"ListItem","position":18,"name":"Understanding Large Language Models","url":"https://magazine.sebastianraschka.com/p/understanding-large-language-models","description":"Ruta de lectura curada de papers, ordenada pedagógicamente. Excelente punto de partida bibliográfico."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cómo funciona un LLM en pocas palabras?","acceptedAnswer":{"@type":"Answer","text":"Un modelo de lenguaje predice el siguiente token de una secuencia. Entrenado sobre cantidades enormes de texto, esa tarea aparentemente trivial lo obliga a representar gramática, hechos, estilo y razonamiento parcial. La generación es repetir esa predicción una y otra vez, realimentando lo generado."}},{"@type":"Question","name":"¿Qué es el mecanismo de atención?","acceptedAnswer":{"@type":"Answer","text":"Es la operación que permite que cada token mire a todos los demás y decida de cuáles tomar información, ponderando según su relevancia. Reemplazó a la recurrencia porque se paraleliza: todas las posiciones se calculan a la vez en vez de una por una."}},{"@type":"Question","name":"¿Qué es un token?","acceptedAnswer":{"@type":"Answer","text":"Es la unidad mínima que el modelo procesa: aproximadamente entre media palabra y una palabra en inglés, y algo menos en español, porque los tokenizadores están entrenados mayoritariamente sobre texto en inglés. Por eso el mismo texto en castellano suele costar más tokens —y más dinero— que su equivalente en inglés."}}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="/">
+      <div class="brand-mark" aria-hidden="true">AI</div>
+      <div class="brand-text">
+        <strong>AI Learning Hub</strong>
+        <span>Recursos de IA en español</span>
+      </div>
+    </a>
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <div class="nav-group-title">Inicio</div>
+      <a href="/"><span class="n-ico" aria-hidden="true">🏠</span><span>Portada</span></a>
+      <a href="/rutas/"><span class="n-ico" aria-hidden="true">🧭</span><span>Rutas de aprendizaje</span></a>
+      <a href="/guia/como-aprender-ia-desde-cero/"><span class="n-ico" aria-hidden="true">📖</span><span>Cómo aprender IA</span></a>
+      <a href="/colecciones/"><span class="n-ico" aria-hidden="true">🗂️</span><span>Colecciones</span></a>
+      <div class="nav-group-title">Fundamentos</div>
+      <a href="/temas/matematicas/"><span class="n-ico" aria-hidden="true">📐</span><span>Matemática</span><span class="n-count">10</span></a>
+      <a href="/temas/programacion/"><span class="n-ico" aria-hidden="true">⌨️</span><span>Programación y tooling</span><span class="n-count">12</span></a>
+      <a href="/temas/ml-clasico/"><span class="n-ico" aria-hidden="true">📈</span><span>Machine learning clásico</span><span class="n-count">10</span></a>
+      <a href="/temas/deep-learning/"><span class="n-ico" aria-hidden="true">🧠</span><span>Deep learning</span><span class="n-count">22</span></a>
+      <div class="nav-group-title">Modelos</div>
+      <a href="/temas/arquitecturas/"><span class="n-ico" aria-hidden="true">🏗️</span><span>Arquitecturas</span><span class="n-count">27</span></a>
+      <a href="/temas/transformers-llm/" aria-current="page"><span class="n-ico" aria-hidden="true">🔤</span><span>Transformers y LLMs</span><span class="n-count">18</span></a>
+      <a href="/temas/entrenar-desde-cero/"><span class="n-ico" aria-hidden="true">⚙️</span><span>Entrenar desde cero</span><span class="n-count">16</span></a>
+      <a href="/temas/datos-scaling/"><span class="n-ico" aria-hidden="true">🗃️</span><span>Datos, tokenización y scaling laws</span><span class="n-count">12</span></a>
+      <div class="nav-group-title">Hacerlos útiles</div>
+      <a href="/temas/post-training/"><span class="n-ico" aria-hidden="true">🎯</span><span>Post-training, RLHF y razonamiento</span><span class="n-count">19</span></a>
+      <a href="/temas/fine-tuning/"><span class="n-ico" aria-hidden="true">🔧</span><span>Fine-tuning práctico</span><span class="n-count">12</span></a>
+      <a href="/temas/inferencia/"><span class="n-ico" aria-hidden="true">⚡</span><span>Inferencia y optimización</span><span class="n-count">14</span></a>
+      <a href="/temas/infra/"><span class="n-ico" aria-hidden="true">🖥️</span><span>Infraestructura y GPUs</span><span class="n-count">10</span></a>
+      <a href="/temas/rag-agentes/"><span class="n-ico" aria-hidden="true">🤖</span><span>RAG, agentes y contexto</span><span class="n-count">19</span></a>
+      <a href="/temas/multimodal/"><span class="n-ico" aria-hidden="true">🎨</span><span>Multimodal y generativos</span><span class="n-count">17</span></a>
+      <div class="nav-group-title">Medir y controlar</div>
+      <a href="/temas/evaluacion/"><span class="n-ico" aria-hidden="true">📊</span><span>Evaluación y benchmarks</span><span class="n-count">13</span></a>
+      <a href="/temas/interpretabilidad/"><span class="n-ico" aria-hidden="true">🔬</span><span>Interpretabilidad</span><span class="n-count">11</span></a>
+      <a href="/temas/seguridad/"><span class="n-ico" aria-hidden="true">🛡️</span><span>Alineamiento y seguridad</span><span class="n-count">13</span></a>
+      <div class="nav-group-title">Mantenerse al día</div>
+      <a href="/temas/medios/"><span class="n-ico" aria-hidden="true">📡</span><span>Blogs, canales y podcasts</span><span class="n-count">36</span></a>
+      <a href="/temas/cuentas/"><span class="n-ico" aria-hidden="true">👥</span><span>Cuentas y comunidades</span><span class="n-count">24</span></a>
+      <a href="/temas/espanol/"><span class="n-ico" aria-hidden="true">🌎</span><span>Recursos en español</span><span class="n-count">7</span></a>
+      <div class="nav-group-title">Perspectiva</div>
+      <a href="/temas/papers-clave/"><span class="n-ico" aria-hidden="true">🗺️</span><span>Línea de tiempo</span></a>
+      <a href="/temas/futuro/"><span class="n-ico" aria-hidden="true">🔮</span><span>Qué se viene</span><span class="n-count">14</span></a>
+      <div class="nav-group-title">El sitio</div>
+      <a href="/sobre/"><span class="n-ico" aria-hidden="true">✍️</span><span>Quién lo hace</span></a>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <button class="menu-btn" id="menu-btn" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <form class="search-wrap" role="search" action="/" method="get">
+        <label class="sr-only" for="search">Buscar recursos de IA</label>
+        <input id="search" name="q" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Buscar: transformers, LoRA, karpathy, RLHF, difusión…">
+        <span class="kbd" aria-hidden="true">/</span>
+      </form>
+      <div class="topbar-actions">
+        <button class="btn" id="clear-btn">Limpiar</button>
+        <button class="btn" id="theme-btn" aria-label="Cambiar tema">☀️</button>
+      </div>
+    </div>
+
+    <div class="content" id="contenido">
+
+      <div class="controls" hidden id="controls">
+        <div class="filters">
+          <div class="filter-label">Tipo de recurso</div>
+          <div id="f-types" class="filters" style="border:0;margin:0;padding:0"></div>
+          <div class="filter-label" style="margin-top:14px">Nivel y atajos</div>
+          <div id="f-levels" class="filters" style="border:0;margin:0;padding:0"></div>
+        </div>
+        <div class="results-meta" id="results-meta"></div>
+      </div>
+      <section id="results-section" aria-label="Resultados de búsqueda">
+        <div id="results"></div>
+      </section>
+      <div id="page-content">
+<nav class="breadcrumb" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li><a href="/#temas">Temas</a></li><li><span aria-current="page">Transformers y LLMs</span></li></ol></nav>
+
+      <header class="hero page-hero">
+        <h1>Transformers y modelos de lenguaje (LLMs)</h1>
+        <div class="prose lede">
+      <p>
+        Si tuvieras que entender una sola arquitectura, es esta. El transformer reemplazó la recurrencia por
+        atención pura en 2017 y desde entonces es el sustrato de casi todo: texto, código, imagen, audio y
+        los sistemas de agentes que se construyen encima.
+      </p>
+      <p>
+        El camino que mejor funciona es en tres pasos. Primero la intuición visual —The Illustrated
+        Transformer y los videos de Karpathy—, después el paper original leído en serio, y recién entonces
+        los reportes técnicos de los modelos actuales. Esos reportes, los de Llama y DeepSeek especialmente,
+        enseñan más sobre cómo se construye un modelo real que la mayoría de los cursos, porque documentan
+        las decisiones y no solo el resultado.
+      </p>
+      <p>
+        Un detalle que suele omitirse: un modelo de lenguaje pre-entrenado no es un asistente. Es un
+        autocompletador de internet. Todo lo que lo vuelve conversacional y útil ocurre después, en el
+        post-entrenamiento.
+      </p></div>
+      </header>
+      <section class="section" id="recursos">
+        <h2>18 recursos de transformers y LLMs</h2>
+        <p class="sec-desc">
+          Ordenados con los imprescindibles primero y agrupados por tipo. Los marcados con ★ son los que
+          recomendaría alguien que ya recorrió el camino; los que dicen «gratis» no cuestan nada.
+        </p>
+        
+      <h3 class="subhead">🎓 Curso</h3>
+      <div class="cards"><a class="card" href="https://karpathy.ai/zero-to-hero.html" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Neural Networks: Zero to Hero</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">El curso completo: micrograd → makemore → GPT → tokenizador. Gratis. Probablemente el mejor material de IA jamás publicado.</p>
+      <div class="card-meta">
+        <span class="tag type">🎓 Curso</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">▶️ Video</h3>
+      <div class="cards"><a class="card" href="https://www.youtube.com/watch?v=7xTGNNLPyMI" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Deep Dive into LLMs like ChatGPT</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">3h30 que explican TODO el pipeline: pretraining, tokenización, alucinaciones, SFT, RLHF, modelos de razonamiento. Si solo podés ver un video, es este.</p>
+      <div class="card-meta">
+        <span class="tag type">▶️ Video</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Let's build GPT: from scratch, in code, spelled out</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">Un GPT completo, línea por línea, en dos horas. Es el rito de iniciación del campo.</p>
+      <div class="card-meta">
+        <span class="tag type">▶️ Video</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://www.youtube.com/watch?v=zduSFxRajkE" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Let's build the GPT Tokenizer</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">La tokenización es la fuente de la mitad de las rarezas de los LLMs (aritmética, deletreo, idiomas no ingleses). Este video las explica todas.</p>
+      <div class="card-meta">
+        <span class="tag type">▶️ Video</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">[1hr Talk] Intro to Large Language Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">La charla que instaló la analogía 'LLM = sistema operativo'. Excelente panorama de una hora.</p>
+      <div class="card-meta">
+        <span class="tag type">▶️ Video</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2023</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://www.youtube.com/watch?v=EWvNQjAaOHw" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">How I Use LLMs</span>
+        
+        <span class="card-author">· Andrej Karpathy</span>
+      </div>
+      <p class="card-note">Uso práctico: cuándo razonamiento, cuándo herramientas, cuándo desconfiar. Complemento aplicado del anterior.</p>
+      <div class="card-meta">
+        <span class="tag type">▶️ Video</span>
+        <span class="tag lvl-intro">Inicial</span>
+        <span class="tag year">2025</span>
+        <span class="tag free">gratis</span>
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">📄 Paper</h3>
+      <div class="cards"><a class="card" href="https://arxiv.org/abs/2501.12948" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· DeepSeek AI</span>
+      </div>
+      <p class="card-note">Demostró en abierto que el razonamiento emerge de RL con recompensas verificables, sin SFT previo. Cambió el rumbo del campo en 2025.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">DeepSeek-V3 Technical Report</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· DeepSeek AI</span>
+      </div>
+      <p class="card-note">MoE de 671B, Multi-head Latent Attention, entrenamiento en FP8, predicción multi-token. Ingeniería de eficiencia de altísimo nivel, documentada en detalle.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Language Models are Few-Shot Learners (GPT-3)</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Brown et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">El paper que demostró in-context learning y disparó la carrera de escala.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2020</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2407.21783" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">The Llama 3 Herd of Models</span>
+        <span class="star" title="Imprescindible">★</span>
+        <span class="card-author">· Meta AI</span>
+      </div>
+      <p class="card-note">92 páginas con detalles reales de datos, infraestructura, fallos de hardware y post-training. El reporte técnico más útil publicado por un laboratorio grande.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2206.07682" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Emergent Abilities of Large Language Models</span>
+        
+        <span class="card-author">· Wei et al.</span>
+      </div>
+      <p class="card-note">Leelo junto a su refutación: 'Are Emergent Abilities a Mirage?' (arXiv:2304.15004). El debate en sí enseña más que cualquiera de los dos.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2022</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2302.13971" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">LLaMA: Open and Efficient Foundation Language Models</span>
+        
+        <span class="card-author">· Touvron et al. (Meta)</span>
+      </div>
+      <p class="card-note">El paper que abrió el ecosistema open-weights. Todo el mundo local corriendo modelos empieza acá.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Language Models are Unsupervised Multitask Learners (GPT-2)</span>
+        
+        <span class="card-author">· Radford et al. (OpenAI)</span>
+      </div>
+      <p class="card-note">El origen del decoder-only puro. Es la arquitectura que se sigue reimplementando en todos los tutoriales.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2019</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2402.00838" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">OLMo: Accelerating the Science of Language Models</span>
+        
+        <span class="card-author">· Allen Institute for AI</span>
+      </div>
+      <p class="card-note">Modelo verdaderamente abierto: pesos, datos, código de entrenamiento, checkpoints intermedios y logs. Oro puro para investigar.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2024</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://arxiv.org/abs/2304.01373" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Pythia: A Suite for Analyzing LLMs Across Training and Scaling</span>
+        
+        <span class="card-author">· EleutherAI</span>
+      </div>
+      <p class="card-note">154 checkpoints por modelo, en 8 escalas, con el orden de datos exacto. La herramienta estándar para estudiar dinámicas de entrenamiento.</p>
+      <div class="card-meta">
+        <span class="tag type">📄 Paper</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a></div>
+      <h3 class="subhead">✍️ Blog/Post</h3>
+      <div class="cards"><a class="card" href="https://jax-ml.github.io/scaling-book/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">How To Scale Your Model</span>
+        
+        <span class="card-author">· Google DeepMind</span>
+      </div>
+      <p class="card-note">Libro online sobre el rendimiento real de TPUs/GPUs: paralelismo, roofline, comunicación colectiva. Muy poco material de esta calidad existe en abierto.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2025</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://kipp.ly/transformer-inference-arithmetic/" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Transformer Inference Arithmetic</span>
+        
+        <span class="card-author">· Kipply Chen</span>
+      </div>
+      <p class="card-note">Las cuentas reales: memoria, ancho de banda, latencia, KV cache. Te enseña a estimar costos antes de gastarlos.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-avanzado">Avanzado</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a><a class="card" href="https://magazine.sebastianraschka.com/p/understanding-large-language-models" target="_blank" rel="noopener">
+      <div class="card-top">
+        <span class="card-title">Understanding Large Language Models</span>
+        
+        <span class="card-author">· Sebastian Raschka</span>
+      </div>
+      <p class="card-note">Ruta de lectura curada de papers, ordenada pedagógicamente. Excelente punto de partida bibliográfico.</p>
+      <div class="card-meta">
+        <span class="tag type">✍️ Blog/Post</span>
+        <span class="tag lvl-medio">Intermedio</span>
+        <span class="tag year">2023</span>
+        
+        
+        <span class="tag">Transformers y LLMs</span>
+      </div>
+    </a></div>
+      </section>
+      <section class="section faq" id="preguntas-frecuentes">
+        <h2>Preguntas frecuentes sobre transformers y LLMs</h2>
+        <details>
+          <summary><h3>¿Cómo funciona un LLM en pocas palabras?</h3></summary>
+          <div class="faq-a"><p>Un modelo de lenguaje predice el siguiente token de una secuencia. Entrenado sobre cantidades enormes de texto, esa tarea aparentemente trivial lo obliga a representar gramática, hechos, estilo y razonamiento parcial. La generación es repetir esa predicción una y otra vez, realimentando lo generado.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Qué es el mecanismo de atención?</h3></summary>
+          <div class="faq-a"><p>Es la operación que permite que cada token mire a todos los demás y decida de cuáles tomar información, ponderando según su relevancia. Reemplazó a la recurrencia porque se paraleliza: todas las posiciones se calculan a la vez en vez de una por una.</p></div>
+        </details>
+        <details>
+          <summary><h3>¿Qué es un token?</h3></summary>
+          <div class="faq-a"><p>Es la unidad mínima que el modelo procesa: aproximadamente entre media palabra y una palabra en inglés, y algo menos en español, porque los tokenizadores están entrenados mayoritariamente sobre texto en inglés. Por eso el mismo texto en castellano suele costar más tokens —y más dinero— que su equivalente en inglés.</p></div>
+        </details>
+      </section>
+      <nav class="related" aria-label="Temas relacionados">
+        <h2>Seguí por acá</h2>
+        <ul><li><a href="/temas/arquitecturas/"><span aria-hidden="true">🏗️</span> Arquitecturas
+            <em>Transformers y todo lo demás: MoE, modelos de espacio de estados, híbridos, difusión, GNNs. Qué hay, qué cambia y qué se mantiene.</em></a></li><li><a href="/temas/post-training/"><span aria-hidden="true">🎯</span> Post-training, RLHF y razonamiento
+            <em>SFT, modelos de recompensa, DPO, GRPO y RL con recompensas verificables: donde se decide hoy la calidad de un modelo.</em></a></li><li><a href="/temas/entrenar-desde-cero/"><span aria-hidden="true">⚙️</span> Entrenar desde cero
+            <em>El pipeline completo de pre-entrenamiento: código, paralelismo, clusters y los detalles sucios que ningún paper cuenta.</em></a></li></ul>
+      </nav>
+<footer>
+        <p class="byline">
+          Curado y escrito por <a href="https://github.com/giancarlobrusca" rel="author">Giancarlo Brusca</a>,
+          desarrollador de software en Buenos Aires.
+          <span>Última revisión: <time datetime="2026-07-30">30 de julio de 2026</time>.</span>
+        </p>
+        <p>
+          <strong>AI Learning Hub</strong> · Colección curada de recursos para aprender inteligencia artificial
+          en español. Todos los enlaces apuntan a las fuentes originales; el mérito es de sus autores.
+        </p>
+        <p class="foot-nav">
+          <a href="/">Portada</a> ·
+          <a href="/rutas/">Rutas de aprendizaje</a> ·
+          <a href="/guia/como-aprender-ia-desde-cero/">Cómo aprender IA</a> ·
+          <a href="/colecciones/cursos-de-ia-gratis/">Cursos gratis</a> ·
+          <a href="/temas/espanol/">Recursos en español</a> ·
+          <a href="/sobre/">Quién lo hace</a> ·
+          <a href="https://github.com/giancarlobrusca/ai-learning-hub" rel="noopener">Código en GitHub</a>
+        </p>
+      </footer>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/data/00-secciones.js" defer></script>
+<script src="/data/01-fundamentos.js" defer></script>
+<script src="/data/02-arquitecturas.js" defer></script>
+<script src="/data/03-entrenamiento-aplicado.js" defer></script>
+<script src="/data/04-multimodal-eval-safety.js" defer></script>
+<script src="/data/05-medios-comunidad.js" defer></script>
+<script src="/data/06-futuro.js" defer></script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>
