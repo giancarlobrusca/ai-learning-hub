@@ -115,7 +115,8 @@ function head(page) {
 <link rel="canonical" href="${url}">
 <meta name="robots" content="${page.noindex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"}">
 <meta name="author" content="${esc(AUTHOR.name)}">
-<meta name="theme-color" content="${SITE.themeColor}">
+<meta name="theme-color" content="${SITE.themeColor}">${
+  SITE.googleVerification ? `\n<meta name="google-site-verification" content="${esc(SITE.googleVerification)}">` : ""}
 <link rel="alternate" hreflang="es" href="${url}">
 <link rel="alternate" hreflang="x-default" href="${url}">
 

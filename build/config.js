@@ -14,6 +14,14 @@ const SITE = {
   themeColor: "#0b0d12",
   ogImage: SITE_URL + "/assets/og.png",
   twitter: "@giancarlobrusca",
+
+  /* Token de verificación de Google Search Console.
+     Al dar de alta la propiedad, Google ofrece varios métodos: elegí "Etiqueta HTML"
+     y pegá acá SOLO el valor del atributo content (no la etiqueta entera). Después
+     `npm run build`, desplegá, y recién entonces apretá "Verificar".
+     Se puede vaciar una vez verificada, pero conviene dejarlo: si Google revalida y
+     no lo encuentra, pierde la propiedad. */
+  googleVerification: "",
 };
 
 const AUTHOR = {

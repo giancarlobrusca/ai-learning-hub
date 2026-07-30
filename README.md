@@ -145,8 +145,9 @@ Lo que ya está resuelto en el generador, para no perderlo de vista al editar:
 **Si cambia el dominio**, se toca únicamente `SITE_URL` en `build/config.js` y se vuelve a
 construir: canonical, sitemap, Open Graph y JSON-LD salen todos de ahí.
 
-Después de publicar, hay que dar de alta el sitio en
-[Google Search Console](https://search.google.com/search-console) y enviar `sitemap.xml`.
+Para verificar el sitio en [Google Search Console](https://search.google.com/search-console),
+pegá el token en `googleVerification` (`build/config.js`) y volvé a construir: la etiqueta se emite
+en las 37 páginas. El paso a paso completo está en [DIFUSION.md](DIFUSION.md).
 
 Lo que **no** se resuelve desde el código —conseguir que otros sitios enlacen a este, que es el
 factor que decide en las búsquedas competitivas— está en **[DIFUSION.md](DIFUSION.md)**: targets

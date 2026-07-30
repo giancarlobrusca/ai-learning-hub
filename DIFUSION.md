@@ -12,9 +12,23 @@ Este documento es la lista concreta de qué hacer, en qué orden, y con qué tex
 
 1. **Que el dominio resuelva.** `recursos-ia.giancarlobrusca.com` tiene que estar apuntado en Vercel
    con su CNAME. Hasta entonces cada enlace que consigas apunta al vacío.
-2. **Google Search Console.** Dar de alta la propiedad, enviar `sitemap.xml` y pedir indexación
-   manual de la portada, la guía y `/colecciones/cursos-de-ia-gratis/`. Sin esto el rastreo inicial
-   puede tardar semanas en vez de días.
+2. **Google Search Console.** Es lo único que falta y son cinco minutos:
+
+   1. Entrá a [Search Console](https://search.google.com/search-console) → *Agregar propiedad* →
+      **Prefijo de URL** → `https://recursos-ia.giancarlobrusca.com`
+   2. Elegí el método **Etiqueta HTML**. Google te muestra algo como
+      `<meta name="google-site-verification" content="AbC123..." />`.
+      Copiá **solo** el valor de `content`.
+   3. Pegalo en `googleVerification` dentro de `build/config.js`, y después:
+      ```bash
+      npm run build && npx vercel --prod
+      ```
+      Se emite en las 37 páginas automáticamente.
+   4. Volvé a Search Console y apretá *Verificar*.
+   5. Ya adentro: *Sitemaps* → enviar `sitemap.xml`. Y en *Inspección de URLs*, pedir indexación
+      de la portada, `/guia/como-aprender-ia-desde-cero/` y `/colecciones/cursos-de-ia-gratis/`.
+
+   Sin esto el rastreo inicial puede tardar semanas en vez de días.
 
 También conviene dar de alta [Bing Webmaster Tools](https://www.bing.com/webmasters): es cinco
 minutos y Bing alimenta las respuestas de ChatGPT, que es tráfico creciente para consultas de este
